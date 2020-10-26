@@ -23,6 +23,6 @@ issues, as well as missing features.
 Installation
 ###################
 
-- `Import Database dengan nama "pa_project`\_
+- `Import Database dengan nama "pa_project`
 - `Save Folder kedalam htdocs kamu`
-- `Jika terdapat error "mysqli::real_connect():access denied for user root@localhost....". kamu cuman harus mengganti username dan password pada application/config/database.php. Biasanya pada XAMPP menggunakan username = 'root' dan password=' '`\_
+- `Jika terdapat error "mysqli::real_connect():access denied for user root@localhost....". kamu cuman harus mengganti username dan password pada application/config/database.php. Biasanya pada XAMPP menggunakan username = 'root' dan password=' '
