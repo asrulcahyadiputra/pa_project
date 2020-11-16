@@ -18,7 +18,9 @@
 	<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 	<link href="<?= base_url() ?>plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
-	<!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>plugins/table/datatable/datatables.css">
+	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>plugins/table/datatable/dt-global_style.css">
+	<!-- END PAGE LEVEL STYLES -->
 
 </head>
 
