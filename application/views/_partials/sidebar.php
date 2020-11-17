@@ -58,7 +58,7 @@
 							<a href="<?= site_url('Master/kelompok') ?>"> Kelompok Pekerjaan </a>
 						</li>
 						<li>
-							<a href="component_tabs.html"> Pekerjaan </a>
+							<a href="<?= site_url('Master/pekerjaan') ?>"> Jenis Pekerjaan </a>
 						</li>
 						<li>
 							<a href="component_accordion.html"> Kategori Biaya </a>

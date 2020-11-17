@@ -19,3 +19,10 @@ Master Kelompok Pekerjaan
 $route['Master/kelompok']		= 'master/Kelompok_pekerjaan';
 $route['Master/kelompok/store']	= 'master/Kelompok_pekerjaan/store';
 $route['Master/kelompok/update']	= 'master/Kelompok_pekerjaan/update';
+
+/*--------------------------------------------------
+Master Kelompok Pekerjaan
+/--------------------------------------------------*/
+$route['Master/pekerjaan']		= 'master/Pekerjaan';
+$route['Master/pekerjaan/store']	= 'master/Pekerjaan/store';
+$route['Master/pekerjaan/update']	= 'master/Pekerjaan/update';
