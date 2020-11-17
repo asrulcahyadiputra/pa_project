@@ -55,10 +55,10 @@
 							<a href="<?= site_url('Master/proyek') ?>"> Jenis Proyek </a>
 						</li>
 						<li>
-							<a href="component_tabs.html"> Kategori Pekerjaan </a>
+							<a href="<?= site_url('Master/kelompok') ?>"> Kelompok Pekerjaan </a>
 						</li>
 						<li>
-							<a href="component_tabs.html"> Jenis Pekerjaan </a>
+							<a href="component_tabs.html"> Pekerjaan </a>
 						</li>
 						<li>
 							<a href="component_accordion.html"> Kategori Biaya </a>
