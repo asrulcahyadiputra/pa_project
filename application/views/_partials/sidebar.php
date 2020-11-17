@@ -61,15 +61,8 @@
 							<a href="<?= site_url('Master/pekerjaan') ?>"> Jenis Pekerjaan </a>
 						</li>
 						<li>
-							<a href="component_accordion.html"> Kategori Biaya </a>
+							<a href="<?= site_url('Master/pelanggan') ?>"> Pelanggan </a>
 						</li>
-						<li>
-							<a href="component_modal.html"> Komponen Biaya </a>
-						</li>
-						<li>
-							<a href="component_cards.html"> Pelanggan </a>
-						</li>
-
 					</ul>
 				</li>
 
@@ -97,9 +90,6 @@
 						</li>
 						<li>
 							<a href="element_alerts.html"> Charts Of Account </a>
-						</li>
-						<li>
-							<a href="element_alerts.html"> Pengaturan Transaksi </a>
 						</li>
 					</ul>
 				</li>

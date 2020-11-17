@@ -21,8 +21,15 @@ $route['Master/kelompok/store']	= 'master/Kelompok_pekerjaan/store';
 $route['Master/kelompok/update']	= 'master/Kelompok_pekerjaan/update';
 
 /*--------------------------------------------------
-Master Kelompok Pekerjaan
+Master Jenis Pekerjaan
 /--------------------------------------------------*/
 $route['Master/pekerjaan']		= 'master/Pekerjaan';
 $route['Master/pekerjaan/store']	= 'master/Pekerjaan/store';
 $route['Master/pekerjaan/update']	= 'master/Pekerjaan/update';
+
+/*--------------------------------------------------
+Master  Pelanggan
+/--------------------------------------------------*/
+$route['Master/pelanggan']		= 'master/Pelanggan';
+$route['Master/pelanggan/store']	= 'master/Pelanggan/store';
+$route['Master/pelanggan/update']	= 'master/Pelanggan/update';
