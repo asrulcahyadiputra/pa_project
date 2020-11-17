@@ -89,7 +89,7 @@
 							<a href="<?= site_url('Master/bayar') ?>"> Cara Pembayaran </a>
 						</li>
 						<li>
-							<a href="element_alerts.html"> Charts Of Account </a>
+							<a href="<?= site_url('Master/coa') ?>"> Charts Of Account </a>
 						</li>
 					</ul>
 				</li>
