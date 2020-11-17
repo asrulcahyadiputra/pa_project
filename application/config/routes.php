@@ -33,3 +33,17 @@ Master  Pelanggan
 $route['Master/pelanggan']		= 'master/Pelanggan';
 $route['Master/pelanggan/store']	= 'master/Pelanggan/store';
 $route['Master/pelanggan/update']	= 'master/Pelanggan/update';
+
+/*--------------------------------------------------
+Master Cara Bayar
+/--------------------------------------------------*/
+$route['Master/bayar']			= 'master/Cara_bayar';
+$route['Master/bayar/store']		= 'master/Cara_bayar/store';
+$route['Master/bayar/update']		= 'master/Cara_bayar/update';
+
+/*--------------------------------------------------
+Master Chart Of Account
+/--------------------------------------------------*/
+$route['Master/coa']			= 'master/Coa';
+$route['Master/coa/store']		= 'master/Coa/store';
+$route['Master/coa/update']		= 'master/Coa/update';

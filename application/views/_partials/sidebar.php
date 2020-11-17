@@ -86,7 +86,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="elements" data-parent="#accordionExample">
 						<li>
-							<a href="element_alerts.html"> Cara Pembayaran </a>
+							<a href="<?= site_url('Master/bayar') ?>"> Cara Pembayaran </a>
 						</li>
 						<li>
 							<a href="element_alerts.html"> Charts Of Account </a>
