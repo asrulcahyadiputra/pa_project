@@ -47,3 +47,10 @@ Master Chart Of Account
 $route['Master/coa']			= 'master/Coa';
 $route['Master/coa/store']		= 'master/Coa/store';
 $route['Master/coa/update']		= 'master/Coa/update';
+
+/*--------------------------------------------------
+Transaction Project Mapping
+/--------------------------------------------------*/
+$route['transaksi/pemetaan']			= 'transactions/project/Project_mapping';
+$route['transaksi/pemetaan/baru']		= 'transactions/project/Project_mapping/create';
+$route['transaksi/pemetaan/simpan']	= 'transactions/project/Project_mapping/store';

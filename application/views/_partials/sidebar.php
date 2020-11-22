@@ -119,6 +119,9 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="datatables" data-parent="#accordionExample">
 						<li>
+							<a href="<?=site_url('transaksi/pemetaan')?>"> Pemetaan Proyek </a>
+						</li>
+						<li>
 							<a href="table_dt_basic.html"> Kontrak Proyek </a>
 						</li>
 						<li>
