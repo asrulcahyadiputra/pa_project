@@ -7,6 +7,9 @@ class M_mapping extends CI_Model {
 	{
 		return $this->db->get('type_of_project')->result_array();
 	}
+	public function work_group(){
+		return $this->db->get('work_group')->result_array();
+	}
 	public function work_type()
 	{
 		$this->db->select("a.work_id,a.work_name,a.work_unit,b.work_group_id,b.work_group_name")
@@ -20,6 +23,26 @@ class M_mapping extends CI_Model {
 			->from('transactions as a')
 			->join('type_of_project as b','a.t_project_id=b.t_project_id')
 			->where('a.trans_type','mapping');
+
+		return $this->db->get()->result_array();
+	}
+	public function select($trans_id){
+		$this->db->select('a.trans_id,a.t_project_id,a.description,b.t_project_name')
+			->from('transactions as a')
+			->join('type_of_project as b','a.t_project_id=b.t_project_id')
+			->where('a.trans_type','mapping')
+			->where('a.trans_id',$trans_id);
+
+		return $this->db->get()->row_array();
+	}
+	public function find_detail($trans_id){
+		$this->db->select('a.trans_id,a.t_project_id,b.pm_id,b.work_id,c.work_name,c.work_group_id,d.work_group_name')
+			->from('transactions as a')
+			->join('project_mapping as b','a.trans_id=b.trans_id')
+			->join('type_of_work as c','c.work_id=b.work_id')
+			->join('work_group as d','d.work_group_id=c.work_group_id')
+			->where('a.trans_type','mapping')
+			->where('a.trans_id',$trans_id);
 
 		return $this->db->get()->result_array();
 	}
@@ -74,6 +97,45 @@ class M_mapping extends CI_Model {
 					'status'		=> 0
 				];
 			}
+		}
+		return $response;
+	}
+	public function manual_entry(){
+		$work_id = $this->input->post('work_id');
+		$trans_id = $this->input->post('trans_id');
+		if($work_id){
+			foreach($work_id as $key => $val){
+				$mapping[]=[
+					'trans_id'	=> $trans_id,
+					'work_id'		=> $this->input->post('work_id')[$key]
+				];
+			}
+			$this->db->trans_start();
+			$this->db->insert_batch('project_mapping',$mapping);
+			$this->db->trans_complete();
+			$response=[
+				'trans_id'	=> $trans_id,
+				'status'		=> 1
+			];
+		}else{
+			$response=[
+				'trans_id'	=> $trans_id,
+				'status'		=> 0
+			];
+		}
+		return $response;
+	}
+	public function destroy($pm_id,$trans_id){
+		if($this->db->delete('project_mapping',['pm_id' => $pm_id])){
+			$response=[
+				'trans_id'	=> $trans_id,
+				'status'		=> 1
+			];
+		}else{
+			$response=[
+				'trans_id'	=> $trans_id,
+				'status'		=> 0
+			];
 		}
 		return $response;
 	}

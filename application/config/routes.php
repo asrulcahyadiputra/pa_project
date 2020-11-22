@@ -51,6 +51,9 @@ $route['Master/coa/update']		= 'master/Coa/update';
 /*--------------------------------------------------
 Transaction Project Mapping
 /--------------------------------------------------*/
-$route['transaksi/pemetaan']			= 'transactions/project/Project_mapping';
-$route['transaksi/pemetaan/baru']		= 'transactions/project/Project_mapping/create';
-$route['transaksi/pemetaan/simpan']	= 'transactions/project/Project_mapping/store';
+$route['transaksi/pemetaan']					= 'transactions/project/Project_mapping';
+$route['transaksi/pemetaan/baru']				= 'transactions/project/Project_mapping/create';
+$route['transaksi/pemetaan/simpan']			= 'transactions/project/Project_mapping/store';
+$route['transaksi/pemetaan/manual_entry']		= 'transactions/project/Project_mapping/manual_entry';
+$route['transaksi/pemetaan/detail/(:any)']		= 'transactions/project/Project_mapping/show/$1';
+$route['transaksi/pemetaan/hapus/(:any)/(:any)']	= 'transactions/project/Project_mapping/delete/$1/$2';

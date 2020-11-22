@@ -11,7 +11,7 @@
 					</svg>
 					Buat Pemetaan Baru</a>
 				<div class="widget-content widget-content-area br-6">
-					<h3>Daftar Pemeteaan Proyek</h3>
+					<h3>Daftar Pemetaan Proyek</h3>
 					<?php if ($this->session->flashdata()) : ?>
 						<?php if ($this->session->flashdata('success')) : ?>
 							<div class="alert alert-success" role="alert">
@@ -47,12 +47,6 @@
 										<td>
 											<a href="<?=site_url('transaksi/pemetaan/detail/'.$row['trans_id'])?>" class="text-info mr-2">
 												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-											</a>
-											<a href="<?=site_url('transaksi/pemetaan/edit'.$row['trans_id']) ?>" class="text-warning">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
-													<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-													<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-												</svg>
 											</a>
 										</td>
 									</tr>

@@ -19,10 +19,15 @@ class Project_mapping extends CI_Controller {
 		];
 		$this->load->view('admin/transactions/project/mapping/mapping-list', $data);
 	}
-	public function show()
+	public function show($trans_id)
 	{
 		$data=[
 			'title'	 	=> 'Detail Pemetaan Proyek', 
+			'trans_id'	=> $trans_id,
+			'mapping'		=> $this->model->select($trans_id),
+			'details'		=> $this->model->find_detail($trans_id),
+			'work_type'	=> $this->model->work_type(),
+			'work_group'	=> $this->model->work_group(),
 		];
 		$this->load->view('admin/transactions/project/mapping/mapping-detail',$data);
 	}
@@ -44,6 +49,27 @@ class Project_mapping extends CI_Controller {
 		}else{
 			$this->session->set_flashdata('error', 'Pemetaan gagal di lakukan !');
 			redirect('transaksi/pemetaan');
+		}
+	}
+	public function manual_entry()
+	{
+		$response = $this->model->manual_entry();
+		if($response['status'] == 1){
+			$this->session->set_flashdata('success', 'Pemteaan Berhasil di lakukan !');
+			redirect('transaksi/pemetaan/detail/'.$response['trans_id']);
+		}else{
+			$this->session->set_flashdata('error', 'Pemetaan gagal di lakukan !');
+			redirect('transaksi/pemetaan/detail/'.$response['trans_id']);
+		}
+	}
+	public function delete($pm_id,$trans_id){
+		$response = $this->model->destroy($pm_id,$trans_id);
+		if($response['status'] == 1){
+			$this->session->set_flashdata('success', 'Pekerjaan berhasil di hapus !');
+			redirect('transaksi/pemetaan/detail/'.$response['trans_id']);
+		}else{
+			$this->session->set_flashdata('error', 'Pekerjaan gagal di hapus !');
+			redirect('transaksi/pemetaan/detail/'.$response['trans_id']);
 		}
 	}
 
