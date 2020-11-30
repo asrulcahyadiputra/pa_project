@@ -21,6 +21,10 @@
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <script src="<?= base_url() ?>plugins/apex/apexcharts.min.js"></script>
 <script src="<?= base_url() ?>assets/js/dashboard/dash_1.js"></script>
+<script src="assets/js/ie11fix/fn.fix-padStart.js"></script>
+<script src="<?=base_url()?>plugins/editors/quill/quill.js"></script>
+<script src="<?=base_url()?>assets/js/apps/todoList.js"></script>
+<script src="<?=base_url()?>assets/js/scrollspyNav.js"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?= base_url() ?>plugins/table/datatable/datatables.js"></script>

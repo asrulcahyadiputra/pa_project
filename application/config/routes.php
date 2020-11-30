@@ -64,6 +64,7 @@ Transaction Project Contract
 $route['transaksi/kontrak']					= 'transactions/project/Contract';
 $route['transaksi/kontrak/baru']				= 'transactions/project/Contract/create';
 $route['transaksi/kontrak/simpan']				= 'transactions/project/Contract/store';
+$route['transaksi/kontrak/add_timeline/(:any)']	= 'transactions/project/Contract/add_timeline/$1';
 $route['transaksi/kontrak/find_project']		= 'transactions/project/Contract/find_type_project';
 $route['transaksi/kontrak/detail/(:any)']		= 'transactions/project/Contract/show/$1';
 

@@ -124,9 +124,6 @@
 						<li>
 							<a href="<?=site_url('transaksi/kontrak')?>"> Kontrak Proyek </a>
 						</li>
-						<li>
-							<a href="table_dt_basic-dark.html"> Timeline Proyek </a>
-						</li>
 					</ul>
 				</li>
 
