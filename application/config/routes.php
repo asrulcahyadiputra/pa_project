@@ -69,6 +69,15 @@ $route['transaksi/kontrak/find_project']		= 'transactions/project/Contract/find_
 $route['transaksi/kontrak/detail/(:any)']		= 'transactions/project/Contract/show/$1';
 
 /*--------------------------------------------------
+Transaction Project Budgeting
+/--------------------------------------------------*/
+$route['transaksi/anggaran']					= 'transactions/accounting/Budgeting';
+$route['transaksi/anggaran/create/(:any)']		= 'transactions/accounting/Budgeting/create/$1';
+$route['transaksi/anggaran/edit/(:any)']		= 'transactions/accounting/Budgeting/edit/$1';
+$route['transaksi/anggaran/simpan']			= 'transactions/accounting/Budgeting/store';
+$route['transaksi/anggaran/update']			= 'transactions/accounting/Budgeting/update';
+
+/*--------------------------------------------------
 Report General Ledger
 /--------------------------------------------------*/
 $route['laporan/jurnal']						= 'reports/accounting/Ledger';

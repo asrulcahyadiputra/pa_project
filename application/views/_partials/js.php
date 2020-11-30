@@ -22,9 +22,10 @@
 <script src="<?= base_url() ?>plugins/apex/apexcharts.min.js"></script>
 <script src="<?= base_url() ?>assets/js/dashboard/dash_1.js"></script>
 <script src="assets/js/ie11fix/fn.fix-padStart.js"></script>
-<script src="<?=base_url()?>plugins/editors/quill/quill.js"></script>
-<script src="<?=base_url()?>assets/js/apps/todoList.js"></script>
-<script src="<?=base_url()?>assets/js/scrollspyNav.js"></script>
+<script src="<?= base_url() ?>plugins/editors/quill/quill.js"></script>
+<script src="<?= base_url() ?>assets/js/apps/todoList.js"></script>
+<script src="<?= base_url() ?>assets/js/scrollspyNav.js"></script>
+<script src="<?= base_url() ?>assets/js/elements/tooltip.js"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?= base_url() ?>plugins/table/datatable/datatables.js"></script>
@@ -47,75 +48,75 @@
 </script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
-	<!-- scritp dynamic form -->
-	<script type="text/javascript">
-        jQuery(document).delegate('a.add-record', 'click', function(e) {
-            e.preventDefault();
-            var content = jQuery('#sample_table tr'),
-                size = jQuery('#tbl_posts >tbody >tr').length + 1,
-                element = null,
-                element = content.clone();
+<!-- scritp dynamic form -->
+<script type="text/javascript">
+	jQuery(document).delegate('a.add-record', 'click', function(e) {
+		e.preventDefault();
+		var content = jQuery('#sample_table tr'),
+			size = jQuery('#tbl_posts >tbody >tr').length + 1,
+			element = null,
+			element = content.clone();
 
-            element.attr('id', 'rec-' + size);
-            element.find('.delete-record').attr('data-id', size);
-            element.appendTo('#tbl_posts_body');
-            element.find('.sn').html(size);
-            element.find('.select2').select2();
-            $("input[data-type='currency']").on({
-                keyup: function() {
-                    formatCurrency($(this));
-                },
-                blur: function() {
-                    formatCurrency($(this), "blur");
-                }
-            });
-        });
-    </script>
-    <script>
-        jQuery(document).delegate('a.delete-record', 'click', function(e) {
-            e.preventDefault();
-            var didConfirm = confirm("Apakah Anda yakin untuk menghapus baris ?");
-            if (didConfirm == true) {
-                var id = jQuery(this).attr('data-id');
-                var targetDiv = jQuery(this).attr('targetDiv');
-                jQuery('#rec-' + id).remove();
+		element.attr('id', 'rec-' + size);
+		element.find('.delete-record').attr('data-id', size);
+		element.appendTo('#tbl_posts_body');
+		element.find('.sn').html(size);
+		element.find('.select2').select2();
+		$("input[data-type='currency']").on({
+			keyup: function() {
+				formatCurrency($(this));
+			},
+			blur: function() {
+				formatCurrency($(this), "blur");
+			}
+		});
+	});
+</script>
+<script>
+	jQuery(document).delegate('a.delete-record', 'click', function(e) {
+		e.preventDefault();
+		var didConfirm = confirm("Apakah Anda yakin untuk menghapus baris ?");
+		if (didConfirm == true) {
+			var id = jQuery(this).attr('data-id');
+			var targetDiv = jQuery(this).attr('targetDiv');
+			jQuery('#rec-' + id).remove();
 
-                //regnerate index number on table
-                $('#tbl_posts_body tr').each(function(index) {
-                    //alert(index);
-                    $(this).find('span.sn').html(index + 1);
-                });
-                return true;
-            } else {
-                return false;
-            }
-        });
-	</script>
-	
-	<script>
-		$(document).ready(function(){
-			$('#t_project_id').change(function(){
-				var t_project_id = $('#t_project_id').val();
-				var dp;
-				$.ajax({
-                    url: '<?= site_url('transaksi/kontrak/find_project') ?>',
-                    type: 'POST',
-					dataType:'JSON',
-                    data: {
-                        t_project_id: t_project_id,
-                    },
-                    success: function(data) {
-						conversion = data.t_project_price*(30/100);
-						dp = new Intl.NumberFormat('ja-JP').format(conversion);
-						np = new Intl.NumberFormat('ja-JP').format(data.t_project_price);
-                        $('#total').val('Rp '+np);
-                        $('#nominal').val('Rp '+dp);
-						$('#project_days').val(data.t_project_estimation);
-                    }
-                });
+			//regnerate index number on table
+			$('#tbl_posts_body tr').each(function(index) {
+				//alert(index);
+				$(this).find('span.sn').html(index + 1);
+			});
+			return true;
+		} else {
+			return false;
+		}
+	});
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('#t_project_id').change(function() {
+			var t_project_id = $('#t_project_id').val();
+			var dp;
+			$.ajax({
+				url: '<?= site_url('transaksi/kontrak/find_project') ?>',
+				type: 'POST',
+				dataType: 'JSON',
+				data: {
+					t_project_id: t_project_id,
+				},
+				success: function(data) {
+					conversion = data.t_project_price * (30 / 100);
+					dp = new Intl.NumberFormat('ja-JP').format(conversion);
+					np = new Intl.NumberFormat('ja-JP').format(data.t_project_price);
+					$('#total').val('Rp ' + np);
+					$('#nominal').val('Rp ' + dp);
+					$('#project_days').val(data.t_project_estimation);
+				}
 			});
 		});
-	</script>
+	});
+</script>
 </body>
 
 </html>

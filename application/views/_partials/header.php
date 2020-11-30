@@ -23,11 +23,13 @@
 	<!-- END PAGE LEVEL STYLES -->
 
 	<!--  BEGIN CUSTOM STYLE FILE  -->
-	<link href="<?=base_url()?>assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="<?=base_url()?>plugins/editors/quill/quill.snow.css">
-    <link href="<?=base_url()?>assets/css/apps/todolist.css" rel="stylesheet" type="text/css" />
-    <link href="<?=base_url()?>assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
-    <link href="<?=base_url()?>assets/css/components/custom-modal.css" rel="stylesheet" type="text/css" />
+	<link href="<?= base_url() ?>assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>plugins/editors/quill/quill.snow.css">
+	<link href="<?= base_url() ?>assets/css/apps/todolist.css" rel="stylesheet" type="text/css" />
+	<link href="<?= base_url() ?>assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+	<link href="<?= base_url() ?>assets/css/components/custom-modal.css" rel="stylesheet" type="text/css" />
+	<link href="<?= base_url() ?>assets/css/elements/tooltip.css" rel="stylesheet" type="text/css" />
+	<link href="<?= base_url() ?>assets/css/tables/table-basic.css" rel="stylesheet" type="text/css" />
 	<!--  END CUSTOM STYLE FILE  -->
 </head>
 

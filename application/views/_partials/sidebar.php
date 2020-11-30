@@ -119,10 +119,10 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="datatables" data-parent="#accordionExample">
 						<li>
-							<a href="<?=site_url('transaksi/pemetaan')?>"> Pemetaan Proyek </a>
+							<a href="<?= site_url('transaksi/pemetaan') ?>"> Pemetaan Proyek </a>
 						</li>
 						<li>
-							<a href="<?=site_url('transaksi/kontrak')?>"> Kontrak Proyek </a>
+							<a href="<?= site_url('transaksi/kontrak') ?>"> Kontrak Proyek </a>
 						</li>
 					</ul>
 				</li>
@@ -144,7 +144,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="forms" data-parent="#accordionExample">
 						<li>
-							<a href="form_bootstrap_basic.html"> Anggaran Proyek </a>
+							<a href="<?= site_url('transaksi/anggaran') ?>"> Anggaran Proyek </a>
 						</li>
 						<li>
 							<a href="form_input_group_basic.html"> Realisasi Proyek </a>
@@ -204,7 +204,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="pages" data-parent="#accordionExample">
 						<li>
-							<a href="<?=site_url('laporan/jurnal')?>"> Jurnal Umum</a>
+							<a href="<?= site_url('laporan/jurnal') ?>"> Jurnal Umum</a>
 						</li>
 						<li>
 							<a href="pages_contact_us.html"> Buku Besar </a>
