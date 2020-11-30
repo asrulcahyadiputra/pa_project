@@ -70,3 +70,4 @@ $route['transaksi/kontrak/detail/(:any)']		= 'transactions/project/Contract/show
 /*--------------------------------------------------
 Report General Ledger
 /--------------------------------------------------*/
+$route['laporan/jurnal']						= 'reports/accounting/Ledger';

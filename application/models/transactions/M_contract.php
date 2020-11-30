@@ -111,12 +111,14 @@ class M_contract extends CI_Model {
 		$gl=[
 			[
 				'account_no'		=> '1-10001',
+				'gl_date'			=> date('Y-m-d'),
 				'gl_ref'			=> $trans_id,
 				'gl_balance'		=> 'd',
 				'gl_nominal'		=> $nominal
 			],
 			[
 				'account_no'		=> '2-10001',
+				'gl_date'			=> date('Y-m-d'),
 				'gl_ref'			=> $trans_id,
 				'gl_balance'		=> 'k',
 				'gl_nominal'		=> $nominal

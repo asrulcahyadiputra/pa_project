@@ -207,7 +207,7 @@
 					</a>
 					<ul class="collapse submenu list-unstyled" id="pages" data-parent="#accordionExample">
 						<li>
-							<a href="pages_helpdesk.html"> Jurnal Umum</a>
+							<a href="<?=site_url('laporan/jurnal')?>"> Jurnal Umum</a>
 						</li>
 						<li>
 							<a href="pages_contact_us.html"> Buku Besar </a>
