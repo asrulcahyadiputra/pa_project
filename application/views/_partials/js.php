@@ -43,8 +43,8 @@
 </script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
-<!-- scritp dynamic form -->
-<script type="text/javascript">
+	<!-- scritp dynamic form -->
+	<script type="text/javascript">
         jQuery(document).delegate('a.add-record', 'click', function(e) {
             e.preventDefault();
             var content = jQuery('#sample_table tr'),
@@ -86,7 +86,32 @@
                 return false;
             }
         });
-    </script>
+	</script>
+	
+	<script>
+		$(document).ready(function(){
+			$('#t_project_id').change(function(){
+				var t_project_id = $('#t_project_id').val();
+				var dp;
+				$.ajax({
+                    url: '<?= site_url('transaksi/kontrak/find_project') ?>',
+                    type: 'POST',
+					dataType:'JSON',
+                    data: {
+                        t_project_id: t_project_id,
+                    },
+                    success: function(data) {
+						conversion = data.t_project_price*(30/100);
+						dp = new Intl.NumberFormat('ja-JP').format(conversion);
+						np = new Intl.NumberFormat('ja-JP').format(data.t_project_price);
+                        $('#total').val('Rp '+np);
+                        $('#nominal').val('Rp '+dp);
+						$('#project_days').val(data.t_project_estimation);
+                    }
+                });
+			});
+		});
+	</script>
 </body>
 
 </html>

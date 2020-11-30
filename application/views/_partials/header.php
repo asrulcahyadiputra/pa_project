@@ -22,6 +22,9 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>plugins/table/datatable/dt-global_style.css">
 	<!-- END PAGE LEVEL STYLES -->
 
+	<!--  BEGIN CUSTOM STYLE FILE  -->
+	<link href="<?=base_url()?>assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+	<!--  END CUSTOM STYLE FILE  -->
 </head>
 
 <body class="sidebar-noneoverflow">

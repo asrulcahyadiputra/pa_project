@@ -9,44 +9,44 @@ $route['translate_uri_dashes'] = FALSE;
 /*--------------------------------------------------
 Master Jenis Proyek
 /--------------------------------------------------*/
-$route['Master/proyek']			= 'master/Jenis_proyek';
-$route['Master/proyek/store']		= 'master/Jenis_proyek/store';
-$route['Master/proyek/update']	= 'master/Jenis_proyek/update';
+$route['Master/proyek']						= 'master/Jenis_proyek';
+$route['Master/proyek/store']					= 'master/Jenis_proyek/store';
+$route['Master/proyek/update']				= 'master/Jenis_proyek/update';
 
 /*--------------------------------------------------
 Master Kelompok Pekerjaan
 /--------------------------------------------------*/
-$route['Master/kelompok']		= 'master/Kelompok_pekerjaan';
-$route['Master/kelompok/store']	= 'master/Kelompok_pekerjaan/store';
-$route['Master/kelompok/update']	= 'master/Kelompok_pekerjaan/update';
+$route['Master/kelompok']					= 'master/Kelompok_pekerjaan';
+$route['Master/kelompok/store']				= 'master/Kelompok_pekerjaan/store';
+$route['Master/kelompok/update']				= 'master/Kelompok_pekerjaan/update';
 
 /*--------------------------------------------------
 Master Jenis Pekerjaan
 /--------------------------------------------------*/
-$route['Master/pekerjaan']		= 'master/Pekerjaan';
-$route['Master/pekerjaan/store']	= 'master/Pekerjaan/store';
-$route['Master/pekerjaan/update']	= 'master/Pekerjaan/update';
+$route['Master/pekerjaan']					= 'master/Pekerjaan';
+$route['Master/pekerjaan/store']				= 'master/Pekerjaan/store';
+$route['Master/pekerjaan/update']				= 'master/Pekerjaan/update';
 
 /*--------------------------------------------------
 Master  Pelanggan
 /--------------------------------------------------*/
-$route['Master/pelanggan']		= 'master/Pelanggan';
-$route['Master/pelanggan/store']	= 'master/Pelanggan/store';
-$route['Master/pelanggan/update']	= 'master/Pelanggan/update';
+$route['Master/pelanggan']					= 'master/Pelanggan';
+$route['Master/pelanggan/store']				= 'master/Pelanggan/store';
+$route['Master/pelanggan/update']				= 'master/Pelanggan/update';
 
 /*--------------------------------------------------
 Master Cara Bayar
 /--------------------------------------------------*/
-$route['Master/bayar']			= 'master/Cara_bayar';
-$route['Master/bayar/store']		= 'master/Cara_bayar/store';
-$route['Master/bayar/update']		= 'master/Cara_bayar/update';
+$route['Master/bayar']						= 'master/Cara_bayar';
+$route['Master/bayar/store']					= 'master/Cara_bayar/store';
+$route['Master/bayar/update']					= 'master/Cara_bayar/update';
 
 /*--------------------------------------------------
 Master Chart Of Account
 /--------------------------------------------------*/
-$route['Master/coa']			= 'master/Coa';
-$route['Master/coa/store']		= 'master/Coa/store';
-$route['Master/coa/update']		= 'master/Coa/update';
+$route['Master/coa']						= 'master/Coa';
+$route['Master/coa/store']					= 'master/Coa/store';
+$route['Master/coa/update']					= 'master/Coa/update';
 
 /*--------------------------------------------------
 Transaction Project Mapping
@@ -57,3 +57,16 @@ $route['transaksi/pemetaan/simpan']			= 'transactions/project/Project_mapping/st
 $route['transaksi/pemetaan/manual_entry']		= 'transactions/project/Project_mapping/manual_entry';
 $route['transaksi/pemetaan/detail/(:any)']		= 'transactions/project/Project_mapping/show/$1';
 $route['transaksi/pemetaan/hapus/(:any)/(:any)']	= 'transactions/project/Project_mapping/delete/$1/$2';
+
+/*--------------------------------------------------
+Transaction Project Contract
+/--------------------------------------------------*/
+$route['transaksi/kontrak']					= 'transactions/project/Contract';
+$route['transaksi/kontrak/baru']				= 'transactions/project/Contract/create';
+$route['transaksi/kontrak/simpan']				= 'transactions/project/Contract/store';
+$route['transaksi/kontrak/find_project']		= 'transactions/project/Contract/find_type_project';
+$route['transaksi/kontrak/detail/(:any)']		= 'transactions/project/Contract/show/$1';
+
+/*--------------------------------------------------
+Report General Ledger
+/--------------------------------------------------*/
