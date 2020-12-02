@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 24, 2020 at 04:21 PM
+-- Generation Time: Dec 02, 2020 at 04:11 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -37,7 +37,12 @@ INSERT INTO `chart_of_account` (`account_no`, `account_name`, `normal_balance`, 
 ('1-10003', 'Bank Mandiri', 'd', '1-1'),
 ('1-20001', 'Excavator', 'd', '1-2'),
 ('1-20002', 'Akumulasi Penyusutan Excavator', 'k', '1-2'),
-('1-30001', 'Akta Notaris', 'd', '1-3');
+('1-30001', 'Akta Notaris', 'd', '1-3'),
+('2-10001', 'Pendapatan diterima dimuka', 'k', '2-1'),
+('2-10002', 'Utang Usaha', 'k', '2-1'),
+('3-10001', 'Modal Usaha', 'k', '3-1'),
+('3-10002', 'Ekuitas Awal', 'k', '3-1'),
+('4-10001', 'Pendapatan Usaha', 'k', '4-1');
 
 -- --------------------------------------------------------
 
@@ -66,7 +71,8 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`client_id`, `client_name`, `client_company`, `client_address`, `client_phone`, `client_email`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-('PL-0001', 'Ir Josephua D.Hutahuruk, M.Sc', '-', 'Jalan Abdullah dg. Sirua BTN CV DEWI blok B2 No 15 Makassar', '081250750057', 'josephua@gmail.com', 1, '2020-11-17 09:51:48', 1, '2020-11-17 09:59:14', NULL, NULL, NULL);
+('PL-0001', 'Ir Josephua D.Hutahuruk, M.Sc', '-', 'Jalan Abdullah dg. Sirua BTN CV DEWI blok B2 No 15 Makassar', '081250750057', 'josephua@gmail.com', 1, '2020-11-17 09:51:48', 1, '2020-11-17 09:59:14', NULL, NULL, NULL),
+('PL-0002', 'Firdaus Husain', '-', 'Jl Takabonerate No 12 Bukit Baruga Makassar', '085556665587', 'firdaus@gmail.com', 1, '2020-11-24 19:10:36', 1, '2020-11-24 19:10:44', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,11 +133,43 @@ INSERT INTO `coa_subhead` (`sub_code`, `sub_name`, `head_code`) VALUES
 
 CREATE TABLE `general_ledger` (
   `gl_id` bigint(20) NOT NULL,
-  `acoount_no` varchar(20) NOT NULL,
+  `gl_date` date DEFAULT NULL,
+  `account_no` varchar(20) NOT NULL,
   `gl_ref` varchar(50) NOT NULL,
   `gl_balance` varchar(1) NOT NULL,
   `gl_nominal` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `general_ledger`
+--
+
+INSERT INTO `general_ledger` (`gl_id`, `gl_date`, `account_no`, `gl_ref`, `gl_balance`, `gl_nominal`) VALUES
+(1, '2020-11-30', '1-10001', 'TRX-KNT-000000001', 'd', 240000000),
+(2, '2020-11-30', '2-10001', 'TRX-KNT-000000001', 'k', 240000000),
+(3, '2020-11-30', '1-10001', 'TRX-KNT-000000002', 'd', 195000000),
+(4, '2020-11-30', '2-10001', 'TRX-KNT-000000002', 'k', 195000000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `payment_id` bigint(20) NOT NULL,
+  `trans_id` varchar(50) NOT NULL,
+  `nominal` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `trans_id`, `nominal`, `description`) VALUES
+(3, 'TRX-KNT-000000001', 240000000, 'Down Payment (Dp)'),
+(4, 'TRX-KNT-000000002', 195000000, 'Down Payment (Dp)');
 
 -- --------------------------------------------------------
 
@@ -162,12 +200,20 @@ INSERT INTO `payment_method` (`p_method_id`, `p_method_name`, `p_method_step`, `
 --
 
 CREATE TABLE `project` (
-  `project_id` varchar(50) NOT NULL,
+  `project_id` bigint(20) NOT NULL,
   `trans_id` varchar(50) NOT NULL,
   `project_name` varchar(100) NOT NULL,
   `project_start` date NOT NULL,
   `project_due_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`project_id`, `trans_id`, `project_name`, `project_start`, `project_due_date`) VALUES
+(1, 'TRX-KNT-000000001', 'Proyek Pembangunan Rumah 3 Lantai Tn. Josephua', '2020-12-01', '2021-12-01'),
+(2, 'TRX-KNT-000000002', 'Proyek Pembangunan Rumah 2 Lantai Tn. Firdaus', '2020-12-10', '2021-09-06');
 
 -- --------------------------------------------------------
 
@@ -185,6 +231,60 @@ CREATE TABLE `project_budget` (
   `pb_unit_price_budget` double NOT NULL,
   `pb_unit_price_realitation` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `project_budget`
+--
+
+INSERT INTO `project_budget` (`pb_id`, `trans_id`, `work_id`, `pb_unit`, `pb_qty_budget`, `pb_qty_realitation`, `pb_unit_price_budget`, `pb_unit_price_realitation`) VALUES
+(1, 'TRX-KNT-000000001', 'PK-0001', 'Ls', 1, NULL, 30000, NULL),
+(2, 'TRX-KNT-000000001', 'PK-0002', 'M', 49, NULL, 22000, NULL),
+(3, 'TRX-KNT-000000001', 'PK-0003', 'BH', 7, NULL, 40000, NULL),
+(4, 'TRX-KNT-000000001', 'PK-0004', 'M', 135, NULL, 25000, NULL),
+(5, 'TRX-KNT-000000001', 'PK-0005', 'M', 135, NULL, 15000, NULL),
+(6, 'TRX-KNT-000000001', 'PK-0006', 'Ls', 1, NULL, 500000, NULL),
+(7, 'TRX-KNT-000000001', 'PK-0007', 'Titik', 8, NULL, 800000, NULL),
+(8, 'TRX-KNT-000000001', 'PK-0008', 'M', 9, NULL, 275000, NULL),
+(9, 'TRX-KNT-000000001', 'PK-0009', 'M', 32, NULL, 290000, NULL),
+(10, 'TRX-KNT-000000001', 'PK-0011', 'M', 36, NULL, 130000, NULL),
+(11, 'TRX-KNT-000000001', 'PK-0013', 'M', 43, NULL, 165000, NULL),
+(12, 'TRX-KNT-000000001', 'PK-0014', 'M', 96, NULL, 110000, NULL),
+(13, 'TRX-KNT-000000001', 'PK-0015', 'M', 108, NULL, 60000, NULL),
+(14, 'TRX-KNT-000000001', 'PK-0016', 'M', 45, NULL, 600000, NULL),
+(15, 'TRX-KNT-000000001', 'PK-0017', 'M', 156, NULL, 160000, NULL),
+(16, 'TRX-KNT-000000001', 'PK-0018', 'M', 105, NULL, 160000, NULL),
+(17, 'TRX-KNT-000000001', 'PK-0019', 'M', 261, NULL, 50000, NULL),
+(18, 'TRX-KNT-000000001', 'PK-0020', 'M', 175, NULL, 63000, NULL),
+(19, 'TRX-KNT-000000001', 'PK-0021', 'M', 175, NULL, 45000, NULL),
+(20, 'TRX-KNT-000000001', 'PK-0022', 'M', 18, NULL, 25000, NULL),
+(21, 'TRX-KNT-000000001', 'PK-0024', 'M', 175, NULL, 45000, NULL),
+(22, 'TRX-KNT-000000001', 'PK-0023', 'M', 175, NULL, 63000, NULL),
+(23, 'TRX-KNT-000000001', 'PK-0025', 'M', 240, NULL, 25000, NULL),
+(24, 'TRX-KNT-000000001', 'PK-0026', 'M', 175, NULL, 40000, NULL),
+(25, 'TRX-KNT-000000001', 'PK-0027', 'M', 135, NULL, 60000, NULL),
+(26, 'TRX-KNT-000000001', 'PK-0028', 'M', 175, NULL, 160000, NULL),
+(27, 'TRX-KNT-000000001', 'PK-0029', 'M', 36, NULL, 165000, NULL),
+(28, 'TRX-KNT-000000001', 'PK-0030', 'Set', 1, NULL, 3200000, NULL),
+(29, 'TRX-KNT-000000001', 'PK-0031', 'Mata', 3, NULL, 1550000, NULL),
+(30, 'TRX-KNT-000000001', 'PK-0032', 'Set', 4, NULL, 1650000, NULL),
+(31, 'TRX-KNT-000000001', 'PK-0033', 'Mata', 4, NULL, 1200000, NULL),
+(32, 'TRX-KNT-000000001', 'PK-0034', 'Set', 1, NULL, 1600000, NULL),
+(33, 'TRX-KNT-000000001', 'PK-0035', 'Set', 1, NULL, 1700000, NULL),
+(34, 'TRX-KNT-000000001', 'PK-0036', 'Set', 1, NULL, 2800000, NULL),
+(35, 'TRX-KNT-000000001', 'PK-0037', 'Ls', 1, NULL, 2400000, NULL),
+(36, 'TRX-KNT-000000001', 'PK-0038', 'Ls', 1, NULL, 2400000, NULL),
+(37, 'TRX-KNT-000000001', 'PK-0039', 'Ls', 1, NULL, 400000, NULL),
+(38, 'TRX-KNT-000000001', 'PK-0040', 'Ls', 1, NULL, 900000, NULL),
+(39, 'TRX-KNT-000000001', 'PK-0041', 'M', 471, NULL, 40000, NULL),
+(40, 'TRX-KNT-000000001', 'PK-0042', 'M', 42, NULL, 90000, NULL),
+(41, 'TRX-KNT-000000001', 'PK-0043', 'M', 38, NULL, 90000, NULL),
+(42, 'TRX-KNT-000000001', 'PK-0044', 'Buah', 2, NULL, 470000, NULL),
+(43, 'TRX-KNT-000000001', 'PK-0045', 'Buah', 5, NULL, 35000, NULL),
+(44, 'TRX-KNT-000000001', 'PK-0046', 'M', 27, NULL, 600000, NULL),
+(45, 'TRX-KNT-000000001', 'PK-0047', 'M', 9, NULL, 600000, NULL),
+(46, 'TRX-KNT-000000001', 'PK-0048', 'M', 8, NULL, 900000, NULL),
+(47, 'TRX-KNT-000000001', 'PK-0049', 'Ls', 1, NULL, 800000, NULL),
+(48, 'TRX-KNT-000000001', 'PK-0050', 'Ls', 1, NULL, 400000, NULL);
 
 -- --------------------------------------------------------
 
@@ -261,22 +361,178 @@ INSERT INTO `project_mapping` (`pm_id`, `trans_id`, `work_id`) VALUES
 (58, 'TRX-MPP-000000001', 'PK-0007'),
 (59, 'TRX-MPP-000000001', 'PK-0008'),
 (60, 'TRX-MPP-000000003', 'PK-0001'),
-(61, 'TRX-MPP-000000003', 'PK-0002');
+(61, 'TRX-MPP-000000003', 'PK-0002'),
+(62, 'TRX-MPP-000000003', 'PK-0003'),
+(63, 'TRX-MPP-000000003', 'PK-0004'),
+(64, 'TRX-MPP-000000003', 'PK-0005'),
+(65, 'TRX-MPP-000000003', 'PK-0006'),
+(66, 'TRX-MPP-000000003', 'PK-0007'),
+(67, 'TRX-MPP-000000003', 'PK-0008'),
+(68, 'TRX-MPP-000000003', 'PK-0009'),
+(69, 'TRX-MPP-000000003', 'PK-0010'),
+(70, 'TRX-MPP-000000003', 'PK-0011'),
+(71, 'TRX-MPP-000000003', 'PK-0012'),
+(72, 'TRX-MPP-000000003', 'PK-0013'),
+(73, 'TRX-MPP-000000003', 'PK-0014'),
+(74, 'TRX-MPP-000000003', 'PK-0015'),
+(75, 'TRX-MPP-000000003', 'PK-0016'),
+(76, 'TRX-MPP-000000003', 'PK-0017'),
+(77, 'TRX-MPP-000000003', 'PK-0018'),
+(78, 'TRX-MPP-000000003', 'PK-0019'),
+(79, 'TRX-MPP-000000003', 'PK-0020'),
+(80, 'TRX-MPP-000000003', 'PK-0021'),
+(81, 'TRX-MPP-000000003', 'PK-0022'),
+(82, 'TRX-MPP-000000003', 'PK-0024'),
+(83, 'TRX-MPP-000000003', 'PK-0023'),
+(84, 'TRX-MPP-000000003', 'PK-0025'),
+(85, 'TRX-MPP-000000003', 'PK-0026'),
+(86, 'TRX-MPP-000000003', 'PK-0027'),
+(87, 'TRX-MPP-000000003', 'PK-0028'),
+(88, 'TRX-MPP-000000003', 'PK-0029'),
+(89, 'TRX-MPP-000000003', 'PK-0030'),
+(90, 'TRX-MPP-000000003', 'PK-0031'),
+(91, 'TRX-MPP-000000003', 'PK-0032'),
+(92, 'TRX-MPP-000000003', 'PK-0033'),
+(93, 'TRX-MPP-000000003', 'PK-0034'),
+(94, 'TRX-MPP-000000003', 'PK-0035'),
+(95, 'TRX-MPP-000000003', 'PK-0036'),
+(96, 'TRX-MPP-000000003', 'PK-0037'),
+(97, 'TRX-MPP-000000003', 'PK-0038'),
+(98, 'TRX-MPP-000000003', 'PK-0039'),
+(99, 'TRX-MPP-000000003', 'PK-0040'),
+(100, 'TRX-MPP-000000003', 'PK-0041'),
+(101, 'TRX-MPP-000000003', 'PK-0042'),
+(102, 'TRX-MPP-000000003', 'PK-0043'),
+(103, 'TRX-MPP-000000003', 'PK-0044'),
+(104, 'TRX-MPP-000000003', 'PK-0045'),
+(105, 'TRX-MPP-000000003', 'PK-0046'),
+(106, 'TRX-MPP-000000003', 'PK-0047'),
+(107, 'TRX-MPP-000000003', 'PK-0048'),
+(108, 'TRX-MPP-000000003', 'PK-0049'),
+(109, 'TRX-MPP-000000003', 'PK-0050'),
+(110, 'TRX-MPP-000000004', 'PK-0001'),
+(111, 'TRX-MPP-000000004', 'PK-0002'),
+(112, 'TRX-MPP-000000004', 'PK-0003'),
+(113, 'TRX-MPP-000000004', 'PK-0004'),
+(114, 'TRX-MPP-000000004', 'PK-0005'),
+(115, 'TRX-MPP-000000004', 'PK-0006'),
+(116, 'TRX-MPP-000000004', 'PK-0007'),
+(117, 'TRX-MPP-000000004', 'PK-0008'),
+(118, 'TRX-MPP-000000004', 'PK-0009'),
+(120, 'TRX-MPP-000000004', 'PK-0011'),
+(122, 'TRX-MPP-000000004', 'PK-0013'),
+(123, 'TRX-MPP-000000004', 'PK-0014'),
+(124, 'TRX-MPP-000000004', 'PK-0015'),
+(125, 'TRX-MPP-000000004', 'PK-0016'),
+(126, 'TRX-MPP-000000004', 'PK-0017'),
+(127, 'TRX-MPP-000000004', 'PK-0018'),
+(128, 'TRX-MPP-000000004', 'PK-0019'),
+(129, 'TRX-MPP-000000004', 'PK-0020'),
+(130, 'TRX-MPP-000000004', 'PK-0021'),
+(131, 'TRX-MPP-000000004', 'PK-0022'),
+(132, 'TRX-MPP-000000004', 'PK-0024'),
+(133, 'TRX-MPP-000000004', 'PK-0023'),
+(134, 'TRX-MPP-000000004', 'PK-0025'),
+(135, 'TRX-MPP-000000004', 'PK-0026'),
+(136, 'TRX-MPP-000000004', 'PK-0027'),
+(137, 'TRX-MPP-000000004', 'PK-0028'),
+(138, 'TRX-MPP-000000004', 'PK-0029'),
+(139, 'TRX-MPP-000000004', 'PK-0030'),
+(140, 'TRX-MPP-000000004', 'PK-0031'),
+(141, 'TRX-MPP-000000004', 'PK-0032'),
+(142, 'TRX-MPP-000000004', 'PK-0033'),
+(143, 'TRX-MPP-000000004', 'PK-0034'),
+(144, 'TRX-MPP-000000004', 'PK-0035'),
+(145, 'TRX-MPP-000000004', 'PK-0036'),
+(146, 'TRX-MPP-000000004', 'PK-0037'),
+(147, 'TRX-MPP-000000004', 'PK-0038'),
+(148, 'TRX-MPP-000000004', 'PK-0039'),
+(149, 'TRX-MPP-000000004', 'PK-0040'),
+(150, 'TRX-MPP-000000004', 'PK-0041'),
+(151, 'TRX-MPP-000000004', 'PK-0042'),
+(152, 'TRX-MPP-000000004', 'PK-0043'),
+(153, 'TRX-MPP-000000004', 'PK-0044'),
+(154, 'TRX-MPP-000000004', 'PK-0045'),
+(155, 'TRX-MPP-000000004', 'PK-0046'),
+(156, 'TRX-MPP-000000004', 'PK-0047'),
+(157, 'TRX-MPP-000000004', 'PK-0048'),
+(158, 'TRX-MPP-000000004', 'PK-0049'),
+(159, 'TRX-MPP-000000004', 'PK-0050'),
+(160, 'TRX-MPP-000000005', 'PK-0001'),
+(161, 'TRX-MPP-000000005', 'PK-0002'),
+(162, 'TRX-MPP-000000005', 'PK-0003'),
+(163, 'TRX-MPP-000000005', 'PK-0004'),
+(164, 'TRX-MPP-000000005', 'PK-0005'),
+(165, 'TRX-MPP-000000005', 'PK-0006'),
+(166, 'TRX-MPP-000000005', 'PK-0007'),
+(167, 'TRX-MPP-000000005', 'PK-0008'),
+(168, 'TRX-MPP-000000005', 'PK-0010'),
+(169, 'TRX-MPP-000000005', 'PK-0012'),
+(170, 'TRX-MPP-000000005', 'PK-0014'),
+(171, 'TRX-MPP-000000005', 'PK-0016'),
+(172, 'TRX-MPP-000000005', 'PK-0017'),
+(173, 'TRX-MPP-000000005', 'PK-0018'),
+(174, 'TRX-MPP-000000005', 'PK-0019'),
+(175, 'TRX-MPP-000000005', 'PK-0020'),
+(176, 'TRX-MPP-000000005', 'PK-0021'),
+(177, 'TRX-MPP-000000005', 'PK-0022'),
+(178, 'TRX-MPP-000000005', 'PK-0024'),
+(179, 'TRX-MPP-000000005', 'PK-0023'),
+(180, 'TRX-MPP-000000005', 'PK-0025'),
+(181, 'TRX-MPP-000000005', 'PK-0026'),
+(182, 'TRX-MPP-000000005', 'PK-0027'),
+(183, 'TRX-MPP-000000005', 'PK-0028'),
+(184, 'TRX-MPP-000000005', 'PK-0029'),
+(185, 'TRX-MPP-000000005', 'PK-0030'),
+(186, 'TRX-MPP-000000005', 'PK-0031'),
+(187, 'TRX-MPP-000000005', 'PK-0032'),
+(188, 'TRX-MPP-000000005', 'PK-0033'),
+(189, 'TRX-MPP-000000005', 'PK-0034'),
+(190, 'TRX-MPP-000000005', 'PK-0035'),
+(191, 'TRX-MPP-000000005', 'PK-0036'),
+(192, 'TRX-MPP-000000005', 'PK-0037'),
+(193, 'TRX-MPP-000000005', 'PK-0038'),
+(194, 'TRX-MPP-000000005', 'PK-0039'),
+(195, 'TRX-MPP-000000005', 'PK-0040'),
+(196, 'TRX-MPP-000000005', 'PK-0041'),
+(197, 'TRX-MPP-000000005', 'PK-0042'),
+(198, 'TRX-MPP-000000005', 'PK-0043'),
+(199, 'TRX-MPP-000000005', 'PK-0044'),
+(200, 'TRX-MPP-000000005', 'PK-0045'),
+(201, 'TRX-MPP-000000005', 'PK-0046'),
+(202, 'TRX-MPP-000000005', 'PK-0047'),
+(203, 'TRX-MPP-000000005', 'PK-0048'),
+(204, 'TRX-MPP-000000005', 'PK-0049'),
+(205, 'TRX-MPP-000000005', 'PK-0050');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_timline`
+-- Table structure for table `project_timeline`
 --
 
-CREATE TABLE `project_timline` (
+CREATE TABLE `project_timeline` (
   `pt_id` bigint(20) NOT NULL,
   `trans_id` varchar(50) NOT NULL,
   `pt_name` varchar(100) NOT NULL,
+  `due` date DEFAULT NULL,
   `done` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `project_timeline`
+--
+
+INSERT INTO `project_timeline` (`pt_id`, `trans_id`, `pt_name`, `due`, `done`, `date_created`, `created_by`) VALUES
+(2, 'TRX-KNT-000000001', 'Start', '2020-12-01', 0, '2020-11-30 10:07:29', 1),
+(3, 'TRX-KNT-000000002', 'Start', '2020-12-10', 0, '2020-11-30 10:35:18', 1),
+(4, 'TRX-KNT-000000001', 'Pengukuran', '2020-12-02', 0, '2020-11-30 17:24:10', 1),
+(5, 'TRX-KNT-000000001', 'Bogkar Dinding Batu', '2020-12-03', 0, '2020-11-30 17:24:47', 1),
+(6, 'TRX-KNT-000000001', 'Bongkar Kosen, Bongkar Atap, dan Bongkar Plafond.', '2020-12-04', 0, '2020-11-30 17:25:37', 1),
+(7, 'TRX-KNT-000000001', 'Pembesihan Kotoran', '2020-12-05', 0, '2020-11-30 17:26:05', 1),
+(8, 'TRX-KNT-000000001', 'Pondasi Cakar Ayam', '2021-01-06', 0, '2020-11-30 17:30:08', 1);
 
 -- --------------------------------------------------------
 
@@ -304,9 +560,13 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`trans_id`, `client_id`, `t_project_id`, `p_method_id`, `trans_date`, `project_progress`, `total`, `trans_type`, `description`, `status`, `date_created`, `created_by`) VALUES
+('TRX-KNT-000000001', 'PL-0001', 'JP-0006', 'CB-0002', '2020-11-30 10:07:29', 0, 800000000, 'contract', NULL, 1, '2020-11-30 10:07:29', 1),
+('TRX-KNT-000000002', 'PL-0002', 'JP-0005', 'CB-0001', '2020-11-30 10:35:18', 0, 650000000, 'contract', NULL, 0, '2020-11-30 10:35:18', 1),
 ('TRX-MPP-000000001', NULL, 'JP-0001', NULL, '2020-11-22 19:49:47', NULL, NULL, 'mapping', 'Pemetaan pekerjaan dalam pengerjaan proyek renovasi rumah permane tipe satu lantai', 0, '2020-11-22 19:49:47', 0),
 ('TRX-MPP-000000002', NULL, 'JP-0002', NULL, '2020-11-22 20:12:59', NULL, NULL, 'mapping', 'Pemetaan pekerjaan proyek renovasi rumah permanen tipe dua laintai', 0, '2020-11-22 20:12:59', 0),
-('TRX-MPP-000000003', NULL, 'JP-0003', NULL, '2020-11-24 10:17:49', NULL, NULL, 'mapping', 'Semauku lah', 0, '2020-11-24 10:17:49', 0);
+('TRX-MPP-000000003', NULL, 'JP-0003', NULL, '2020-11-24 10:17:49', NULL, NULL, 'mapping', '-', 0, '2020-11-24 10:17:49', 0),
+('TRX-MPP-000000004', NULL, 'JP-0006', NULL, '2020-11-30 12:14:40', NULL, NULL, 'mapping', '-', 0, '2020-11-30 12:14:40', 0),
+('TRX-MPP-000000005', NULL, 'JP-0005', NULL, '2020-11-30 19:59:14', NULL, NULL, 'mapping', '-', 0, '2020-11-30 19:59:14', 0);
 
 -- --------------------------------------------------------
 
@@ -332,10 +592,12 @@ CREATE TABLE `type_of_project` (
 --
 
 INSERT INTO `type_of_project` (`t_project_id`, `t_project_name`, `t_project_estimation`, `t_project_price`, `date_created`, `created_by`, `date_updated`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
-('JP-0001', 'Renovasi Rumah Permanen Satu Lantai', '60', 25000000, '2020-11-16 19:40:14', 1, '2020-11-16 20:10:50', 1, NULL, NULL),
-('JP-0002', 'Renovasi Rumah Permanen Dua Lantai', '90', 50000000, '2020-11-16 19:57:38', 1, NULL, NULL, NULL, NULL),
-('JP-0003', 'Renovasi Rumah Permanen Tiga Lantai', '180', 90000000, '2020-11-16 19:57:59', 1, NULL, NULL, NULL, NULL),
-('JP-0004', 'Pembangunan Rumah Permanen Satu Lantai', '90', 180000000, '2020-11-17 04:30:18', 1, NULL, NULL, NULL, NULL);
+('JP-0001', 'Renovasi Rumah Permanen Satu Lantai', '60', 100000000, '2020-11-16 19:40:14', 1, '2020-11-24 19:04:23', 1, NULL, NULL),
+('JP-0002', 'Renovasi Rumah Permanen Dua Lantai', '90', 180000000, '2020-11-16 19:57:38', 1, '2020-11-24 19:04:09', 1, NULL, NULL),
+('JP-0003', 'Renovasi Rumah Permanen Tiga Lantai', '180', 240000000, '2020-11-16 19:57:59', 1, '2020-11-24 19:02:12', 1, NULL, NULL),
+('JP-0004', 'Pembangunan Rumah Permanen Satu Lantai', '180', 400000000, '2020-11-17 04:30:18', 1, '2020-11-24 19:08:12', 1, NULL, NULL),
+('JP-0005', 'Pembangunan Rumah Permanen Dua Lantai', '270', 650000000, '2020-11-24 19:07:19', 1, NULL, NULL, NULL, NULL),
+('JP-0006', 'Pembangunan Rumah Permanen Tiga Lantai', '360', 800000000, '2020-11-24 19:07:52', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -512,7 +774,14 @@ ALTER TABLE `coa_subhead`
 ALTER TABLE `general_ledger`
   ADD PRIMARY KEY (`gl_id`),
   ADD KEY `gl_ref` (`gl_ref`),
-  ADD KEY `acoount_no` (`acoount_no`);
+  ADD KEY `acoount_no` (`account_no`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `trans_id` (`trans_id`);
 
 --
 -- Indexes for table `payment_method`
@@ -544,9 +813,9 @@ ALTER TABLE `project_mapping`
   ADD KEY `work_id` (`work_id`);
 
 --
--- Indexes for table `project_timline`
+-- Indexes for table `project_timeline`
 --
-ALTER TABLE `project_timline`
+ALTER TABLE `project_timeline`
   ADD PRIMARY KEY (`pt_id`),
   ADD KEY `trans_id` (`trans_id`);
 
@@ -601,25 +870,37 @@ ALTER TABLE `work_group`
 -- AUTO_INCREMENT for table `general_ledger`
 --
 ALTER TABLE `general_ledger`
-  MODIFY `gl_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `gl_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `payment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `project_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project_budget`
 --
 ALTER TABLE `project_budget`
-  MODIFY `pb_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `pb_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `project_mapping`
 --
 ALTER TABLE `project_mapping`
-  MODIFY `pm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `pm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
--- AUTO_INCREMENT for table `project_timline`
+-- AUTO_INCREMENT for table `project_timeline`
 --
-ALTER TABLE `project_timline`
-  MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `project_timeline`
+  MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -656,7 +937,13 @@ ALTER TABLE `coa_subhead`
 --
 ALTER TABLE `general_ledger`
   ADD CONSTRAINT `general_ledger_ibfk_2` FOREIGN KEY (`gl_ref`) REFERENCES `transactions` (`trans_id`),
-  ADD CONSTRAINT `general_ledger_ibfk_3` FOREIGN KEY (`acoount_no`) REFERENCES `chart_of_account` (`account_no`);
+  ADD CONSTRAINT `general_ledger_ibfk_3` FOREIGN KEY (`account_no`) REFERENCES `chart_of_account` (`account_no`);
+
+--
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`);
 
 --
 -- Constraints for table `project`
@@ -679,10 +966,10 @@ ALTER TABLE `project_mapping`
   ADD CONSTRAINT `project_mapping_ibfk_2` FOREIGN KEY (`work_id`) REFERENCES `type_of_work` (`work_id`);
 
 --
--- Constraints for table `project_timline`
+-- Constraints for table `project_timeline`
 --
-ALTER TABLE `project_timline`
-  ADD CONSTRAINT `project_timline_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`);
+ALTER TABLE `project_timeline`
+  ADD CONSTRAINT `project_timeline_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`);
 
 --
 -- Constraints for table `transactions`
