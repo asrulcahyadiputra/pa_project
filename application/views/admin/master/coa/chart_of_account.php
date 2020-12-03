@@ -89,7 +89,7 @@
 	</div>
 	<!-- end of main content -->
 
-	<!-- Modal add type of project -->
+	<!-- Modal add CoA -->
 	<div class="modal fade" id="addCoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -139,13 +139,13 @@
 			</div>
 		</div>
 	</div>
-	<!-- Modal edit type of project -->
+	<!-- Modal edit CoA -->
 	<?php foreach ($all as $row) : ?>
 		<div class="modal fade" id="editCoa<?= $row['account_no'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Cara Pembayaran</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Edit CoA</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
