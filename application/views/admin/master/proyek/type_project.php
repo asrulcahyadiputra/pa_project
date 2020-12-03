@@ -33,7 +33,7 @@
 									<th>#</th>
 									<th>Jenis Proyek</th>
 									<th>Estimasi Penyelesaian</th>
-									<th>Harga</th>
+									<th>Harga /M<sup>2</sup></th>
 									<th class="no-content"></th>
 								</tr>
 							</thead>
@@ -89,7 +89,7 @@
 							<input type="number" class="form-control" name="t_project_estimation" min="1" required>
 						</div>
 						<div class="form-group">
-							<label>Harga</label>
+							<label>Harga /M<sup>2</sup></label>
 							<input type="text" class="form-control" name="t_project_price" data-type="currency" required>
 						</div>
 					</div>
@@ -127,12 +127,12 @@
 								<input type="number" class="form-control" value="<?= $row['t_project_estimation'] ?>" name="t_project_estimation" min="1" required>
 							</div>
 							<div class="form-group">
-								<label>Harga</label>
+								<label>Harga /M<sup>2</sup></label>
 								<input type="text" class="form-control" value="<?= nominal($row['t_project_price']) ?>" name="t_project_price" data-type="currency" required>
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Batalkan</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal"> Batalkan</button>
 							<button type="sumbit" class="btn btn-primary">Simpan Perubahan</button>
 						</div>
 					</form>
