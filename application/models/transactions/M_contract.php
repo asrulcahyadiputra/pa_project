@@ -34,7 +34,7 @@ class M_contract extends CI_Model
 	}
 	public function select($id)
 	{
-		$this->db->select('a.trans_id,a.t_project_id,a.total,b.t_project_name,c.project_name,c.project_due_date,d.client_name,d.client_phone,d.client_address,e.p_method_step')
+		$this->db->select('a.trans_id,a.t_project_id,a.surface_area,a.total,b.t_project_name,c.project_name,c.project_due_date,d.client_name,d.client_phone,d.client_address,e.p_method_step')
 			->from('transactions as a')
 			->join('type_of_project as b', 'a.t_project_id=b.t_project_id')
 			->join('project as c', 'c.trans_id=a.trans_id')
@@ -77,6 +77,7 @@ class M_contract extends CI_Model
 	{
 		$trans_id 	= $this->trans_id();
 		$project_name	= $this->input->post('project_name');
+		$surface_area	= $this->input->post('surface_area');
 		$client_id	= $this->input->post('client_id');
 		$t_project_id	= $this->input->post('t_project_id');
 		$project_start = $this->input->post('project_start');
@@ -92,6 +93,7 @@ class M_contract extends CI_Model
 			'client_id'		=> $client_id,
 			't_project_id'		=> $t_project_id,
 			'p_method_id'		=> $p_method_id,
+			'surface_area'		=> $surface_area,
 			'total'			=> $total,
 			'project_progress'	=> 0,
 			'trans_type'		=> $trans_type,

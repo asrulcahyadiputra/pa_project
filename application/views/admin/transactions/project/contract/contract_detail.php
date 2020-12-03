@@ -38,6 +38,11 @@
 										<td><?= $project['t_project_name'] ?></td>
 									</tr>
 									<tr>
+										<td>Luas Bangunan</td>
+										<td style="width: 1%;">:</td>
+										<td><?= $project['surface_area'] . ' M <sup>2</sup>' ?></td>
+									</tr>
+									<tr>
 										<td>Nilai Kontrak</td>
 										<td style="width: 1%;">:</td>
 										<td><?= nominal($project['total']) ?></td>

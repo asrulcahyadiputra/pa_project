@@ -97,6 +97,7 @@
 	$(document).ready(function() {
 		$('#t_project_id').change(function() {
 			var t_project_id = $('#t_project_id').val();
+			var surface_area = $('#surface_area').val();
 			var dp;
 			$.ajax({
 				url: '<?= site_url('transaksi/kontrak/find_project') ?>',
@@ -106,9 +107,10 @@
 					t_project_id: t_project_id,
 				},
 				success: function(data) {
-					conversion = data.t_project_price * (30 / 100);
+					value = data.t_project_price * surface_area;
+					conversion = value * (30 / 100);
 					dp = new Intl.NumberFormat('ja-JP').format(conversion);
-					np = new Intl.NumberFormat('ja-JP').format(data.t_project_price);
+					np = new Intl.NumberFormat('ja-JP').format(value);
 					$('#total').val('Rp ' + np);
 					$('#nominal').val('Rp ' + dp);
 					$('#project_days').val(data.t_project_estimation);
