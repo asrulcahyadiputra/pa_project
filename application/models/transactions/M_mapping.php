@@ -8,6 +8,10 @@ class M_mapping extends CI_Model
 	{
 		return $this->db->get('type_of_project')->result_array();
 	}
+	public function raw_materials()
+	{
+		return $this->db->get('raw_materials')->result_array();
+	}
 	public function work_group()
 	{
 		return $this->db->get('work_group')->result_array();
@@ -46,6 +50,17 @@ class M_mapping extends CI_Model
 			->join('project_mapping as b', 'a.trans_id=b.trans_id')
 			->join('type_of_work as c', 'c.work_id=b.work_id')
 			->join('work_group as d', 'd.work_group_id=c.work_group_id')
+			->where('a.trans_type', 'mapping')
+			->where('a.trans_id', $trans_id);
+
+		return $this->db->get()->result_array();
+	}
+	public function find_material_detail($trans_id)
+	{
+		$this->db->select('a.trans_id,b.material_id,b.pjm_id,b.work_group_id,c.material_name')
+			->from('transactions as a')
+			->join('project_material as b', 'a.trans_id=b.trans_id')
+			->join('raw_materials as c', 'c.material_id=b.material_id')
 			->where('a.trans_type', 'mapping')
 			->where('a.trans_id', $trans_id);
 
@@ -135,6 +150,52 @@ class M_mapping extends CI_Model
 	public function destroy($pm_id, $trans_id)
 	{
 		if ($this->db->delete('project_mapping', ['pm_id' => $pm_id])) {
+			$response = [
+				'trans_id'	=> $trans_id,
+				'status'		=> 1
+			];
+		} else {
+			$response = [
+				'trans_id'	=> $trans_id,
+				'status'		=> 0
+			];
+		}
+		return $response;
+	}
+
+	// material mapping
+
+	public function material_manual_entry()
+	{
+		$material_id = $this->input->post('material_id');
+		$trans_id = $this->input->post('trans_id');
+		if ($material_id) {
+			foreach ($material_id as $key => $val) {
+				$mapping[] = [
+					'trans_id'		=> $trans_id,
+					'work_group_id'	=> $this->input->post('work_group_id'),
+					'material_id'		=> $this->input->post('material_id')[$key]
+				];
+			}
+			$this->db->trans_start();
+			$this->db->insert_batch('project_material', $mapping);
+			$this->db->trans_complete();
+			$response = [
+				'trans_id'	=> $trans_id,
+				'status'		=> 1
+			];
+		} else {
+			$response = [
+				'trans_id'	=> $trans_id,
+				'status'		=> 0
+			];
+		}
+		return $response;
+	}
+
+	public function material_destroy($pjm_id, $trans_id)
+	{
+		if ($this->db->delete('project_material', ['pjm_id' => $pjm_id])) {
 			$response = [
 				'trans_id'	=> $trans_id,
 				'status'		=> 1
