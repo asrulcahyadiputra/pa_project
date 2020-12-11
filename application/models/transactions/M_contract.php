@@ -34,7 +34,7 @@ class M_contract extends CI_Model
 	}
 	public function select($id)
 	{
-		$this->db->select('a.trans_id,a.t_project_id,a.surface_area,a.total,b.t_project_name,c.project_name,c.project_due_date,d.client_name,d.client_phone,d.client_address,e.p_method_step')
+		$this->db->select('a.trans_id,a.t_project_id,a.surface_area,a.total,b.t_project_name,b.type,c.project_name,c.project_due_date,d.client_name,d.client_phone,d.client_address,e.p_method_step')
 			->from('transactions as a')
 			->join('type_of_project as b', 'a.t_project_id=b.t_project_id')
 			->join('project as c', 'c.trans_id=a.trans_id')

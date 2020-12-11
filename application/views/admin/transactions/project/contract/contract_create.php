@@ -46,7 +46,7 @@
 								<select name="t_project_id" id="t_project_id" class="form-control" required>
 									<option value="">-pilih jenis proyek-</option>
 									<?php foreach ($type_project as $tp) : ?>
-										<option value="<?= $tp['t_project_id'] ?>"><?= '(' . $tp['t_project_id'] . ') ' . $tp['t_project_name'] ?></option>
+										<option value="<?= $tp['t_project_id'] ?>"><?= '(' . $tp['t_project_id'] . ') ' . $tp['t_project_name'] . ' ' . $tp['type'] ?></option>
 									<?php endforeach ?>
 								</select>
 							</div>

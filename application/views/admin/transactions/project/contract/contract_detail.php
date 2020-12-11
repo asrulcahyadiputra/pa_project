@@ -35,7 +35,7 @@
 									<tr>
 										<td>Jenis Proyek</td>
 										<td style="width: 1%;">:</td>
-										<td><?= $project['t_project_name'] ?></td>
+										<td><?= $project['t_project_name'] . ' ' . $project['type'] ?></td>
 									</tr>
 									<tr>
 										<td>Luas Bangunan</td>
