@@ -49,6 +49,13 @@ $route['Master/coa/store']					= 'master/Coa/store';
 $route['Master/coa/update']					= 'master/Coa/update';
 
 /*--------------------------------------------------
+Master Raw Material
+/--------------------------------------------------*/
+$route['Master/material']					= 'master/Material';
+$route['Master/material/store']				= 'master/Material/store';
+$route['Master/material/update']				= 'master/Material/update';
+
+/*--------------------------------------------------
 Transaction Project Mapping
 /--------------------------------------------------*/
 $route['transaksi/pemetaan']					= 'transactions/project/Project_mapping';

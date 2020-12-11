@@ -61,6 +61,9 @@
 							<a href="<?= site_url('Master/pekerjaan') ?>"> Jenis Pekerjaan </a>
 						</li>
 						<li>
+							<a href="<?= site_url('Master/material') ?>"> Material </a>
+						</li>
+						<li>
 							<a href="<?= site_url('Master/pelanggan') ?>"> Pelanggan </a>
 						</li>
 					</ul>

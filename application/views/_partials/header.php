@@ -30,6 +30,7 @@
 	<link href="<?= base_url() ?>assets/css/components/custom-modal.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url() ?>assets/css/elements/tooltip.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url() ?>assets/css/tables/table-basic.css" rel="stylesheet" type="text/css" />
+	<link href="<?= base_url() ?>assets/css/components/tabs-accordian/custom-tabs.css" rel="stylesheet" type="text/css" />
 	<!--  END CUSTOM STYLE FILE  -->
 </head>
 
