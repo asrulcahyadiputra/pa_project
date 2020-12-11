@@ -38,6 +38,7 @@ class M_proyek extends CI_Model
 		$data = [
 			't_project_id'			=> $this->id(),
 			't_project_name'		=> $this->input->post('t_project_name'),
+			'type'				=> $this->input->post('type'),
 			't_project_estimation'	=> $this->input->post('t_project_estimation'),
 			't_project_price'		=> intval(preg_replace("/[^0-9]/", "", $this->input->post('t_project_price'))),
 			'created_by'			=> 1, //temporary
@@ -59,6 +60,7 @@ class M_proyek extends CI_Model
 		$id = $this->input->post('t_project_id');
 		$data = [
 			't_project_name'		=> $this->input->post('t_project_name'),
+			'type'				=> $this->input->post('type'),
 			't_project_estimation'	=> $this->input->post('t_project_estimation'),
 			't_project_price'		=> intval(preg_replace("/[^0-9]/", "", $this->input->post('t_project_price'))),
 			'updated_by'			=> 1, //temporary

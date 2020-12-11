@@ -32,6 +32,7 @@
 								<tr>
 									<th>#</th>
 									<th>Jenis Proyek</th>
+									<th>Tipe</th>
 									<th>Estimasi Penyelesaian</th>
 									<th>Harga /M<sup>2</sup></th>
 									<th class="no-content"></th>
@@ -43,6 +44,7 @@
 									<tr>
 										<td><?= $no++ ?></td>
 										<td><?= $row['t_project_name'] ?></td>
+										<td><?= $row['type'] ?></td>
 										<td><?= $row['t_project_estimation'] . ' Hari' ?></td>
 										<td><?= nominal($row['t_project_price']) ?></td>
 										<td>
@@ -85,6 +87,10 @@
 							<input type="text" class="form-control" name="t_project_name" required>
 						</div>
 						<div class="form-group">
+							<label>Tipe</label>
+							<input type="text" class="form-control" name="type" required>
+						</div>
+						<div class="form-group">
 							<label>Estimasi Penyelesaian</label>
 							<input type="number" class="form-control" name="t_project_estimation" min="1" required>
 						</div>
@@ -121,6 +127,10 @@
 							<div class="form-group">
 								<label>Nama Jenis Proyek</label>
 								<input type="text" class="form-control" value="<?= $row['t_project_name'] ?>" name="t_project_name" required>
+							</div>
+							<div class="form-group">
+								<label>Tipe</label>
+								<input type="text" class="form-control" name="type" value="<?= $row['type'] ?>" required>
 							</div>
 							<div class="form-group">
 								<label>Estimasi Penyelesaian</label>
