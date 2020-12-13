@@ -1,9 +1,9 @@
---- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 11, 2020 at 09:33 PM
+-- Generation Time: Dec 13, 2020 at 08:42 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -145,8 +145,45 @@ CREATE TABLE `general_ledger` (
 --
 
 INSERT INTO `general_ledger` (`gl_id`, `gl_date`, `account_no`, `gl_ref`, `gl_balance`, `gl_nominal`) VALUES
-(1, '2020-12-11', '1-10001', 'TRX-KNT-000000001', 'd', 540000000),
-(2, '2020-12-11', '2-10001', 'TRX-KNT-000000001', 'k', 540000000);
+(1, '2020-12-13', '1-10001', 'TRX-KNT-000000001', 'd', 540000000),
+(2, '2020-12-13', '2-10001', 'TRX-KNT-000000001', 'k', 540000000),
+(3, '2020-12-13', '1-10001', 'TRX-KNT-000000002', 'd', 1080000000),
+(4, '2020-12-13', '2-10001', 'TRX-KNT-000000002', 'k', 1080000000),
+(5, '2020-12-13', '2-10001', 'TRX-KNT-000000001', 'd', 540000000),
+(6, '2020-12-13', '1-10002', 'TRX-KNT-000000001', 'd', 1260000000),
+(7, '2020-12-13', '4-10001', 'TRX-KNT-000000001', 'k', 1800000000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_budget`
+--
+
+CREATE TABLE `material_budget` (
+  `mb_id` bigint(20) NOT NULL,
+  `trans_id` varchar(50) NOT NULL,
+  `material_id` varchar(20) NOT NULL,
+  `work_group_id` varchar(20) NOT NULL,
+  `mb_unit` varchar(100) NOT NULL,
+  `mb_qty_budget` int(11) NOT NULL,
+  `mb_qty_realitation` int(11) DEFAULT NULL,
+  `mb_unit_price_budget` double NOT NULL,
+  `mb_unit_price_realitation` double DEFAULT NULL,
+  `budget` double DEFAULT NULL,
+  `realitation` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `material_budget`
+--
+
+INSERT INTO `material_budget` (`mb_id`, `trans_id`, `material_id`, `work_group_id`, `mb_unit`, `mb_qty_budget`, `mb_qty_realitation`, `mb_unit_price_budget`, `mb_unit_price_realitation`, `budget`, `realitation`) VALUES
+(1, 'TRX-KNT-000000001', 'MT-000000009', 'KP-0001', 'Meter', 250, NULL, 25000, NULL, 6250000, NULL),
+(2, 'TRX-KNT-000000001', 'MT-000000001', 'KP-0002', 'Zak', 1000, NULL, 55000, NULL, 55000000, NULL),
+(3, 'TRX-KNT-000000001', 'MT-000000002', 'KP-0002', 'Kubik', 1000, NULL, 325000, NULL, 325000000, NULL),
+(4, 'TRX-KNT-000000002', 'MT-000000009', 'KP-0001', 'Meter', 500, NULL, 25000, NULL, 12500000, NULL),
+(5, 'TRX-KNT-000000002', 'MT-000000001', 'KP-0002', 'Zak', 7000, NULL, 55000, NULL, 385000000, NULL),
+(6, 'TRX-KNT-000000002', 'MT-000000002', 'KP-0002', 'Kubik', 5000, NULL, 325000, NULL, 1625000000, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,9 +203,8 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`payment_id`, `trans_id`, `nominal`, `description`) VALUES
-(1, 'TRX-KNT-000000001', 1200000000, 'Down Payment (Dp)'),
-(2, 'TRX-KNT-000000002', 487500000, 'Down Payment (Dp)'),
-(3, 'TRX-KNT-000000001', 540000000, 'Down Payment (Dp)');
+(1, 'TRX-KNT-000000001', 540000000, 'Down Payment (Dp)'),
+(2, 'TRX-KNT-000000002', 1080000000, 'Down Payment (Dp)');
 
 -- --------------------------------------------------------
 
@@ -211,7 +247,8 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`project_id`, `trans_id`, `project_name`, `project_start`, `project_due_date`) VALUES
-(1, 'TRX-KNT-000000001', 'Proyek Pembangunan Rumah 2 Lantai Tn. Firdaus', '2020-12-14', '2021-12-09');
+(1, 'TRX-KNT-000000001', 'Proyek Pembangunan Rumah 2 Lantai Tn. Firdaus', '2020-12-14', '2021-12-09'),
+(2, 'TRX-KNT-000000002', 'Proyek Pembangunan Rumah 2 Lantai Tn. Josephua', '2020-12-21', '2023-01-04');
 
 -- --------------------------------------------------------
 
@@ -227,64 +264,20 @@ CREATE TABLE `project_budget` (
   `pb_qty_budget` int(11) NOT NULL,
   `pb_qty_realitation` int(11) DEFAULT NULL,
   `pb_unit_price_budget` double NOT NULL,
-  `pb_unit_price_realitation` double DEFAULT NULL
+  `pb_unit_price_realitation` double DEFAULT NULL,
+  `budget` double DEFAULT NULL,
+  `realitation` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `project_budget`
 --
 
-INSERT INTO `project_budget` (`pb_id`, `trans_id`, `work_id`, `pb_unit`, `pb_qty_budget`, `pb_qty_realitation`, `pb_unit_price_budget`, `pb_unit_price_realitation`) VALUES
-(1, 'TRX-KNT-000000001', 'PK-0001', 'Ls', 1, NULL, 50000, NULL),
-(2, 'TRX-KNT-000000001', 'PK-0002', 'M', 1, NULL, 500000, NULL),
-(3, 'TRX-KNT-000000001', 'PK-0003', 'BH', 1, NULL, 500000, NULL),
-(4, 'TRX-KNT-000000001', 'PK-0004', 'M', 1, NULL, 500000, NULL),
-(5, 'TRX-KNT-000000001', 'PK-0005', 'M', 2, NULL, 500000, NULL),
-(6, 'TRX-KNT-000000001', 'PK-0006', 'Ls', 1, NULL, 150000, NULL),
-(7, 'TRX-KNT-000000001', 'PK-0007', 'Titik', 10, NULL, 1000000, NULL),
-(8, 'TRX-KNT-000000001', 'PK-0008', 'M', 10, NULL, 1000000, NULL),
-(9, 'TRX-KNT-000000001', 'PK-0009', 'M', 10, NULL, 1000000, NULL),
-(10, 'TRX-KNT-000000001', 'PK-0010', 'M', 10, NULL, 250000, NULL),
-(11, 'TRX-KNT-000000001', 'PK-0011', 'M', 10, NULL, 150000, NULL),
-(12, 'TRX-KNT-000000001', 'PK-0012', 'M', 10, NULL, 150000, NULL),
-(13, 'TRX-KNT-000000001', 'PK-0013', 'M', 10, NULL, 150000, NULL),
-(14, 'TRX-KNT-000000001', 'PK-0014', 'M', 10, NULL, 100000, NULL),
-(15, 'TRX-KNT-000000001', 'PK-0015', 'M', 10, NULL, 100000, NULL),
-(16, 'TRX-KNT-000000001', 'PK-0016', 'M', 10, NULL, 100000, NULL),
-(17, 'TRX-KNT-000000001', 'PK-0017', 'M', 10, NULL, 1000000, NULL),
-(18, 'TRX-KNT-000000001', 'PK-0018', 'M', 500, NULL, 200000, NULL),
-(19, 'TRX-KNT-000000001', 'PK-0019', 'M', 500, NULL, 200000, NULL),
-(20, 'TRX-KNT-000000001', 'PK-0020', 'M', 500, NULL, 150000, NULL),
-(21, 'TRX-KNT-000000001', 'PK-0021', 'M', 500, NULL, 150000, NULL),
-(22, 'TRX-KNT-000000001', 'PK-0022', 'M', 500, NULL, 150000, NULL),
-(23, 'TRX-KNT-000000001', 'PK-0024', 'M', 500, NULL, 150000, NULL),
-(24, 'TRX-KNT-000000001', 'PK-0023', 'M', 500, NULL, 200000, NULL),
-(25, 'TRX-KNT-000000001', 'PK-0025', 'M', 500, NULL, 150000, NULL),
-(26, 'TRX-KNT-000000001', 'PK-0026', 'M', 500, NULL, 50000, NULL),
-(27, 'TRX-KNT-000000001', 'PK-0027', 'M', 500, NULL, 250000, NULL),
-(28, 'TRX-KNT-000000001', 'PK-0028', 'M', 500, NULL, 500000, NULL),
-(29, 'TRX-KNT-000000001', 'PK-0029', 'M', 80, NULL, 500000, NULL),
-(30, 'TRX-KNT-000000001', 'PK-0030', 'Set', 10, NULL, 2500000, NULL),
-(31, 'TRX-KNT-000000001', 'PK-0031', 'Mata', 10, NULL, 500000, NULL),
-(32, 'TRX-KNT-000000001', 'PK-0032', 'Set', 10, NULL, 2500000, NULL),
-(33, 'TRX-KNT-000000001', 'PK-0033', 'Mata', 10, NULL, 1000000, NULL),
-(34, 'TRX-KNT-000000001', 'PK-0034', 'Set', 1, NULL, 5000000, NULL),
-(35, 'TRX-KNT-000000001', 'PK-0035', 'Set', 1, NULL, 5000000, NULL),
-(36, 'TRX-KNT-000000001', 'PK-0036', 'Set', 1, NULL, 6500000, NULL),
-(37, 'TRX-KNT-000000001', 'PK-0037', 'Ls', 50, NULL, 50000, NULL),
-(38, 'TRX-KNT-000000001', 'PK-0038', 'Ls', 50, NULL, 25000, NULL),
-(39, 'TRX-KNT-000000001', 'PK-0039', 'Ls', 10, NULL, 5000, NULL),
-(40, 'TRX-KNT-000000001', 'PK-0040', 'Ls', 10, NULL, 50000, NULL),
-(41, 'TRX-KNT-000000001', 'PK-0041', 'M', 12, NULL, 57000, NULL),
-(42, 'TRX-KNT-000000001', 'PK-0042', 'M', 10, NULL, 63000, NULL),
-(43, 'TRX-KNT-000000001', 'PK-0043', 'M', 10, NULL, 125000, NULL),
-(44, 'TRX-KNT-000000001', 'PK-0044', 'Buah', 5, NULL, 1750000, NULL),
-(45, 'TRX-KNT-000000001', 'PK-0045', 'Buah', 50, NULL, 250000, NULL),
-(46, 'TRX-KNT-000000001', 'PK-0046', 'M', 1, NULL, 7000000, NULL),
-(47, 'TRX-KNT-000000001', 'PK-0047', 'M', 1, NULL, 10000000, NULL),
-(48, 'TRX-KNT-000000001', 'PK-0048', 'M', 1, NULL, 50000000, NULL),
-(49, 'TRX-KNT-000000001', 'PK-0049', 'Ls', 1, NULL, 300000, NULL),
-(50, 'TRX-KNT-000000001', 'PK-0050', 'Ls', 1, NULL, 250000, NULL);
+INSERT INTO `project_budget` (`pb_id`, `trans_id`, `work_id`, `pb_unit`, `pb_qty_budget`, `pb_qty_realitation`, `pb_unit_price_budget`, `pb_unit_price_realitation`, `budget`, `realitation`) VALUES
+(1, 'TRX-KNT-000000001', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL),
+(2, 'TRX-KNT-000000001', 'PK-0008', 'M', 500, NULL, 1500000, NULL, 750000000, NULL),
+(3, 'TRX-KNT-000000002', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL),
+(4, 'TRX-KNT-000000002', 'PK-0008', 'M', 500, NULL, 1600000, NULL, 800000000, NULL);
 
 -- --------------------------------------------------------
 
@@ -304,48 +297,7 @@ CREATE TABLE `project_mapping` (
 
 INSERT INTO `project_mapping` (`pm_id`, `trans_id`, `work_id`) VALUES
 (1, 'TRX-MPP-000000001', 'PK-0001'),
-(8, 'TRX-MPP-000000001', 'PK-0008'),
-(9, 'TRX-MPP-000000001', 'PK-0009'),
-(10, 'TRX-MPP-000000001', 'PK-0010'),
-(11, 'TRX-MPP-000000001', 'PK-0011'),
-(12, 'TRX-MPP-000000001', 'PK-0012'),
-(13, 'TRX-MPP-000000001', 'PK-0013'),
-(14, 'TRX-MPP-000000001', 'PK-0014'),
-(15, 'TRX-MPP-000000001', 'PK-0015'),
-(16, 'TRX-MPP-000000001', 'PK-0016'),
-(18, 'TRX-MPP-000000001', 'PK-0018'),
-(19, 'TRX-MPP-000000001', 'PK-0019'),
-(20, 'TRX-MPP-000000001', 'PK-0020'),
-(21, 'TRX-MPP-000000001', 'PK-0021'),
-(22, 'TRX-MPP-000000001', 'PK-0022'),
-(23, 'TRX-MPP-000000001', 'PK-0024'),
-(24, 'TRX-MPP-000000001', 'PK-0023'),
-(25, 'TRX-MPP-000000001', 'PK-0025'),
-(26, 'TRX-MPP-000000001', 'PK-0026'),
-(27, 'TRX-MPP-000000001', 'PK-0027'),
-(28, 'TRX-MPP-000000001', 'PK-0028'),
-(29, 'TRX-MPP-000000001', 'PK-0029'),
-(30, 'TRX-MPP-000000001', 'PK-0030'),
-(31, 'TRX-MPP-000000001', 'PK-0031'),
-(32, 'TRX-MPP-000000001', 'PK-0032'),
-(33, 'TRX-MPP-000000001', 'PK-0033'),
-(34, 'TRX-MPP-000000001', 'PK-0034'),
-(35, 'TRX-MPP-000000001', 'PK-0035'),
-(36, 'TRX-MPP-000000001', 'PK-0036'),
-(37, 'TRX-MPP-000000001', 'PK-0037'),
-(38, 'TRX-MPP-000000001', 'PK-0038'),
-(39, 'TRX-MPP-000000001', 'PK-0039'),
-(40, 'TRX-MPP-000000001', 'PK-0040'),
-(41, 'TRX-MPP-000000001', 'PK-0041'),
-(42, 'TRX-MPP-000000001', 'PK-0042'),
-(43, 'TRX-MPP-000000001', 'PK-0043'),
-(44, 'TRX-MPP-000000001', 'PK-0044'),
-(45, 'TRX-MPP-000000001', 'PK-0045'),
-(46, 'TRX-MPP-000000001', 'PK-0046'),
-(47, 'TRX-MPP-000000001', 'PK-0047'),
-(48, 'TRX-MPP-000000001', 'PK-0048'),
-(49, 'TRX-MPP-000000001', 'PK-0049'),
-(50, 'TRX-MPP-000000001', 'PK-0050');
+(2, 'TRX-MPP-000000001', 'PK-0008');
 
 -- --------------------------------------------------------
 
@@ -365,17 +317,9 @@ CREATE TABLE `project_material` (
 --
 
 INSERT INTO `project_material` (`pjm_id`, `trans_id`, `material_id`, `work_group_id`) VALUES
-(1, 'TRX-MPP-000000001', 'MT-000000001', 'KP-0004'),
-(2, 'TRX-MPP-000000001', 'MT-000000004', 'KP-0004'),
-(5, 'TRX-MPP-000000001', 'MT-000000001', 'KP-0003'),
-(6, 'TRX-MPP-000000001', 'MT-000000002', 'KP-0003'),
-(7, 'TRX-MPP-000000001', 'MT-000000002', 'KP-0004'),
-(8, 'TRX-MPP-000000001', 'MT-000000001', 'KP-0002'),
-(9, 'TRX-MPP-000000001', 'MT-000000002', 'KP-0002'),
-(10, 'TRX-MPP-000000001', 'MT-000000006', 'KP-0005'),
-(11, 'TRX-MPP-000000001', 'MT-000000007', 'KP-0005'),
-(12, 'TRX-MPP-000000001', 'MT-000000008', 'KP-0006'),
-(13, 'TRX-MPP-000000001', 'MT-000000009', 'KP-0001');
+(1, 'TRX-MPP-000000001', 'MT-000000009', 'KP-0001'),
+(2, 'TRX-MPP-000000001', 'MT-000000001', 'KP-0002'),
+(3, 'TRX-MPP-000000001', 'MT-000000002', 'KP-0002');
 
 -- --------------------------------------------------------
 
@@ -398,9 +342,11 @@ CREATE TABLE `project_timeline` (
 --
 
 INSERT INTO `project_timeline` (`pt_id`, `trans_id`, `pt_name`, `due`, `done`, `date_created`, `created_by`) VALUES
-(1, 'TRX-KNT-000000001', 'Start', '2020-12-14', 0, '2020-12-11 13:18:20', 1),
-(2, 'TRX-KNT-000000001', 'Pengukuran', '2020-12-15', 0, '2020-12-11 21:25:48', 1),
-(3, 'TRX-KNT-000000001', 'Pondasi Batu Gunung', '2020-12-16', 0, '2020-12-11 21:27:15', 1);
+(1, 'TRX-KNT-000000001', 'Start', '2020-12-14', 0, '2020-12-13 07:40:34', 1),
+(2, 'TRX-KNT-000000001', 'Pengukuran', '2020-12-15', 0, '2020-12-13 16:45:41', 1),
+(3, 'TRX-KNT-000000002', 'Start', '2020-12-21', 0, '2020-12-13 19:52:08', 1),
+(4, 'TRX-KNT-000000001', 'Penggalian untuk pondasi', '2020-12-16', 0, '2020-12-13 20:08:40', 1),
+(5, 'TRX-KNT-000000001', 'Pembelian Material Batu Gunung dan Pasir untuk pengerjaan Pondasi', '2020-12-16', 0, '2020-12-13 20:14:57', 1);
 
 -- --------------------------------------------------------
 
@@ -456,8 +402,9 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`trans_id`, `client_id`, `t_project_id`, `p_method_id`, `trans_date`, `project_progress`, `surface_area`, `total`, `trans_type`, `description`, `status`, `date_created`, `created_by`) VALUES
-('TRX-KNT-000000001', 'PL-0002', 'JP-0001', 'CB-0002', '2020-12-11 13:18:20', 0, 500, 1800000000, 'contract', NULL, 1, '2020-12-11 13:18:20', 1),
-('TRX-MPP-000000001', NULL, 'JP-0001', NULL, '2020-12-11 13:09:31', NULL, NULL, NULL, 'mapping', 'Pemeteaan Baru untuk pembangunan permanen dua lanti tipe 70', 0, '2020-12-11 13:09:31', 0);
+('TRX-KNT-000000001', 'PL-0002', 'JP-0001', 'CB-0002', '2020-12-13 07:40:34', 1, 500, 1800000000, 'contract', NULL, 1, '2020-12-13 07:40:34', 1),
+('TRX-KNT-000000002', 'PL-0001', 'JP-0001', 'CB-0003', '2020-12-13 19:52:08', 0, 1000, 3600000000, 'contract', NULL, 1, '2020-12-13 19:52:08', 1),
+('TRX-MPP-000000001', NULL, 'JP-0001', NULL, '2020-12-13 07:38:51', NULL, NULL, NULL, 'mapping', 'Pemetaan Rencana Anggaran Biaya Pembgangunan RUmah Permanen Dua Lantai TIpe 70', 0, '2020-12-13 07:38:51', 0);
 
 -- --------------------------------------------------------
 
@@ -665,6 +612,15 @@ ALTER TABLE `general_ledger`
   ADD KEY `acoount_no` (`account_no`);
 
 --
+-- Indexes for table `material_budget`
+--
+ALTER TABLE `material_budget`
+  ADD PRIMARY KEY (`mb_id`),
+  ADD KEY `trans_id` (`trans_id`),
+  ADD KEY `material_id` (`material_id`),
+  ADD KEY `work_group_id` (`work_group_id`);
+
+--
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
@@ -773,43 +729,49 @@ ALTER TABLE `work_group`
 -- AUTO_INCREMENT for table `general_ledger`
 --
 ALTER TABLE `general_ledger`
-  MODIFY `gl_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `gl_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `material_budget`
+--
+ALTER TABLE `material_budget`
+  MODIFY `mb_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `payment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `project_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project_budget`
 --
 ALTER TABLE `project_budget`
-  MODIFY `pb_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `pb_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `project_mapping`
 --
 ALTER TABLE `project_mapping`
-  MODIFY `pm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `pm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project_material`
 --
 ALTER TABLE `project_material`
-  MODIFY `pjm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `pjm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `project_timeline`
 --
 ALTER TABLE `project_timeline`
-  MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -847,6 +809,14 @@ ALTER TABLE `coa_subhead`
 ALTER TABLE `general_ledger`
   ADD CONSTRAINT `general_ledger_ibfk_2` FOREIGN KEY (`gl_ref`) REFERENCES `transactions` (`trans_id`),
   ADD CONSTRAINT `general_ledger_ibfk_3` FOREIGN KEY (`account_no`) REFERENCES `chart_of_account` (`account_no`);
+
+--
+-- Constraints for table `material_budget`
+--
+ALTER TABLE `material_budget`
+  ADD CONSTRAINT `material_budget_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`),
+  ADD CONSTRAINT `material_budget_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `raw_materials` (`material_id`),
+  ADD CONSTRAINT `material_budget_ibfk_3` FOREIGN KEY (`work_group_id`) REFERENCES `work_group` (`work_group_id`);
 
 --
 -- Constraints for table `payments`
