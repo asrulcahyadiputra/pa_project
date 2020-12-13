@@ -88,6 +88,18 @@ class M_budgeting extends CI_Model
 
 		return $this->db->get()->result_array();
 	}
+	public function select_material($trans_id)
+	{
+		$this->db->select('a.trans_id,a.t_project_id,b.mb_id,b.material_id,b.mb_unit,b.mb_qty_budget,b.mb_unit_price_budget,c.material_name,d.work_group_id,d.work_group_name')
+			->from('transactions as a')
+			->join('material_budget as b', 'a.trans_id=b.trans_id')
+			->join('raw_materials as c', 'c.material_id=b.material_id')
+			->join('work_group as d', 'd.work_group_id=b.work_group_id')
+			->where('a.trans_type', 'contract')
+			->where('a.trans_id', $trans_id);
+
+		return $this->db->get()->result_array();
+	}
 	public function insert()
 	{
 		$trans_id 	= $this->input->post('trans_id');
@@ -114,6 +126,7 @@ class M_budgeting extends CI_Model
 			$material_budget[] = [
 				'trans_id'			=> $trans_id,
 				'material_id'			=> $this->input->post('material_id')[$i],
+				'work_group_id'		=> $this->input->post('work_group_id')[$i],
 				'mb_unit'				=> $this->input->post('mb_unit')[$i],
 				'mb_qty_budget'		=> $this->input->post('mb_qty_budget')[$i],
 				'mb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('mb_unit_price_budget')[$i])),

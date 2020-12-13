@@ -159,6 +159,7 @@
 																		<td>
 																			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?= $r2['material_name'] ?>
 																			<input type="hidden" name="material_id[]" class="form-control" value="<?= $r2['material_id'] ?>" required>
+																			<input type="hidden" name="work_group_id[]" class="form-control" value="<?= $r2['work_group_id'] ?>" required>
 																		</td>
 																		<td>
 																			<input type="text" name="mb_unit[]" class="form-control" value="<?= $r2['material_unit'] ?>" required>
