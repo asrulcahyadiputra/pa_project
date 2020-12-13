@@ -146,6 +146,7 @@ class M_budgeting extends CI_Model
 	{
 
 		$pb_id		= $this->input->post('pb_id');
+		$mb_id		= $this->input->post('mb_id');
 		foreach ($pb_id as $key => $val) {
 			$project_budget[] = [
 				'pb_id'				=> $this->input->post('pb_id')[$key],
@@ -154,8 +155,20 @@ class M_budgeting extends CI_Model
 				'pb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('pb_unit_price_budget')[$key])),
 			];
 		}
+		// material budget
+		foreach ($mb_id as $i => $mat) {
+			$material_budget[] = [
+				'mb_id'				=> $this->input->post('mb_id')[$i],
+				'material_id'			=> $this->input->post('material_id')[$i],
+				'work_group_id'		=> $this->input->post('work_group_id')[$i],
+				'mb_unit'				=> $this->input->post('mb_unit')[$i],
+				'mb_qty_budget'		=> $this->input->post('mb_qty_budget')[$i],
+				'mb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('mb_unit_price_budget')[$i])),
+			];
+		}
 		$this->db->trans_start();
 		$this->db->update_batch('project_budget', $project_budget, 'pb_id');
+		$this->db->update_batch('material_budget', $material_budget, 'mb_id');
 		$this->db->trans_complete();
 		$response = [
 			'status'	=> 1
