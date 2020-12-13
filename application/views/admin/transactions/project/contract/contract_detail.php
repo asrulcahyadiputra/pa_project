@@ -47,6 +47,33 @@
 										<td style="width: 1%;">:</td>
 										<td><?= nominal($project['total']) ?></td>
 									</tr>
+									<tr>
+										<td>Estimasi Penyelesaian</td>
+										<td style="width: 1%;">:</td>
+										<td><?= date('d-m-Y', strtotime($project['project_due_date'])) ?></td>
+									</tr>
+									<tr>
+										<td>Status</td>
+										<td style="width: 1%;">:</td>
+										<td>
+											<?php if ($project['project_progress'] == 0) : ?>
+												<span class="text-danger">Belum Dimulai</span>
+											<?php endif ?>
+											<?php if ($project['project_progress'] == 1) : ?>
+												<span class="text-danger">Dalam Pengerjaan</span>
+											<?php endif ?>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3" class="text-center">
+											<?php if ($project['project_progress'] == 0) : ?>
+												<a href="<?= site_url('transaksi/kontrak/start/' . $trans_id) ?>" class="btn btn-warning" onclick="return confirm('Pendapatan diterima dimuka akan diakui sebagai pendapatan setelah pengerjaan dilakukan. Apakah anda Yakin ?')">Mulai Pengerjaan</a>
+											<?php endif ?>
+											<?php if ($project['project_progress'] == 1) : ?>
+												<a href="" class="btn btn-success" onclick="return confirm('Proyek telah selesai dikerjan. Apakah anda Yakin ?')">Selesai</a>
+											<?php endif ?>
+										</td>
+									</tr>
 								</table>
 							</div>
 						</div>

@@ -25,7 +25,8 @@ class Contract extends CI_Controller
 			'title'		=> 'Kontrak',
 			'project'		=> $this->model->select($id),
 			'py'			=> $this->model->count_payment($id),
-			'tm'			=> $this->model->timeline($id)
+			'tm'			=> $this->model->timeline($id),
+			'trans_id'	=> $id
 		];
 		$this->load->view('admin/transactions/project/contract/contract_detail', $data);
 	}
@@ -56,6 +57,12 @@ class Contract extends CI_Controller
 		$this->model->add_timeline($trans_id);
 		$this->session->set_flashdata('success', 'Timline berhasil ditambahkan');
 		redirect('transaksi/kontrak/detail/' . $trans_id);
+	}
+	public function start($id)
+	{
+		$this->model->start($id);
+		$this->session->set_flashdata('success', 'Status Kontrak Proyek  berhasil di perbaharui !');
+		redirect('transaksi/kontrak/detail/' . $id);
 	}
 }
 

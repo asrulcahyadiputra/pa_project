@@ -34,7 +34,7 @@ class M_contract extends CI_Model
 	}
 	public function select($id)
 	{
-		$this->db->select('a.trans_id,a.t_project_id,a.surface_area,a.total,b.t_project_name,b.type,c.project_name,c.project_due_date,d.client_name,d.client_phone,d.client_address,e.p_method_step')
+		$this->db->select('a.trans_id,a.t_project_id,a.surface_area,a.total,a.project_progress,b.t_project_name,b.type,c.project_name,c.project_start,c.project_due_date,d.client_name,d.client_phone,d.client_address,e.p_method_step')
 			->from('transactions as a')
 			->join('type_of_project as b', 'a.t_project_id=b.t_project_id')
 			->join('project as c', 'c.trans_id=a.trans_id')
@@ -155,6 +155,43 @@ class M_contract extends CI_Model
 			'created_by'		=> 1 //temporary
 		];
 		return $this->db->insert('project_timeline', $timeline);
+	}
+	public function start($id)
+	{
+		$payment  = $this->db->get_where('payments', ['trans_id' => $id])->row_array();
+		$kontrak  = $this->db->get_where('transactions', ['trans_id' => $id])->row_array();
+
+		$ar = $kontrak['total'] - $payment['nominal']; //account receivable
+		$trans = [
+			'project_progress'	=> 1 //start
+		];
+		$gl = [
+			[
+				'gl_date'			=> date('Y-m-d'),
+				'account_no'		=> '2-10001',
+				'gl_ref'			=> $id,
+				'gl_balance'		=> 'd',
+				'gl_nominal'		=> $payment['nominal'] //down payment -debt
+			],
+			[
+				'gl_date'			=> date('Y-m-d'),
+				'account_no'		=> '1-10002',
+				'gl_ref'			=> $id,
+				'gl_balance'		=> 'd',
+				'gl_nominal'		=> $ar //account receivable -debt
+			],
+			[
+				'gl_date'			=> date('Y-m-d'),
+				'account_no'		=> '4-10001',
+				'gl_ref'			=> $id,
+				'gl_balance'		=> 'k',
+				'gl_nominal'		=> $kontrak['total'] //income -cer
+			],
+		];
+		$this->db->trans_start();
+		$this->db->update('transactions', $trans, ['trans_id' => $id]);
+		$this->db->insert_batch('general_ledger', $gl);
+		$this->db->trans_complete();
 	}
 }
 
