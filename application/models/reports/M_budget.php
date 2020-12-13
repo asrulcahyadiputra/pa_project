@@ -2,18 +2,48 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_budgeting extends CI_Model
+class M_budget extends CI_Model
 {
-	public function all()
+	public function all($y, $m)
 	{
-		$this->db->select('a.trans_id,a.t_project_id,a.total,a.status,b.t_project_name,c.project_name,c.project_due_date,d.client_name')
-			->from('transactions as a')
-			->join('type_of_project as b', 'a.t_project_id=b.t_project_id')
-			->join('project as c', 'c.trans_id=a.trans_id')
-			->join('clients as d', 'd.client_id=a.client_id')
-			->where('a.trans_type', 'contract');
+		$db = $this->db->query("SELECT 
+		transactions.trans_id,
+		project.project_name,
+		transactions.surface_area,
+		transactions.total,
+		p_badget.budget as rab,
+		m_badget.budget as material
+		
+		FROM
+		transactions
+		JOIN
+		(
+		    SELECT
+		    c.trans_id,
+		    sum(c.budget) as budget
+		
+		    FROM 
+		    project_budget as c
+		    GROUP BY c.trans_id
+		) as p_badget
+		ON transactions.trans_id=p_badget.trans_id
+		JOIN
+		(
+		    SELECT
+		    d.trans_id,
+		    sum(d.budget) as budget
+		
+		    FROM 
+		    material_budget as d
+		    GROUP BY d.trans_id
+		) as m_badget
+		ON transactions.trans_id=m_badget.trans_id
+		JOIN project 
+		ON transactions.trans_id=project.trans_id
+		WHERE
+		month(transactions.trans_date) = $m AND year(transactions.trans_date) =$y")->result_array();
 
-		return $this->db->get()->result_array();
+		return $db;
 	}
 	public function select_project($trans_id)
 	{
@@ -118,7 +148,6 @@ class M_budgeting extends CI_Model
 				'pb_unit'				=> $this->input->post('pb_unit')[$key],
 				'pb_qty_budget'		=> $this->input->post('pb_qty_budget')[$key],
 				'pb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('pb_unit_price_budget')[$key])),
-				'budget'				=> intval(preg_replace("/[^0-9]/", "", $this->input->post('pb_unit_price_budget')[$key])) * $this->input->post('pb_qty_budget')[$key]
 			];
 		}
 
@@ -131,7 +160,6 @@ class M_budgeting extends CI_Model
 				'mb_unit'				=> $this->input->post('mb_unit')[$i],
 				'mb_qty_budget'		=> $this->input->post('mb_qty_budget')[$i],
 				'mb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('mb_unit_price_budget')[$i])),
-				'budget'				=> intval(preg_replace("/[^0-9]/", "", $this->input->post('mb_unit_price_budget')[$i])) * $this->input->post('mb_qty_budget')[$i]
 			];
 		}
 		$this->db->trans_start();
@@ -155,7 +183,6 @@ class M_budgeting extends CI_Model
 				'pb_unit'				=> $this->input->post('pb_unit')[$key],
 				'pb_qty_budget'		=> $this->input->post('pb_qty_budget')[$key],
 				'pb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('pb_unit_price_budget')[$key])),
-				'budget'				=> intval(preg_replace("/[^0-9]/", "", $this->input->post('pb_unit_price_budget')[$key])) * $this->input->post('pb_qty_budget')[$key]
 			];
 		}
 		// material budget
@@ -167,7 +194,6 @@ class M_budgeting extends CI_Model
 				'mb_unit'				=> $this->input->post('mb_unit')[$i],
 				'mb_qty_budget'		=> $this->input->post('mb_qty_budget')[$i],
 				'mb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('mb_unit_price_budget')[$i])),
-				'budget'				=> intval(preg_replace("/[^0-9]/", "", $this->input->post('mb_unit_price_budget')[$i])) * $this->input->post('mb_qty_budget')[$i]
 			];
 		}
 		$this->db->trans_start();
@@ -181,4 +207,4 @@ class M_budgeting extends CI_Model
 	}
 }
 
-/* End of file M_budgeting.php */
+/* End of file M_budget.php */

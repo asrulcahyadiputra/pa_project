@@ -13,7 +13,7 @@
 						</div>
 					</div>
 					<div class="widget-content widget-content-area icon-tab">
-						<h3>Buat Rencana Anggaran Biaya Proyek</h3>
+						<h3>Edit Rencana Anggaran Biaya Proyek</h3>
 						<ul class="nav nav-tabs  mb-3 mt-3" id="iconTab" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active" id="dataProyek" data-toggle="tab" href="#Proyek" role="tab" aria-controls="Proyek" aria-selected="true">
