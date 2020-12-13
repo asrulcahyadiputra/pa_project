@@ -63,6 +63,19 @@ class M_budgeting extends CI_Model
 
 		return $this->db->get()->result_array();
 	}
+	public function find_project_material($trans_id)
+	{
+		$project = $this->db->get_where('transactions', ['trans_id' => $trans_id, 'trans_type' => 'contract'])->row_array();
+		$this->db->select('a.trans_id,a.t_project_id,b.pjm_id,b.material_id,c.material_name,c.material_unit,b.work_group_id,d.work_group_name')
+			->from('transactions as a')
+			->join('project_material as b', 'a.trans_id=b.trans_id')
+			->join('raw_materials as c', 'c.material_id=b.material_id')
+			->join('work_group as d', 'd.work_group_id=b.work_group_id')
+			->where('a.trans_type', 'mapping')
+			->where('a.t_project_id', $project['t_project_id']);
+
+		return $this->db->get()->result_array();
+	}
 	public function select_detail($trans_id)
 	{
 		$this->db->select('a.trans_id,a.t_project_id,b.pb_id,b.work_id,b.pb_unit,b.pb_qty_budget,b.pb_unit_price_budget,c.work_id,c.work_name,c.work_group_id,d.work_group_name')
@@ -79,11 +92,13 @@ class M_budgeting extends CI_Model
 	{
 		$trans_id 	= $this->input->post('trans_id');
 		$work_id		= $this->input->post('work_id');
+		$material_id	= $this->input->post('material_id');
 
 		$transactions = [
 			'status'	=> 1
 		];
 
+		// budgeting
 		foreach ($work_id as $key => $val) {
 			$project_budget[] = [
 				'trans_id'			=> $trans_id,
@@ -93,9 +108,21 @@ class M_budgeting extends CI_Model
 				'pb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('pb_unit_price_budget')[$key])),
 			];
 		}
+
+		// material budget
+		foreach ($material_id as $i => $mat) {
+			$material_budget[] = [
+				'trans_id'			=> $trans_id,
+				'material_id'			=> $this->input->post('material_id')[$i],
+				'mb_unit'				=> $this->input->post('mb_unit')[$i],
+				'mb_qty_budget'		=> $this->input->post('mb_qty_budget')[$i],
+				'mb_unit_price_budget'	=> intval(preg_replace("/[^0-9]/", "", $this->input->post('mb_unit_price_budget')[$i])),
+			];
+		}
 		$this->db->trans_start();
 		$this->db->update('transactions', $transactions, ['trans_id'	=> $trans_id]);
 		$this->db->insert_batch('project_budget', $project_budget);
+		$this->db->insert_batch('material_budget', $material_budget);
 		$this->db->trans_complete();
 		$response = [
 			'status'	=> 1

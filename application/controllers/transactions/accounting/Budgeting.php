@@ -28,6 +28,7 @@ class Budgeting extends CI_Controller
 				'project'		=> $this->model->select_project($trans_id),
 				'mapping'		=> $this->model->select($trans_id),
 				'details'		=> $this->model->find_detail($trans_id),
+				'materials'	=> $this->model->find_project_material($trans_id),
 				'work_type'	=> $this->model->work_type(),
 				'work_group'	=> $this->model->work_group(),
 			];
