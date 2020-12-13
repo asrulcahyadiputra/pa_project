@@ -90,3 +90,8 @@ $route['transaksi/anggaran/update']			= 'transactions/accounting/Budgeting/updat
 Report General Ledger
 /--------------------------------------------------*/
 $route['laporan/jurnal']						= 'reports/accounting/Ledger';
+
+/*--------------------------------------------------
+Report Ledger
+/--------------------------------------------------*/
+$route['laporan/buku_besar']					= 'reports/accounting/Ledger/ledger';
