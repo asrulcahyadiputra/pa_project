@@ -150,7 +150,7 @@
 							<a href="<?= site_url('transaksi/anggaran') ?>"> Anggaran Proyek </a>
 						</li>
 						<li>
-							<a href="form_input_group_basic.html"> Realisasi Proyek </a>
+							<a href="<?= site_url('transaksi/realisasi') ?>"> Realisasi Proyek </a>
 						</li>
 						<li>
 							<a href="form_layouts.html"> Pembayaran </a>
