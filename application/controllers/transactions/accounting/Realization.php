@@ -9,13 +9,26 @@ class Realization extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //Do your magic here
+        $this->load->model('transactions/M_realization', 'model');
     }
 
 
     public function index()
     {
-        $this->load->view('admin/transactions/accounting/realization/realization_list');
+        $data = [
+            'title'     => 'Realisasi Anggaran',
+            'all'       => $this->model->all()
+        ];
+        $this->load->view('admin/transactions/accounting/realization/realization_list', $data);
+    }
+
+    public function create()
+    {
+        $data = [
+            'title'         => 'Create Realisasi',
+            'anggaran'      => $this->model->anggaran_list()
+        ];
+        $this->load->view('admin/transactions/accounting/realization/realization_create', $data);
     }
 }
 

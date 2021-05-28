@@ -3,6 +3,15 @@
     <div class="layout-px-spacing">
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <!-- button add realization -->
+                <a href="<?= site_url('transaksi/realisasi/baru') ?>" class="btn btn-outline-primary mb-4 mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                    Realisasi Baru</a>
+
                 <div class="widget-content widget-content-area br-6">
                     <?php if ($this->session->flashdata()) : ?>
                         <?php if ($this->session->flashdata('success')) : ?>
@@ -30,11 +39,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Kode Kontrak</th>
-                                    <th>Pelanggan</th>
-                                    <th>Nama Proyek</th>
-                                    <th>Nilai Kontrak</th>
-                                    <th>Status</th>
+                                    <th>Kode</th>
+                                    <th>Keterangan</th>
+                                    <th>Anggaran</th>
+                                    <th>Realisasi</th>
+                                    <th>Perbedaan</th>
                                     <th class="no-content"></th>
                                 </tr>
                             </thead>
@@ -48,7 +57,7 @@
                                         <td><?= $row['project_name'] ?></td>
                                         <td><?= nominal($row['total']) ?></td>
                                         <td>
-                                            <?php if ($row['status'] == 0) : ?>
+                                            <?php if ($row['progress'] == 0) : ?>
                                                 <span class="text-warning bs-tooltip" title="Menunggu untuk dianggarkan">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
                                                         <circle cx="12" cy="12" r="10"></circle>
@@ -56,7 +65,7 @@
                                                     </svg>
                                                 </span>
                                             <?php endif ?>
-                                            <?php if ($row['status'] == 1) : ?>
+                                            <?php if ($row['progress'] == 1) : ?>
                                                 <span class="text-primary bs-tooltip" title="Sudah dianggarkan">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-unlock">
                                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -64,7 +73,7 @@
                                                     </svg>
                                                 </span>
                                             <?php endif ?>
-                                            <?php if ($row['status'] == 2) : ?>
+                                            <?php if ($row['progress'] == 2) : ?>
                                                 <span class="text-warning bs-tooltip" title="Sudah Realisasi">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
                                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
