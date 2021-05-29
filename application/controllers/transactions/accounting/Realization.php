@@ -30,6 +30,15 @@ class Realization extends CI_Controller
         ];
         $this->load->view('admin/transactions/accounting/realization/realization_create', $data);
     }
+
+    public function fetch()
+    {
+        $trans_id = $this->input->post('trans_id');
+
+        $response = $this->model->FindBudgeting($trans_id);
+
+        echo json_encode($response);
+    }
 }
 
 /* End of file Realization.php */

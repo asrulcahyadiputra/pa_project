@@ -25,9 +25,8 @@
             <div class="row layout-top-spacing">
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
-                        <h3>Rencana Kebutuhan Material</h3>
+                        <h4>Realisasi Anggaran Proyek</h4>
                         <div class="row mt-4">
-
                             <div class="col-xl-6 col-lg-6 col-sm-6">
 
                             </div>
@@ -66,3 +65,4 @@
         })();
     </script>
     <?php $this->load->view('_partials/footer') ?>
+    <?php $this->load->view('admin/transactions/accounting/realization/script') ?>
