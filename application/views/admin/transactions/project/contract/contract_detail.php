@@ -45,6 +45,16 @@
 									<tr>
 										<td>Nilai Kontrak</td>
 										<td style="width: 1%;">:</td>
+										<td><?= nominal($project['contract_value']) ?></td>
+									</tr>
+									<tr>
+										<td>PPN</td>
+										<td style="width: 1%;">:</td>
+										<td><?= nominal($project['ppn']) ?></td>
+									</tr>
+									<tr>
+										<td>Total</td>
+										<td style="width: 1%;">:</td>
 										<td><?= nominal($project['total']) ?></td>
 									</tr>
 									<tr>
