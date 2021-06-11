@@ -27,12 +27,26 @@
                     <div class="widget-content widget-content-area br-6">
                         <h4>Realisasi Anggaran Proyek</h4>
                         <div class="row mt-4">
-                            <div class="col-xl-6 col-lg-6 col-sm-6">
+
+                            <div class="col-xl-6 col-lg-6 col-sm-6" id="data-header">
 
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-sm-12">
-                                <div class="table-responsive mb-4 mt-4">
 
+                            <div class="col-xl-12 col-lg-12 col-sm-12">
+                                <div class="table-responsive mb-4 mt-4" id="data-content">
+                                    <table id='mangkubumiTable' class='table table-sm'>
+                                        <thead>
+                                            <tr>
+                                                <th>Kode</th>
+                                                <th>Keterangan</th>
+                                                <th>Anggaran</th>
+                                                <th>Realisasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+
+                                    </table>
                                 </div>
                             </div>
 
@@ -45,7 +59,6 @@
     <!-- end of main content -->
 
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict';
             window.addEventListener('load', function() {
