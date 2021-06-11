@@ -5,7 +5,7 @@
             <div class="row layout-top-spacing">
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
-                        <h4>Daftar Anggaran Proyek</h4>
+                        <h4>Pilih Anggaran Proyek</h4>
                         <div class="row mt-4">
                             <div class="col-xl-6 col-lg-6 col-sm-6">
                                 <form>
@@ -47,6 +47,9 @@
                                         </tbody>
 
                                     </table>
+                                </div>
+                                <div class="text-right">
+                                    <button type="button" id="btn-save" class="btn btn-primary">Simpan</button>
                                 </div>
                             </div>
 

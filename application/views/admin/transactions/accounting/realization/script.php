@@ -1,6 +1,8 @@
 <script>
     $(document).ready(function() {
         //table initialize
+        var buttonSave = $('#btn-save')
+        buttonSave.hide()
         var myTable = $('#mangkubumiTable').DataTable({
             "paging": false,
             "searching": false,
@@ -10,7 +12,7 @@
                 'targets': [2, 3],
                 'className': 'text-right',
                 'render': $.fn.dataTable.render.number('.', ',', 0, '')
-            }, ],
+            }],
             columns: [{
                     data: 'work_id'
                 },
@@ -45,10 +47,12 @@
                     console.log(res)
                     if (res.length > 0) {
                         myTable.rows.add(res).draw(false);
+                        buttonSave.show()
                         console.log('data here')
                     } else {
                         myTable.clear().draw()
                         alert('Proyek Harus di pilih')
+                        buttonSave.hide()
                     }
 
                 }
