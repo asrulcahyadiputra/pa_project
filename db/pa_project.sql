@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 13, 2020 at 08:42 PM
--- Server version: 5.7.26
--- PHP Version: 7.3.8
+-- Waktu pembuatan: 11 Jun 2021 pada 16.11
+-- Versi server: 5.7.32
+-- Versi PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chart_of_account`
+-- Struktur dari tabel `chart_of_account`
 --
 
 CREATE TABLE `chart_of_account` (
@@ -28,7 +28,7 @@ CREATE TABLE `chart_of_account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `chart_of_account`
+-- Dumping data untuk tabel `chart_of_account`
 --
 
 INSERT INTO `chart_of_account` (`account_no`, `account_name`, `normal_balance`, `sub_code`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `chart_of_account` (`account_no`, `account_name`, `normal_balance`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clients`
+-- Struktur dari tabel `clients`
 --
 
 CREATE TABLE `clients` (
@@ -67,7 +67,7 @@ CREATE TABLE `clients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `clients`
+-- Dumping data untuk tabel `clients`
 --
 
 INSERT INTO `clients` (`client_id`, `client_name`, `client_company`, `client_address`, `client_phone`, `client_email`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `clients` (`client_id`, `client_name`, `client_company`, `client_add
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coa_head`
+-- Struktur dari tabel `coa_head`
 --
 
 CREATE TABLE `coa_head` (
@@ -86,7 +86,7 @@ CREATE TABLE `coa_head` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `coa_head`
+-- Dumping data untuk tabel `coa_head`
 --
 
 INSERT INTO `coa_head` (`head_code`, `head_name`) VALUES
@@ -99,7 +99,7 @@ INSERT INTO `coa_head` (`head_code`, `head_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coa_subhead`
+-- Struktur dari tabel `coa_subhead`
 --
 
 CREATE TABLE `coa_subhead` (
@@ -109,7 +109,7 @@ CREATE TABLE `coa_subhead` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `coa_subhead`
+-- Dumping data untuk tabel `coa_subhead`
 --
 
 INSERT INTO `coa_subhead` (`sub_code`, `sub_name`, `head_code`) VALUES
@@ -128,7 +128,7 @@ INSERT INTO `coa_subhead` (`sub_code`, `sub_name`, `head_code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `general_ledger`
+-- Struktur dari tabel `general_ledger`
 --
 
 CREATE TABLE `general_ledger` (
@@ -141,7 +141,7 @@ CREATE TABLE `general_ledger` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `general_ledger`
+-- Dumping data untuk tabel `general_ledger`
 --
 
 INSERT INTO `general_ledger` (`gl_id`, `gl_date`, `account_no`, `gl_ref`, `gl_balance`, `gl_nominal`) VALUES
@@ -151,12 +151,18 @@ INSERT INTO `general_ledger` (`gl_id`, `gl_date`, `account_no`, `gl_ref`, `gl_ba
 (4, '2020-12-13', '2-10001', 'TRX-KNT-000000002', 'k', 1080000000),
 (5, '2020-12-13', '2-10001', 'TRX-KNT-000000001', 'd', 540000000),
 (6, '2020-12-13', '1-10002', 'TRX-KNT-000000001', 'd', 1260000000),
-(7, '2020-12-13', '4-10001', 'TRX-KNT-000000001', 'k', 1800000000);
+(7, '2020-12-13', '4-10001', 'TRX-KNT-000000001', 'k', 1800000000),
+(8, '2021-06-11', '1-10001', 'TRX-KNT-000000003', 'd', 375000000),
+(9, '2021-06-11', '2-10001', 'TRX-KNT-000000003', 'k', 375000000),
+(10, '2021-06-11', '1-10001', 'TRX-KNT-000000004', 'd', 375000000),
+(11, '2021-06-11', '2-10001', 'TRX-KNT-000000004', 'k', 375000000),
+(12, '2021-06-11', '1-10001', 'TRX-KNT-000000005', 'd', 375000000),
+(13, '2021-06-11', '2-10001', 'TRX-KNT-000000005', 'k', 375000000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `material_budget`
+-- Struktur dari tabel `material_budget`
 --
 
 CREATE TABLE `material_budget` (
@@ -174,7 +180,7 @@ CREATE TABLE `material_budget` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `material_budget`
+-- Dumping data untuk tabel `material_budget`
 --
 
 INSERT INTO `material_budget` (`mb_id`, `trans_id`, `material_id`, `work_group_id`, `mb_unit`, `mb_qty_budget`, `mb_qty_realitation`, `mb_unit_price_budget`, `mb_unit_price_realitation`, `budget`, `realitation`) VALUES
@@ -188,7 +194,7 @@ INSERT INTO `material_budget` (`mb_id`, `trans_id`, `material_id`, `work_group_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
+-- Struktur dari tabel `payments`
 --
 
 CREATE TABLE `payments` (
@@ -199,17 +205,20 @@ CREATE TABLE `payments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `payments`
+-- Dumping data untuk tabel `payments`
 --
 
 INSERT INTO `payments` (`payment_id`, `trans_id`, `nominal`, `description`) VALUES
 (1, 'TRX-KNT-000000001', 540000000, 'Down Payment (Dp)'),
-(2, 'TRX-KNT-000000002', 1080000000, 'Down Payment (Dp)');
+(2, 'TRX-KNT-000000002', 1080000000, 'Down Payment (Dp)'),
+(3, 'TRX-KNT-000000003', 375000000, 'Down Payment (Dp)'),
+(4, 'TRX-KNT-000000004', 375000000, 'Down Payment (Dp)'),
+(5, 'TRX-KNT-000000005', 375000000, 'Down Payment (Dp)');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_method`
+-- Struktur dari tabel `payment_method`
 --
 
 CREATE TABLE `payment_method` (
@@ -220,7 +229,7 @@ CREATE TABLE `payment_method` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `payment_method`
+-- Dumping data untuk tabel `payment_method`
 --
 
 INSERT INTO `payment_method` (`p_method_id`, `p_method_name`, `p_method_step`, `p_method_total`) VALUES
@@ -231,7 +240,7 @@ INSERT INTO `payment_method` (`p_method_id`, `p_method_name`, `p_method_step`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project`
+-- Struktur dari tabel `project`
 --
 
 CREATE TABLE `project` (
@@ -243,17 +252,20 @@ CREATE TABLE `project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `project`
+-- Dumping data untuk tabel `project`
 --
 
 INSERT INTO `project` (`project_id`, `trans_id`, `project_name`, `project_start`, `project_due_date`) VALUES
 (1, 'TRX-KNT-000000001', 'Proyek Pembangunan Rumah 2 Lantai Tn. Firdaus', '2020-12-14', '2021-12-09'),
-(2, 'TRX-KNT-000000002', 'Proyek Pembangunan Rumah 2 Lantai Tn. Josephua', '2020-12-21', '2023-01-04');
+(2, 'TRX-KNT-000000002', 'Proyek Pembangunan Rumah 2 Lantai Tn. Josephua', '2020-12-21', '2023-01-04'),
+(3, 'TRX-KNT-000000003', 'test Kontrak 1', '2021-06-11', '2021-09-09'),
+(4, 'TRX-KNT-000000004', 'test Kontrak 2', '2021-06-11', '2021-09-09'),
+(5, 'TRX-KNT-000000005', 'test Kontrak 3', '2021-06-11', '2021-09-09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_budget`
+-- Struktur dari tabel `project_budget`
 --
 
 CREATE TABLE `project_budget` (
@@ -266,23 +278,24 @@ CREATE TABLE `project_budget` (
   `pb_unit_price_budget` double NOT NULL,
   `pb_unit_price_realitation` double DEFAULT NULL,
   `budget` double DEFAULT NULL,
-  `realitation` double DEFAULT NULL
+  `realitation` double DEFAULT NULL,
+  `different` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `project_budget`
+-- Dumping data untuk tabel `project_budget`
 --
 
-INSERT INTO `project_budget` (`pb_id`, `trans_id`, `work_id`, `pb_unit`, `pb_qty_budget`, `pb_qty_realitation`, `pb_unit_price_budget`, `pb_unit_price_realitation`, `budget`, `realitation`) VALUES
-(1, 'TRX-KNT-000000001', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL),
-(2, 'TRX-KNT-000000001', 'PK-0008', 'M', 500, NULL, 1500000, NULL, 750000000, NULL),
-(3, 'TRX-KNT-000000002', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL),
-(4, 'TRX-KNT-000000002', 'PK-0008', 'M', 500, NULL, 1600000, NULL, 800000000, NULL);
+INSERT INTO `project_budget` (`pb_id`, `trans_id`, `work_id`, `pb_unit`, `pb_qty_budget`, `pb_qty_realitation`, `pb_unit_price_budget`, `pb_unit_price_realitation`, `budget`, `realitation`, `different`) VALUES
+(1, 'TRX-KNT-000000001', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL, NULL),
+(2, 'TRX-KNT-000000001', 'PK-0008', 'M', 500, NULL, 1500000, NULL, 750000000, NULL, NULL),
+(3, 'TRX-KNT-000000002', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL, NULL),
+(4, 'TRX-KNT-000000002', 'PK-0008', 'M', 500, NULL, 1600000, NULL, 800000000, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_mapping`
+-- Struktur dari tabel `project_mapping`
 --
 
 CREATE TABLE `project_mapping` (
@@ -292,7 +305,7 @@ CREATE TABLE `project_mapping` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `project_mapping`
+-- Dumping data untuk tabel `project_mapping`
 --
 
 INSERT INTO `project_mapping` (`pm_id`, `trans_id`, `work_id`) VALUES
@@ -302,7 +315,7 @@ INSERT INTO `project_mapping` (`pm_id`, `trans_id`, `work_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_material`
+-- Struktur dari tabel `project_material`
 --
 
 CREATE TABLE `project_material` (
@@ -313,7 +326,7 @@ CREATE TABLE `project_material` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `project_material`
+-- Dumping data untuk tabel `project_material`
 --
 
 INSERT INTO `project_material` (`pjm_id`, `trans_id`, `material_id`, `work_group_id`) VALUES
@@ -324,7 +337,7 @@ INSERT INTO `project_material` (`pjm_id`, `trans_id`, `material_id`, `work_group
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_timeline`
+-- Struktur dari tabel `project_timeline`
 --
 
 CREATE TABLE `project_timeline` (
@@ -338,7 +351,7 @@ CREATE TABLE `project_timeline` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `project_timeline`
+-- Dumping data untuk tabel `project_timeline`
 --
 
 INSERT INTO `project_timeline` (`pt_id`, `trans_id`, `pt_name`, `due`, `done`, `date_created`, `created_by`) VALUES
@@ -346,12 +359,15 @@ INSERT INTO `project_timeline` (`pt_id`, `trans_id`, `pt_name`, `due`, `done`, `
 (2, 'TRX-KNT-000000001', 'Pengukuran', '2020-12-15', 0, '2020-12-13 16:45:41', 1),
 (3, 'TRX-KNT-000000002', 'Start', '2020-12-21', 0, '2020-12-13 19:52:08', 1),
 (4, 'TRX-KNT-000000001', 'Penggalian untuk pondasi', '2020-12-16', 0, '2020-12-13 20:08:40', 1),
-(5, 'TRX-KNT-000000001', 'Pembelian Material Batu Gunung dan Pasir untuk pengerjaan Pondasi', '2020-12-16', 0, '2020-12-13 20:14:57', 1);
+(5, 'TRX-KNT-000000001', 'Pembelian Material Batu Gunung dan Pasir untuk pengerjaan Pondasi', '2020-12-16', 0, '2020-12-13 20:14:57', 1),
+(6, 'TRX-KNT-000000003', 'Start', '2021-06-11', 0, '2021-06-11 15:26:48', 1),
+(7, 'TRX-KNT-000000004', 'Start', '2021-06-11', 0, '2021-06-11 15:28:13', 1),
+(8, 'TRX-KNT-000000005', 'Start', '2021-06-11', 0, '2021-06-11 15:35:19', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `raw_materials`
+-- Struktur dari tabel `raw_materials`
 --
 
 CREATE TABLE `raw_materials` (
@@ -361,7 +377,7 @@ CREATE TABLE `raw_materials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `raw_materials`
+-- Dumping data untuk tabel `raw_materials`
 --
 
 INSERT INTO `raw_materials` (`material_id`, `material_name`, `material_unit`) VALUES
@@ -378,7 +394,7 @@ INSERT INTO `raw_materials` (`material_id`, `material_name`, `material_unit`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transactions`
+-- Struktur dari tabel `transactions`
 --
 
 CREATE TABLE `transactions` (
@@ -390,26 +406,34 @@ CREATE TABLE `transactions` (
   `project_progress` int(1) DEFAULT NULL,
   `surface_area` int(11) DEFAULT NULL,
   `total` double DEFAULT NULL,
+  `ppn` double DEFAULT NULL,
+  `contract_value` double DEFAULT NULL,
+  `dp` double DEFAULT NULL,
   `trans_type` varchar(100) NOT NULL,
+  `ref_code` varchar(20) DEFAULT NULL,
   `description` text,
   `status` int(1) NOT NULL DEFAULT '0',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `created_by` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `transactions`
+-- Dumping data untuk tabel `transactions`
 --
 
-INSERT INTO `transactions` (`trans_id`, `client_id`, `t_project_id`, `p_method_id`, `trans_date`, `project_progress`, `surface_area`, `total`, `trans_type`, `description`, `status`, `date_created`, `created_by`) VALUES
-('TRX-KNT-000000001', 'PL-0002', 'JP-0001', 'CB-0002', '2020-12-13 07:40:34', 1, 500, 1800000000, 'contract', NULL, 1, '2020-12-13 07:40:34', 1),
-('TRX-KNT-000000002', 'PL-0001', 'JP-0001', 'CB-0003', '2020-12-13 19:52:08', 0, 1000, 3600000000, 'contract', NULL, 1, '2020-12-13 19:52:08', 1),
-('TRX-MPP-000000001', NULL, 'JP-0001', NULL, '2020-12-13 07:38:51', NULL, NULL, NULL, 'mapping', 'Pemetaan Rencana Anggaran Biaya Pembgangunan RUmah Permanen Dua Lantai TIpe 70', 0, '2020-12-13 07:38:51', 0);
+INSERT INTO `transactions` (`trans_id`, `client_id`, `t_project_id`, `p_method_id`, `trans_date`, `project_progress`, `surface_area`, `total`, `ppn`, `contract_value`, `dp`, `trans_type`, `ref_code`, `description`, `status`, `date_created`, `date_updated`, `created_by`) VALUES
+('TRX-KNT-000000001', 'PL-0002', 'JP-0001', 'CB-0002', '2020-12-13 07:40:34', 1, 500, 1800000000, NULL, NULL, NULL, 'contract', NULL, NULL, 1, '2020-12-13 07:40:34', NULL, 1),
+('TRX-KNT-000000002', 'PL-0001', 'JP-0001', 'CB-0003', '2020-12-13 19:52:08', 1, 1000, 3600000000, NULL, NULL, NULL, 'contract', NULL, NULL, 1, '2020-12-13 19:52:08', NULL, 1),
+('TRX-KNT-000000003', 'PL-0001', 'JP-0002', 'CB-0001', '2021-06-11 15:26:48', 0, 500, 1250000000, 125000000, NULL, NULL, 'contract', NULL, NULL, 0, '2021-06-11 15:26:48', NULL, 1),
+('TRX-KNT-000000004', 'PL-0002', 'JP-0002', 'CB-0001', '2021-06-11 15:28:13', 0, 500, 1250000000, 125000000, NULL, 375000000, 'contract', NULL, NULL, 0, '2021-06-11 15:28:13', NULL, 1),
+('TRX-KNT-000000005', 'PL-0001', 'JP-0002', 'CB-0002', '2021-06-11 15:35:19', 0, 500, 1375000000, 125000000, 1250000000, 375000000, 'contract', NULL, NULL, 0, '2021-06-11 15:35:19', NULL, 1),
+('TRX-MPP-000000001', NULL, 'JP-0001', NULL, '2020-12-13 07:38:51', NULL, NULL, NULL, NULL, NULL, NULL, 'mapping', NULL, 'Pemetaan Rencana Anggaran Biaya Pembgangunan RUmah Permanen Dua Lantai TIpe 70', 0, '2020-12-13 07:38:51', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type_of_project`
+-- Struktur dari tabel `type_of_project`
 --
 
 CREATE TABLE `type_of_project` (
@@ -427,7 +451,7 @@ CREATE TABLE `type_of_project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `type_of_project`
+-- Dumping data untuk tabel `type_of_project`
 --
 
 INSERT INTO `type_of_project` (`t_project_id`, `t_project_name`, `type`, `t_project_estimation`, `t_project_price`, `date_created`, `created_by`, `date_updated`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -437,7 +461,7 @@ INSERT INTO `type_of_project` (`t_project_id`, `t_project_name`, `type`, `t_proj
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type_of_work`
+-- Struktur dari tabel `type_of_work`
 --
 
 CREATE TABLE `type_of_work` (
@@ -455,7 +479,7 @@ CREATE TABLE `type_of_work` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `type_of_work`
+-- Dumping data untuk tabel `type_of_work`
 --
 
 INSERT INTO `type_of_work` (`work_id`, `work_name`, `work_group_id`, `work_unit`, `status`, `date_created`, `created_by`, `date_updated`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -513,7 +537,7 @@ INSERT INTO `type_of_work` (`work_id`, `work_name`, `work_group_id`, `work_unit`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -527,7 +551,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `role`, `status`, `date_created`) VALUES
@@ -536,7 +560,7 @@ INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `role`, `status`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `work_group`
+-- Struktur dari tabel `work_group`
 --
 
 CREATE TABLE `work_group` (
@@ -552,7 +576,7 @@ CREATE TABLE `work_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `work_group`
+-- Dumping data untuk tabel `work_group`
 --
 
 INSERT INTO `work_group` (`work_group_id`, `work_group_name`, `status`, `date_created`, `created_by`, `date_updated`, `updated_by`, `deleted_at`, `deleted_by`) VALUES
@@ -575,14 +599,14 @@ INSERT INTO `work_group` (`work_group_id`, `work_group_name`, `status`, `date_cr
 --
 
 --
--- Indexes for table `chart_of_account`
+-- Indeks untuk tabel `chart_of_account`
 --
 ALTER TABLE `chart_of_account`
   ADD PRIMARY KEY (`account_no`),
   ADD KEY `sub_code` (`sub_code`);
 
 --
--- Indexes for table `clients`
+-- Indeks untuk tabel `clients`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`client_id`),
@@ -591,20 +615,20 @@ ALTER TABLE `clients`
   ADD KEY `deleted_by` (`deleted_by`);
 
 --
--- Indexes for table `coa_head`
+-- Indeks untuk tabel `coa_head`
 --
 ALTER TABLE `coa_head`
   ADD PRIMARY KEY (`head_code`);
 
 --
--- Indexes for table `coa_subhead`
+-- Indeks untuk tabel `coa_subhead`
 --
 ALTER TABLE `coa_subhead`
   ADD PRIMARY KEY (`sub_code`),
   ADD KEY `head_code` (`head_code`);
 
 --
--- Indexes for table `general_ledger`
+-- Indeks untuk tabel `general_ledger`
 --
 ALTER TABLE `general_ledger`
   ADD PRIMARY KEY (`gl_id`),
@@ -612,7 +636,7 @@ ALTER TABLE `general_ledger`
   ADD KEY `acoount_no` (`account_no`);
 
 --
--- Indexes for table `material_budget`
+-- Indeks untuk tabel `material_budget`
 --
 ALTER TABLE `material_budget`
   ADD PRIMARY KEY (`mb_id`),
@@ -621,27 +645,27 @@ ALTER TABLE `material_budget`
   ADD KEY `work_group_id` (`work_group_id`);
 
 --
--- Indexes for table `payments`
+-- Indeks untuk tabel `payments`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`payment_id`),
   ADD KEY `trans_id` (`trans_id`);
 
 --
--- Indexes for table `payment_method`
+-- Indeks untuk tabel `payment_method`
 --
 ALTER TABLE `payment_method`
   ADD PRIMARY KEY (`p_method_id`);
 
 --
--- Indexes for table `project`
+-- Indeks untuk tabel `project`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`project_id`),
   ADD KEY `trans_id` (`trans_id`);
 
 --
--- Indexes for table `project_budget`
+-- Indeks untuk tabel `project_budget`
 --
 ALTER TABLE `project_budget`
   ADD PRIMARY KEY (`pb_id`),
@@ -649,7 +673,7 @@ ALTER TABLE `project_budget`
   ADD KEY `work_id` (`work_id`);
 
 --
--- Indexes for table `project_mapping`
+-- Indeks untuk tabel `project_mapping`
 --
 ALTER TABLE `project_mapping`
   ADD PRIMARY KEY (`pm_id`),
@@ -657,7 +681,7 @@ ALTER TABLE `project_mapping`
   ADD KEY `work_id` (`work_id`);
 
 --
--- Indexes for table `project_material`
+-- Indeks untuk tabel `project_material`
 --
 ALTER TABLE `project_material`
   ADD PRIMARY KEY (`pjm_id`),
@@ -666,20 +690,20 @@ ALTER TABLE `project_material`
   ADD KEY `material_id` (`material_id`);
 
 --
--- Indexes for table `project_timeline`
+-- Indeks untuk tabel `project_timeline`
 --
 ALTER TABLE `project_timeline`
   ADD PRIMARY KEY (`pt_id`),
   ADD KEY `trans_id` (`trans_id`);
 
 --
--- Indexes for table `raw_materials`
+-- Indeks untuk tabel `raw_materials`
 --
 ALTER TABLE `raw_materials`
   ADD PRIMARY KEY (`material_id`);
 
 --
--- Indexes for table `transactions`
+-- Indeks untuk tabel `transactions`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`trans_id`),
@@ -688,7 +712,7 @@ ALTER TABLE `transactions`
   ADD KEY `client_id` (`client_id`);
 
 --
--- Indexes for table `type_of_project`
+-- Indeks untuk tabel `type_of_project`
 --
 ALTER TABLE `type_of_project`
   ADD PRIMARY KEY (`t_project_id`),
@@ -697,7 +721,7 @@ ALTER TABLE `type_of_project`
   ADD KEY `deleted_by` (`deleted_by`);
 
 --
--- Indexes for table `type_of_work`
+-- Indeks untuk tabel `type_of_work`
 --
 ALTER TABLE `type_of_work`
   ADD PRIMARY KEY (`work_id`),
@@ -707,13 +731,13 @@ ALTER TABLE `type_of_work`
   ADD KEY `work_group_id` (`work_group_id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `work_group`
+-- Indeks untuk tabel `work_group`
 --
 ALTER TABLE `work_group`
   ADD PRIMARY KEY (`work_group_id`),
@@ -722,75 +746,75 @@ ALTER TABLE `work_group`
   ADD KEY `deleted_by` (`deleted_by`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `general_ledger`
+-- AUTO_INCREMENT untuk tabel `general_ledger`
 --
 ALTER TABLE `general_ledger`
-  MODIFY `gl_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `gl_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `material_budget`
+-- AUTO_INCREMENT untuk tabel `material_budget`
 --
 ALTER TABLE `material_budget`
   MODIFY `mb_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `payments`
+-- AUTO_INCREMENT untuk tabel `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `payment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `project`
+-- AUTO_INCREMENT untuk tabel `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `project_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `project_budget`
+-- AUTO_INCREMENT untuk tabel `project_budget`
 --
 ALTER TABLE `project_budget`
   MODIFY `pb_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `project_mapping`
+-- AUTO_INCREMENT untuk tabel `project_mapping`
 --
 ALTER TABLE `project_mapping`
   MODIFY `pm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `project_material`
+-- AUTO_INCREMENT untuk tabel `project_material`
 --
 ALTER TABLE `project_material`
   MODIFY `pjm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `project_timeline`
+-- AUTO_INCREMENT untuk tabel `project_timeline`
 --
 ALTER TABLE `project_timeline`
-  MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `chart_of_account`
+-- Ketidakleluasaan untuk tabel `chart_of_account`
 --
 ALTER TABLE `chart_of_account`
   ADD CONSTRAINT `chart_of_account_ibfk_1` FOREIGN KEY (`sub_code`) REFERENCES `coa_subhead` (`sub_code`);
 
 --
--- Constraints for table `clients`
+-- Ketidakleluasaan untuk tabel `clients`
 --
 ALTER TABLE `clients`
   ADD CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`),
@@ -798,20 +822,20 @@ ALTER TABLE `clients`
   ADD CONSTRAINT `clients_ibfk_3` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `coa_subhead`
+-- Ketidakleluasaan untuk tabel `coa_subhead`
 --
 ALTER TABLE `coa_subhead`
   ADD CONSTRAINT `coa_subhead_ibfk_1` FOREIGN KEY (`head_code`) REFERENCES `coa_head` (`head_code`);
 
 --
--- Constraints for table `general_ledger`
+-- Ketidakleluasaan untuk tabel `general_ledger`
 --
 ALTER TABLE `general_ledger`
   ADD CONSTRAINT `general_ledger_ibfk_2` FOREIGN KEY (`gl_ref`) REFERENCES `transactions` (`trans_id`),
   ADD CONSTRAINT `general_ledger_ibfk_3` FOREIGN KEY (`account_no`) REFERENCES `chart_of_account` (`account_no`);
 
 --
--- Constraints for table `material_budget`
+-- Ketidakleluasaan untuk tabel `material_budget`
 --
 ALTER TABLE `material_budget`
   ADD CONSTRAINT `material_budget_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`),
@@ -819,33 +843,33 @@ ALTER TABLE `material_budget`
   ADD CONSTRAINT `material_budget_ibfk_3` FOREIGN KEY (`work_group_id`) REFERENCES `work_group` (`work_group_id`);
 
 --
--- Constraints for table `payments`
+-- Ketidakleluasaan untuk tabel `payments`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`);
 
 --
--- Constraints for table `project`
+-- Ketidakleluasaan untuk tabel `project`
 --
 ALTER TABLE `project`
   ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`);
 
 --
--- Constraints for table `project_budget`
+-- Ketidakleluasaan untuk tabel `project_budget`
 --
 ALTER TABLE `project_budget`
   ADD CONSTRAINT `project_budget_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`),
   ADD CONSTRAINT `project_budget_ibfk_2` FOREIGN KEY (`work_id`) REFERENCES `type_of_work` (`work_id`);
 
 --
--- Constraints for table `project_mapping`
+-- Ketidakleluasaan untuk tabel `project_mapping`
 --
 ALTER TABLE `project_mapping`
   ADD CONSTRAINT `project_mapping_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`),
   ADD CONSTRAINT `project_mapping_ibfk_2` FOREIGN KEY (`work_id`) REFERENCES `type_of_work` (`work_id`);
 
 --
--- Constraints for table `project_material`
+-- Ketidakleluasaan untuk tabel `project_material`
 --
 ALTER TABLE `project_material`
   ADD CONSTRAINT `project_material_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`),
@@ -853,13 +877,13 @@ ALTER TABLE `project_material`
   ADD CONSTRAINT `project_material_ibfk_3` FOREIGN KEY (`material_id`) REFERENCES `raw_materials` (`material_id`);
 
 --
--- Constraints for table `project_timeline`
+-- Ketidakleluasaan untuk tabel `project_timeline`
 --
 ALTER TABLE `project_timeline`
   ADD CONSTRAINT `project_timeline_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`);
 
 --
--- Constraints for table `transactions`
+-- Ketidakleluasaan untuk tabel `transactions`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`t_project_id`) REFERENCES `type_of_project` (`t_project_id`),
@@ -867,7 +891,7 @@ ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_3` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`);
 
 --
--- Constraints for table `type_of_project`
+-- Ketidakleluasaan untuk tabel `type_of_project`
 --
 ALTER TABLE `type_of_project`
   ADD CONSTRAINT `type_of_project_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`),
@@ -875,7 +899,7 @@ ALTER TABLE `type_of_project`
   ADD CONSTRAINT `type_of_project_ibfk_3` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `type_of_work`
+-- Ketidakleluasaan untuk tabel `type_of_work`
 --
 ALTER TABLE `type_of_work`
   ADD CONSTRAINT `type_of_work_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`),
@@ -884,7 +908,7 @@ ALTER TABLE `type_of_work`
   ADD CONSTRAINT `type_of_work_ibfk_4` FOREIGN KEY (`work_group_id`) REFERENCES `work_group` (`work_group_id`);
 
 --
--- Constraints for table `work_group`
+-- Ketidakleluasaan untuk tabel `work_group`
 --
 ALTER TABLE `work_group`
   ADD CONSTRAINT `work_group_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`),
