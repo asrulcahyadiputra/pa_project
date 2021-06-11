@@ -86,15 +86,18 @@ class M_contract extends CI_Model
 		$p_method_id	= $this->input->post('p_method_id');
 		$total		=  intval(preg_replace("/[^0-9]/", "", $this->input->post('total'))); 	// contract price
 		$nominal		=  intval(preg_replace("/[^0-9]/", "", $this->input->post('nominal'))); 	//down payment
+		$ppn		=  intval(preg_replace("/[^0-9]/", "", $this->input->post('ppn'))); 	//ppn (10%)
 		$trans_type	= "contract";
 
 		$transaction = [
-			'trans_id'		=> $trans_id,
-			'client_id'		=> $client_id,
+			'trans_id'			=> $trans_id,
+			'client_id'			=> $client_id,
 			't_project_id'		=> $t_project_id,
 			'p_method_id'		=> $p_method_id,
 			'surface_area'		=> $surface_area,
-			'total'			=> $total,
+			'total'				=> $total,
+			'ppn'				=> $ppn,
+			'dp'				=> $nominal,
 			'project_progress'	=> 0,
 			'trans_type'		=> $trans_type,
 			'created_by'		=> 1 //temporary

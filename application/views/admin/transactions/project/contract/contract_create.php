@@ -72,6 +72,10 @@
 								<input type="text" name="total" id="total" class="form-control" data-type="currency" required>
 							</div>
 							<div class="col-xl-12 col-md-12 col-sm-12 mt-2">
+								<label for="">PPN</label>
+								<input type="text" name="ppn" id="ppn" class="form-control" data-type="currency" required>
+							</div>
+							<div class="col-xl-12 col-md-12 col-sm-12 mt-2">
 								<label for="">Down Payment (DP)</label>
 								<input type="text" name="nominal" id="nominal" class="form-control" data-type="currency" required>
 							</div>
