@@ -113,8 +113,9 @@
 					},
 					success: function(data) {
 						value = data.t_project_price * surface_area;
-						conversion = value * (30 / 100);
 						ppn = value * 0.1
+						conversion = (value + ppn) * (30 / 100);
+
 						dp = new Intl.NumberFormat('ja-JP').format(conversion);
 						np = new Intl.NumberFormat('ja-JP').format(value);
 
