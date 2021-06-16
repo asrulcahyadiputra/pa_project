@@ -158,7 +158,7 @@ class M_realization extends CI_Model
             }
             $prevRealisasi[] = [
                 'no'             => $no++,
-                'work_id'        => $realisasiData['realitation'],
+                'work_id'        => $realisasiData['work_id'],
                 'work_name'     => $realisasiData['work_name'],
                 'budget'         => nominal($realisasiData['budget']),
                 'realitation'    => nominal($realisasiData['realitation']),
