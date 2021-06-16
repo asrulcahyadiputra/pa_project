@@ -93,6 +93,7 @@ Transaction Project Realization
 $route['transaksi/realisasi']               = 'transactions/accounting/Realization';
 $route['transaksi/realisasi/baru']          = 'transactions/accounting/Realization/create';
 $route['transaksi/realisasi/fetch']         = 'transactions/accounting/Realization/fetch';
+$route['transaksi/realisasi/insert']        = 'transactions/accounting/Realization/store';
 
 /*--------------------------------------------------
 Report General Ledger

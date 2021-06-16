@@ -39,6 +39,17 @@ class Realization extends CI_Controller
 
         echo json_encode($response);
     }
+    public function store()
+    {
+        $response =  $this->model->store();
+        $this->session->set_flashdata('success', 'Data Berhasil Disimpan !');
+        redirect('transaksi/realisasi');
+        // echo "<pre>";
+        // print_r($response);
+        // echo "</pre>";
+
+        // die;
+    }
 }
 
 /* End of file Realization.php */

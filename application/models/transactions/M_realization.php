@@ -4,6 +4,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_realization extends CI_Model
 {
+    private function trans_id()
+    {
+        $this->db->select('RIGHT(trans_id,9) as trans_id', FALSE);
+        $this->db->where('trans_type', 'realitation');
+        $this->db->order_by('trans_id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get('transactions');
+        if ($query->num_rows() <> 0) {
+            $data = $query->row();
+            $id = intval($data->trans_id) + 1;
+        } else {
+            $id = 1;
+        }
+        $code = str_pad($id, 9, "0", STR_PAD_LEFT);
+        $trans_id = "TRX-RLS-" . $code;
+        return $trans_id;
+    }
 
     public function all()
     {
@@ -44,12 +61,66 @@ class M_realization extends CI_Model
             ->where('a.trans_type', 'contract')
             ->get()
             ->result_array();
+
+        foreach ($detail as $rowDetail) {
+            $dataDetail[] = [
+                'work_id'       => '<input class="form-control" name="work_id[]" value=' . $rowDetail['work_id'] . ' readonly />',
+                'work_name'     => $rowDetail['work_name'],
+                'budget'        => '<input class="form-control" name="budget[]" value="' . nominal($rowDetail['budget']) . '" readonly />',
+                'input_field'   => '<input class="form-control" name="realization[]" data-type="currency" required/>'
+            ];
+        }
         $response = [
             'status'        => '200 OK',
             'message'       => 'Record Founded!',
             'values'        => $trans,
-            'detail'        => $detail
+            'detail'        => $dataDetail
         ];
+        return $response;
+    }
+
+    public function store()
+    {
+        $total_realisasi = 0;
+        $trans_id = $this->trans_id();
+        $proyek = $this->input->post('proyek');
+        $work_id = $this->input->post('work_id');
+        foreach ($work_id as $key => $rowData) {
+            $realisasi[] = [
+                'trans_id'      => $trans_id,
+                'work_id'       => $work_id[$key],
+                'budget'        => intval(preg_replace("/[^0-9]/", "", $this->input->post('budget')[$key])),
+                'realitation'   => intval(preg_replace("/[^0-9]/", "", $this->input->post('realization')[$key])),
+            ];
+
+            $total_realisasi = $total_realisasi + intval(preg_replace("/[^0-9]/", "", $this->input->post('realization')[$key]));
+        }
+        $update = [
+            'status'                => 2,
+            'project_progress'      => 2
+        ];
+        $trans = [
+            'trans_id'          => $trans_id,
+            'ref_realitation'   => $proyek,
+            'trans_type'        => 'realitation',
+            'total'             => $total_realisasi
+        ];
+
+
+        $this->db->trans_start();
+        $this->db->insert('transactions', $trans);
+        $this->db->insert_batch('project_realitations', $realisasi);
+        $this->db->update('transactions', $update, ['trans_id' => $proyek]);
+        $this->db->trans_complete();
+
+        $response = [
+            'trans'         => $trans,
+            'realitation'   => $realisasi
+        ];
+
+
+
+
         return $response;
     }
 }
