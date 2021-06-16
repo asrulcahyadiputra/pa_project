@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Waktu pembuatan: 11 Jun 2021 pada 16.11
+-- Waktu pembuatan: 16 Jun 2021 pada 14.07
 -- Versi server: 5.7.32
 -- Versi PHP: 7.4.12
 
@@ -274,11 +274,8 @@ CREATE TABLE `project_budget` (
   `work_id` varchar(20) NOT NULL,
   `pb_unit` varchar(100) NOT NULL,
   `pb_qty_budget` int(11) NOT NULL,
-  `pb_qty_realitation` int(11) DEFAULT NULL,
   `pb_unit_price_budget` double NOT NULL,
-  `pb_unit_price_realitation` double DEFAULT NULL,
   `budget` double DEFAULT NULL,
-  `realitation` double DEFAULT NULL,
   `different` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -286,11 +283,11 @@ CREATE TABLE `project_budget` (
 -- Dumping data untuk tabel `project_budget`
 --
 
-INSERT INTO `project_budget` (`pb_id`, `trans_id`, `work_id`, `pb_unit`, `pb_qty_budget`, `pb_qty_realitation`, `pb_unit_price_budget`, `pb_unit_price_realitation`, `budget`, `realitation`, `different`) VALUES
-(1, 'TRX-KNT-000000001', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL, NULL),
-(2, 'TRX-KNT-000000001', 'PK-0008', 'M', 500, NULL, 1500000, NULL, 750000000, NULL, NULL),
-(3, 'TRX-KNT-000000002', 'PK-0001', 'Ls', 1, NULL, 500000, NULL, 500000, NULL, NULL),
-(4, 'TRX-KNT-000000002', 'PK-0008', 'M', 500, NULL, 1600000, NULL, 800000000, NULL, NULL);
+INSERT INTO `project_budget` (`pb_id`, `trans_id`, `work_id`, `pb_unit`, `pb_qty_budget`, `pb_unit_price_budget`, `budget`, `different`) VALUES
+(1, 'TRX-KNT-000000001', 'PK-0001', 'Ls', 1, 500000, 500000, NULL),
+(2, 'TRX-KNT-000000001', 'PK-0008', 'M', 500, 1500000, 750000000, NULL),
+(3, 'TRX-KNT-000000002', 'PK-0001', 'Ls', 1, 500000, 500000, NULL),
+(4, 'TRX-KNT-000000002', 'PK-0008', 'M', 500, 1600000, 800000000, NULL);
 
 -- --------------------------------------------------------
 
@@ -333,6 +330,30 @@ INSERT INTO `project_material` (`pjm_id`, `trans_id`, `material_id`, `work_group
 (1, 'TRX-MPP-000000001', 'MT-000000009', 'KP-0001'),
 (2, 'TRX-MPP-000000001', 'MT-000000001', 'KP-0002'),
 (3, 'TRX-MPP-000000001', 'MT-000000002', 'KP-0002');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `project_realitations`
+--
+
+CREATE TABLE `project_realitations` (
+  `id` bigint(20) NOT NULL,
+  `trans_id` varchar(50) NOT NULL,
+  `work_id` varchar(20) NOT NULL,
+  `budget` double NOT NULL,
+  `realitation` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `project_realitations`
+--
+
+INSERT INTO `project_realitations` (`id`, `trans_id`, `work_id`, `budget`, `realitation`) VALUES
+(1, 'TRX-RLS-000000001', 'PK-0001', 500000, 500000),
+(2, 'TRX-RLS-000000001', 'PK-0008', 750000000, 670000000),
+(7, 'TRX-RLS-000000002', 'PK-0001', 500000, 500000),
+(8, 'TRX-RLS-000000002', 'PK-0008', 800000000, 850000000);
 
 -- --------------------------------------------------------
 
@@ -402,6 +423,7 @@ CREATE TABLE `transactions` (
   `client_id` varchar(20) DEFAULT NULL,
   `t_project_id` varchar(20) DEFAULT NULL,
   `p_method_id` varchar(20) DEFAULT NULL,
+  `ref_realitation` varchar(50) DEFAULT NULL,
   `trans_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `project_progress` int(1) DEFAULT NULL,
   `surface_area` int(11) DEFAULT NULL,
@@ -422,13 +444,15 @@ CREATE TABLE `transactions` (
 -- Dumping data untuk tabel `transactions`
 --
 
-INSERT INTO `transactions` (`trans_id`, `client_id`, `t_project_id`, `p_method_id`, `trans_date`, `project_progress`, `surface_area`, `total`, `ppn`, `contract_value`, `dp`, `trans_type`, `ref_code`, `description`, `status`, `date_created`, `date_updated`, `created_by`) VALUES
-('TRX-KNT-000000001', 'PL-0002', 'JP-0001', 'CB-0002', '2020-12-13 07:40:34', 1, 500, 1800000000, NULL, NULL, NULL, 'contract', NULL, NULL, 1, '2020-12-13 07:40:34', NULL, 1),
-('TRX-KNT-000000002', 'PL-0001', 'JP-0001', 'CB-0003', '2020-12-13 19:52:08', 1, 1000, 3600000000, NULL, NULL, NULL, 'contract', NULL, NULL, 1, '2020-12-13 19:52:08', NULL, 1),
-('TRX-KNT-000000003', 'PL-0001', 'JP-0002', 'CB-0001', '2021-06-11 15:26:48', 0, 500, 1250000000, 125000000, NULL, NULL, 'contract', NULL, NULL, 0, '2021-06-11 15:26:48', NULL, 1),
-('TRX-KNT-000000004', 'PL-0002', 'JP-0002', 'CB-0001', '2021-06-11 15:28:13', 0, 500, 1250000000, 125000000, NULL, 375000000, 'contract', NULL, NULL, 0, '2021-06-11 15:28:13', NULL, 1),
-('TRX-KNT-000000005', 'PL-0001', 'JP-0002', 'CB-0002', '2021-06-11 15:35:19', 0, 500, 1375000000, 125000000, 1250000000, 375000000, 'contract', NULL, NULL, 0, '2021-06-11 15:35:19', NULL, 1),
-('TRX-MPP-000000001', NULL, 'JP-0001', NULL, '2020-12-13 07:38:51', NULL, NULL, NULL, NULL, NULL, NULL, 'mapping', NULL, 'Pemetaan Rencana Anggaran Biaya Pembgangunan RUmah Permanen Dua Lantai TIpe 70', 0, '2020-12-13 07:38:51', NULL, 0);
+INSERT INTO `transactions` (`trans_id`, `client_id`, `t_project_id`, `p_method_id`, `ref_realitation`, `trans_date`, `project_progress`, `surface_area`, `total`, `ppn`, `contract_value`, `dp`, `trans_type`, `ref_code`, `description`, `status`, `date_created`, `date_updated`, `created_by`) VALUES
+('TRX-KNT-000000001', 'PL-0002', 'JP-0001', 'CB-0002', NULL, '2020-12-13 07:40:34', 2, 500, 1800000000, NULL, NULL, NULL, 'contract', NULL, NULL, 2, '2020-12-13 07:40:34', '2021-06-16 12:44:23', 1),
+('TRX-KNT-000000002', 'PL-0001', 'JP-0001', 'CB-0003', NULL, '2020-12-13 19:52:08', 2, 1000, 3600000000, NULL, NULL, NULL, 'contract', NULL, NULL, 2, '2020-12-13 19:52:08', '2021-06-16 13:49:21', 1),
+('TRX-KNT-000000003', 'PL-0001', 'JP-0002', 'CB-0001', NULL, '2021-06-11 15:26:48', 0, 500, 1250000000, 125000000, NULL, NULL, 'contract', NULL, NULL, 0, '2021-06-11 15:26:48', NULL, 1),
+('TRX-KNT-000000004', 'PL-0002', 'JP-0002', 'CB-0001', NULL, '2021-06-11 15:28:13', 0, 500, 1250000000, 125000000, NULL, 375000000, 'contract', NULL, NULL, 0, '2021-06-11 15:28:13', NULL, 1),
+('TRX-KNT-000000005', 'PL-0001', 'JP-0002', 'CB-0002', NULL, '2021-06-11 15:35:19', 0, 500, 1375000000, 125000000, 1250000000, 375000000, 'contract', NULL, NULL, 0, '2021-06-11 15:35:19', NULL, 1),
+('TRX-MPP-000000001', NULL, 'JP-0001', NULL, NULL, '2020-12-13 07:38:51', NULL, NULL, NULL, NULL, NULL, NULL, 'mapping', NULL, 'Pemetaan Rencana Anggaran Biaya Pembgangunan RUmah Permanen Dua Lantai TIpe 70', 0, '2020-12-13 07:38:51', NULL, 0),
+('TRX-RLS-000000001', NULL, NULL, NULL, 'TRX-KNT-000000001', '2021-06-16 12:42:17', NULL, NULL, 670500000, NULL, NULL, NULL, 'realitation', NULL, NULL, 0, '2021-06-16 12:42:17', NULL, 0),
+('TRX-RLS-000000002', NULL, NULL, NULL, 'TRX-KNT-000000002', '2021-06-16 13:49:21', NULL, NULL, 850500000, NULL, NULL, NULL, 'realitation', NULL, NULL, 0, '2021-06-16 13:49:21', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -690,6 +714,13 @@ ALTER TABLE `project_material`
   ADD KEY `material_id` (`material_id`);
 
 --
+-- Indeks untuk tabel `project_realitations`
+--
+ALTER TABLE `project_realitations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `trans_id` (`trans_id`);
+
+--
 -- Indeks untuk tabel `project_timeline`
 --
 ALTER TABLE `project_timeline`
@@ -792,6 +823,12 @@ ALTER TABLE `project_material`
   MODIFY `pjm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT untuk tabel `project_realitations`
+--
+ALTER TABLE `project_realitations`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT untuk tabel `project_timeline`
 --
 ALTER TABLE `project_timeline`
@@ -875,6 +912,12 @@ ALTER TABLE `project_material`
   ADD CONSTRAINT `project_material_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`),
   ADD CONSTRAINT `project_material_ibfk_2` FOREIGN KEY (`work_group_id`) REFERENCES `work_group` (`work_group_id`),
   ADD CONSTRAINT `project_material_ibfk_3` FOREIGN KEY (`material_id`) REFERENCES `raw_materials` (`material_id`);
+
+--
+-- Ketidakleluasaan untuk tabel `project_realitations`
+--
+ALTER TABLE `project_realitations`
+  ADD CONSTRAINT `project_realitations_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `project_timeline`
