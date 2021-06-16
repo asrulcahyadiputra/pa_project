@@ -24,15 +24,9 @@ class M_realization extends CI_Model
 
     public function all()
     {
-        $this->db->select('a.trans_id,a.t_project_id,a.total,a.status,b.t_project_name,c.project_name,c.project_due_date,d.client_name, a.project_progress as progress')
-            ->from('transactions as a')
-            ->join('type_of_project as b', 'a.t_project_id=b.t_project_id')
-            ->join('project as c', 'c.trans_id=a.trans_id')
-            ->join('clients as d', 'd.client_id=a.client_id')
-            ->where('a.trans_type', 'contract')
-            ->where('a.project_progress', '2');
+        $all = $this->db->get_where('transactions', ['trans_type' => 'realitation'])->result_array();
 
-        return $this->db->get()->result_array();
+        return $all;
     }
 
     public function anggaran_list()
@@ -122,6 +116,63 @@ class M_realization extends CI_Model
 
 
         return $response;
+    }
+    private function find_realitation($trans_id = null)
+    {
+        $realisasi = $this->db->select('a.trans_id, a.work_id,a.budget,a.realitation, b.work_name')
+            ->from('project_realitations as a')
+            ->join('type_of_work as b', 'a.work_id=b.work_id')
+            ->where('trans_id', $trans_id)
+            ->get()
+            ->result_array();
+        return $realisasi;
+    }
+
+    private function find_project($trans_id)
+    {
+        $project =  $this->db->select('a.trans_id,a.t_project_id,a.surface_area,a.total,a.dp,a.ppn,a.contract_value,a.project_progress,b.t_project_name,b.type,c.project_name,c.project_start,c.project_due_date,d.client_name,d.client_phone,d.client_address,e.p_method_step')
+            ->from('transactions as a')
+            ->join('type_of_project as b', 'a.t_project_id=b.t_project_id')
+            ->join('project as c', 'c.trans_id=a.trans_id')
+            ->join('clients as d', 'd.client_id=a.client_id')
+            ->join('payment_method as e', 'a.p_method_id=e.p_method_id')
+            ->where('a.trans_type', 'contract')
+            ->where('a.trans_id', $trans_id)
+            ->get()
+            ->row_array();
+        return $project;
+    }
+
+    public function preview($trans_id, $ref_id)
+    {
+        $desc = $this->find_project($ref_id);
+        $realisasi = $this->find_realitation($trans_id,);
+        $no = 1;
+        foreach ($realisasi as $realisasiData) {
+            if ($realisasiData['realitation'] > $realisasiData['budget']) {
+                $class = 'text-danger';
+                $different = intval($realisasiData['realitation'] - $realisasiData['budget']);
+            } elseif ($realisasiData['realitation'] <= $realisasiData['budget']) {
+                $class = 'text-success';
+                $different = intval($realisasiData['budget'] - $realisasiData['realitation']);
+            }
+            $prevRealisasi[] = [
+                'no'             => $no++,
+                'work_id'        => $realisasiData['realitation'],
+                'work_name'     => $realisasiData['work_name'],
+                'budget'         => nominal($realisasiData['budget']),
+                'realitation'    => nominal($realisasiData['realitation']),
+                'different'      => '<span class="' . $class . '">' . nominal($different) . '</span>'
+            ];
+        }
+        $data = [
+            'success'   => true,
+            'trans_id'  => $trans_id,
+            'ref'       => $ref_id,
+            'desc'      => $desc,
+            'detail'    => $prevRealisasi
+        ];
+        return $data;
     }
 }
 

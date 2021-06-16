@@ -72,10 +72,73 @@
 
             })
         })
-        // $('#btn-save').on('click', function() {
-        //     var data = myTable.rows().data()
-        //     var data2 = myTable.$('input, select').serialize();
-        //     console.log(data2)
-        // })
+        $('.table-realitation tbody').on('click', 'td', function(e) {
+            console.log('im here')
+            var index = $(this).index()
+            var trans_id = $(this).closest('tr').find('td').eq(1).html();
+            var ref_id = $(this).closest('tr').find('td').eq(2).html();
+            console.log(trans_id)
+            var html = ''
+            if (index != 4) {
+                $.ajax({
+                    type: 'POST',
+                    url: '<?= base_url('transaksi/realisasi/prev') ?>',
+                    dataType: 'JSON',
+                    data: {
+                        trans_id: trans_id,
+                        ref_realitation: ref_id
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        var detail = data.detail
+                        var desc = data.desc
+                        html += `<div class='col-8'><table class='table'>
+                            <tr>
+                                <td>No Bukti</td>
+                                <td style:'width:1%'>:</td>
+                                <td>` + trans_id + `</td>
+                            </tr>
+                            <tr>
+                                <td>No Kontrak</td>
+                                <td style:'width:1%'>:</td>
+                                <td>` + desc.trans_id + `</td>
+                            </tr>
+                            <tr>
+                                <td>Deskripsi</td>
+                                <td style:'width:1%'>:</td>
+                                <td>` + desc.project_name + `</td>
+                            </tr>
+                        </table></div>`
+                        html += `<table class='table table-bordered'>
+                            <thead>
+                                <th>No</th>
+                                <th>Kode</th>
+                                <th>Pekerjaan</th>
+                                <th>Anggaran</th>
+                                <th>Realisasi</th>
+                                <th>Perbedaan</th>
+                            </thead>
+                            <tbody>`
+                        for (let index = 0; index < detail.length; index++) {
+                            html += `<tr>
+                                <td>` + detail[index].no + `</td>
+                                <td>` + detail[index].work_id + `</td>
+                                <td>` + detail[index].work_name + `</td>
+                                <td>` + detail[index].budget + `</td>
+                                <td>` + detail[index].realitation + `</td>
+                                <td>` + detail[index].different + `</td>
+                               </tr>`
+
+                        }
+
+                        html += `</tbody> </table>`
+
+                        $('#previewData').modal('show')
+                        $('#content-preview').html(html)
+                    }
+                })
+
+            }
+        })
     })
 </script>

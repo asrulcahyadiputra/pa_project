@@ -35,15 +35,13 @@
                     <?php endif ?>
                     <h5>Realisasi Anggaran Biaya Proyek</h5>
                     <div class="table-responsive mb-4 mt-4">
-                        <table id="zero-config" class="table table-hover" style="width:100%">
+                        <table id="zero-config" class="table table-hover table-realitation" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Kode</th>
-                                    <th>Keterangan</th>
-                                    <th>Anggaran</th>
-                                    <th>Realisasi</th>
-                                    <th>Perbedaan</th>
+                                    <th>Ref</th>
+                                    <th>Total</th>
                                     <th class="no-content"></th>
                                 </tr>
                             </thead>
@@ -53,35 +51,9 @@
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $row['trans_id'] ?></td>
-                                        <td><?= $row['client_name'] ?></td>
-                                        <td><?= $row['project_name'] ?></td>
+                                        <td><?= $row['ref_realitation'] ?></td>
                                         <td><?= nominal($row['total']) ?></td>
-                                        <td>
-                                            <?php if ($row['progress'] == 0) : ?>
-                                                <span class="text-warning bs-tooltip" title="Menunggu untuk dianggarkan">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
-                                                        <circle cx="12" cy="12" r="10"></circle>
-                                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                                    </svg>
-                                                </span>
-                                            <?php endif ?>
-                                            <?php if ($row['progress'] == 1) : ?>
-                                                <span class="text-primary bs-tooltip" title="Sudah dianggarkan">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-unlock">
-                                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                                        <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
-                                                    </svg>
-                                                </span>
-                                            <?php endif ?>
-                                            <?php if ($row['progress'] == 2) : ?>
-                                                <span class="text-warning bs-tooltip" title="Sudah Realisasi">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
-                                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                                    </svg>
-                                                </span>
-                                            <?php endif ?>
-                                        </td>
+
                                         <td>
                                             <a href="<?= site_url('transaksi/anggaran/create/' . $row['trans_id']) ?>" class="text-info mr-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
@@ -110,4 +82,20 @@
         </div>
     </div>
     <!-- end of main content -->
+    <!-- Modal add CoA -->
+    <div class="modal fade" id="previewData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div id="modal-body" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Preview Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="content-preview">
+                </div>
+            </div>
+        </div>
+    </div>
     <?php $this->load->view('_partials/footer') ?>
+    <?php $this->load->view('admin/transactions/accounting/realization/script') ?>

@@ -94,6 +94,7 @@ $route['transaksi/realisasi']               = 'transactions/accounting/Realizati
 $route['transaksi/realisasi/baru']          = 'transactions/accounting/Realization/create';
 $route['transaksi/realisasi/fetch']         = 'transactions/accounting/Realization/fetch';
 $route['transaksi/realisasi/insert']        = 'transactions/accounting/Realization/store';
+$route['transaksi/realisasi/prev']          = 'transactions/accounting/Realization/preview';
 
 /*--------------------------------------------------
 Report General Ledger

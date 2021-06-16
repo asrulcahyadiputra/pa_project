@@ -50,6 +50,14 @@ class Realization extends CI_Controller
 
         // die;
     }
+    public function preview()
+    {
+        $trans_id = $this->input->post('trans_id');
+        $ref_id = $this->input->post('ref_realitation');
+        $response = $this->model->preview($trans_id, $ref_id);
+
+        echo json_encode($response);
+    }
 }
 
 /* End of file Realization.php */
