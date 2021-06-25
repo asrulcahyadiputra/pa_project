@@ -42,7 +42,7 @@
                                     <th>Kode</th>
                                     <th>Ref</th>
                                     <th>Total</th>
-                                    <th class="no-content"></th>
+                                    <!-- <th class="no-content"></th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,7 +54,7 @@
                                         <td><?= $row['ref_realitation'] ?></td>
                                         <td><?= nominal($row['total']) ?></td>
 
-                                        <td>
+                                        <!-- <td>
                                             <a href="<?= site_url('transaksi/anggaran/create/' . $row['trans_id']) ?>" class="text-info mr-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
                                                     <line x1="8" y1="6" x2="21" y2="6"></line>
@@ -71,7 +71,7 @@
                                                     <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                                                 </svg>
                                             </a>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
