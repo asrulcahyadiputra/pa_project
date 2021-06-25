@@ -113,6 +113,7 @@ class M_contract extends CI_Model
 		];
 		$transaction2 = [
 			'trans_id'			=> $trans_id2,
+			'payment_date'		=> date('Y-m-d'),
 			'ref'				=> $trans_id,
 			'client_id'			=> $client_id,
 			'total'				=> $nominal,
