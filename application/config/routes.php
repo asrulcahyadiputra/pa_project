@@ -97,6 +97,13 @@ $route['transaksi/realisasi/insert']        = 'transactions/accounting/Realizati
 $route['transaksi/realisasi/prev']          = 'transactions/accounting/Realization/preview';
 
 /*--------------------------------------------------
+Transaction Payments
+/--------------------------------------------------*/
+$route['transaksi/pembayaran']              = 'transactions/accounting/Payments';
+
+
+
+/*--------------------------------------------------
 Report General Ledger
 /--------------------------------------------------*/
 $route['laporan/jurnal']                        = 'reports/accounting/Ledger';

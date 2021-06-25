@@ -131,7 +131,7 @@
 				</li>
 
 				<li class="menu">
-					<a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" data-active="<?= $this->uri->segment(2) == 'pembayaran' ? 'true' : 'false' ?>" aria-expanded="<?= $this->uri->segment(2) == 'pembayaran' ? 'true' : 'false' ?>">
 						<div class="">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
 								<line x1="12" y1="1" x2="12" y2="23"></line>
@@ -145,15 +145,15 @@
 							</svg>
 						</div>
 					</a>
-					<ul class="collapse submenu list-unstyled" id="forms" data-parent="#accordionExample">
+					<ul class="collapse submenu list-unstyled   <?= $this->uri->segment(2) == 'pembayaran' ? 'show' : '' ?>" id="forms" data-parent="#accordionExample">
 						<li>
 							<a href="<?= site_url('transaksi/anggaran') ?>"> Anggaran Proyek </a>
 						</li>
 						<li>
 							<a href="<?= site_url('transaksi/realisasi') ?>"> Realisasi Proyek </a>
 						</li>
-						<li>
-							<a href="form_layouts.html"> Pembayaran </a>
+						<li class="<?= $this->uri->segment(2) == 'pembayaran' ? 'active' : '' ?>">
+							<a href="<?= site_url('transaksi/pembayaran') ?>"> Pembayaran </a>
 						</li>
 					</ul>
 				</li>

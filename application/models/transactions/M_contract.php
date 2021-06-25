@@ -110,7 +110,8 @@ class M_contract extends CI_Model
 			'project_due_date'	=> $project_due
 		];
 		$payment = [
-			'trans_id'		=> $trans_id,
+			'trans_id'			=> $trans_id,
+			'ref_contract'		=> $trans_id,
 			'nominal'			=> $nominal,
 			'description'		=> 'Down Payment (Dp)'
 		];
