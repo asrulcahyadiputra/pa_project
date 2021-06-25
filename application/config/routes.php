@@ -100,6 +100,7 @@ $route['transaksi/realisasi/prev']          = 'transactions/accounting/Realizati
 Transaction Payments
 /--------------------------------------------------*/
 $route['transaksi/pembayaran']              = 'transactions/accounting/Payments';
+$route['transaksi/pembayaran/baru']         = 'transactions/accounting/Payments/create';
 
 
 

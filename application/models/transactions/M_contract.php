@@ -56,10 +56,10 @@ class M_contract extends CI_Model
 		$this->db->order_by('due', 'ASC');
 		return $this->db->get_where('project_timeline', ['trans_id' => $id])->result_array();
 	}
-	private function trans_id()
+	private function trans_id($trans_type)
 	{
 		$this->db->select('RIGHT(trans_id,9) as trans_id', FALSE);
-		$this->db->where('trans_type', 'contract');
+		$this->db->where('trans_type', $trans_type);
 		$this->db->order_by('trans_id', 'DESC');
 		$this->db->limit(1);
 		$query = $this->db->get('transactions');
@@ -70,12 +70,20 @@ class M_contract extends CI_Model
 			$id = 1;
 		}
 		$code = str_pad($id, 9, "0", STR_PAD_LEFT);
-		$trans_id = "TRX-KNT-" . $code;
+		if ($trans_type == 'contract') {
+			$val  = 'TRX-KNT';
+		} else {
+			$val = 'TRX-PYM';
+		}
+		$trans_id = "$val-" . $code;
 		return $trans_id;
 	}
 	public function insert()
 	{
-		$trans_id 	= $this->trans_id();
+		$trans_type1 = 'contract';
+		$trans_type2 = 'payment';
+		$trans_id 	= $this->trans_id($trans_type1);
+		$trans_id2 	= $this->trans_id($trans_type2);
 		$project_name	= $this->input->post('project_name');
 		$surface_area	= $this->input->post('surface_area');
 		$client_id	= $this->input->post('client_id');
@@ -87,7 +95,7 @@ class M_contract extends CI_Model
 		$total		=  intval(preg_replace("/[^0-9]/", "", $this->input->post('total'))); 	// contract price
 		$nominal		=  intval(preg_replace("/[^0-9]/", "", $this->input->post('nominal'))); 	//down payment
 		$ppn		=  intval(preg_replace("/[^0-9]/", "", $this->input->post('ppn'))); 	//ppn (10%)
-		$trans_type	= "contract";
+
 
 		$transaction = [
 			'trans_id'			=> $trans_id,
@@ -100,7 +108,15 @@ class M_contract extends CI_Model
 			'contract_value'	=> $total,
 			'dp'				=> $nominal,
 			'project_progress'	=> 0,
-			'trans_type'		=> $trans_type,
+			'trans_type'		=> $trans_type1,
+			'created_by'		=> 1 //temporary
+		];
+		$transaction2 = [
+			'trans_id'			=> $trans_id2,
+			'ref'				=> $trans_id,
+			'client_id'			=> $client_id,
+			'total'				=> $nominal,
+			'trans_type'		=> $trans_type2,
 			'created_by'		=> 1 //temporary
 		];
 		$project = [
@@ -110,7 +126,7 @@ class M_contract extends CI_Model
 			'project_due_date'	=> $project_due
 		];
 		$payment = [
-			'trans_id'			=> $trans_id,
+			'trans_id'			=> $trans_id2,
 			'ref_contract'		=> $trans_id,
 			'nominal'			=> $nominal,
 			'description'		=> 'Down Payment (Dp)'
@@ -126,14 +142,14 @@ class M_contract extends CI_Model
 			[
 				'account_no'		=> '1-10001',
 				'gl_date'			=> date('Y-m-d'),
-				'gl_ref'			=> $trans_id,
+				'gl_ref'			=> $trans_id2,
 				'gl_balance'		=> 'd',
 				'gl_nominal'		=> $nominal
 			],
 			[
 				'account_no'		=> '2-10001',
 				'gl_date'			=> date('Y-m-d'),
-				'gl_ref'			=> $trans_id,
+				'gl_ref'			=> $trans_id2,
 				'gl_balance'		=> 'k',
 				'gl_nominal'		=> $nominal
 			]
@@ -144,6 +160,7 @@ class M_contract extends CI_Model
 		// die;
 		$this->db->trans_start();
 		$this->db->insert('transactions', $transaction);
+		$this->db->insert('transactions', $transaction2);
 		$this->db->insert('project', $project);
 		$this->db->insert('payments', $payment);
 		$this->db->insert('project_timeline', $timeline);
@@ -163,7 +180,7 @@ class M_contract extends CI_Model
 	}
 	public function start($id)
 	{
-		$payment  = $this->db->get_where('payments', ['trans_id' => $id])->row_array();
+		$payment  = $this->db->get_where('payments', ['ref_contract' => $id])->row_array();
 		$kontrak  = $this->db->get_where('transactions', ['trans_id' => $id])->row_array();
 
 		$ar = $kontrak['total'] - $payment['nominal']; //account receivable
@@ -174,7 +191,7 @@ class M_contract extends CI_Model
 			[
 				'gl_date'			=> date('Y-m-d'),
 				'account_no'		=> '2-10001',
-				'gl_ref'			=> $id,
+				'gl_ref'			=> $payment['trans_id'],
 				'gl_balance'		=> 'd',
 				'gl_nominal'		=> $payment['nominal'] //down payment -debt
 			],
