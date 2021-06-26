@@ -121,14 +121,14 @@ class M_payment extends CI_Model
             $gl = [
                 [
 
-                    'gl_date'            => date('Y-m-d'),
+                    'gl_date'            => $payment_date,
                     'account_no'        => '1-10001',
                     'gl_ref'            => $trans_id,
                     'gl_balance'        => 'd',
                     'gl_nominal'        => $total //cash -debt
                 ],
                 [
-                    'gl_date'            => date('Y-m-d'),
+                    'gl_date'            => $payment_date,
                     'account_no'        => '1-10002',
                     'gl_ref'            => $trans_id,
                     'gl_balance'        => 'k',
@@ -145,6 +145,24 @@ class M_payment extends CI_Model
             $res = [
                 'status'        => true,
                 'data'          => $trans
+            ];
+        } else {
+            $res = [
+                'status'        => false,
+                'data'          => null
+            ];
+        }
+
+        return $res;
+    }
+
+    public function destroy($trans_id)
+    {
+        $sql =  $this->db->delete('transactions', ['trans_id' => $trans_id]);
+        if ($sql) {
+            $res = [
+                'status'        => true,
+                'data'          => $sql
             ];
         } else {
             $res = [

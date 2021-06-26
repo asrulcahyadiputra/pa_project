@@ -46,6 +46,16 @@ class Payments extends CI_Controller
         }
         redirect('transaksi/pembayaran');
     }
+    public function destroy($trans_id)
+    {
+        $req = $this->model->destroy($trans_id);
+        if ($req['status'] === true) {
+            $this->session->set_flashdata('success', 'Berhasil menghapus pembayaran !');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menghapus pembayaran !');
+        }
+        redirect('transaksi/pembayaran');
+    }
 }
 
 /* End of file Payments.php */

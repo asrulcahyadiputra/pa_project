@@ -103,6 +103,7 @@ $route['transaksi/pembayaran']                  = 'transactions/accounting/Payme
 $route['transaksi/pembayaran/baru']             = 'transactions/accounting/Payments/create';
 $route['transaksi/pembayaran/find_angsuran']    = 'transactions/accounting/Payments/find_angsuran';
 $route['transaksi/pembayaran/simpan']           = 'transactions/accounting/Payments/store';
+$route['transaksi/pembayaran/hapus/(:any)']      = 'transactions/accounting/Payments/destroy/$1';
 
 
 
