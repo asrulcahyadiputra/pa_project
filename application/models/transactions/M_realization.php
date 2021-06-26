@@ -95,6 +95,7 @@ class M_realization extends CI_Model
         ];
         $trans = [
             'trans_id'          => $trans_id,
+            'periode'           => date('Y') . '' . date('m'),
             'ref_realitation'   => $proyek,
             'trans_type'        => 'realitation',
             'total'             => $total_realisasi

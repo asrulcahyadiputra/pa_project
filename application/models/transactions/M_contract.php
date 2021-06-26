@@ -99,6 +99,7 @@ class M_contract extends CI_Model
 
 		$transaction = [
 			'trans_id'			=> $trans_id,
+			'periode'			=> date('Y') . '' . date('m'),
 			'client_id'			=> $client_id,
 			't_project_id'		=> $t_project_id,
 			'p_method_id'		=> $p_method_id,
@@ -114,6 +115,7 @@ class M_contract extends CI_Model
 		$transaction2 = [
 			'trans_id'			=> $trans_id2,
 			'payment_date'		=> date('Y-m-d'),
+			'periode'			=> date('Y') . '' . date('m'),
 			'ref'				=> $trans_id,
 			'client_id'			=> $client_id,
 			'total'				=> $nominal,
