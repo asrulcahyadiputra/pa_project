@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 26, 2021 at 08:42 AM
+-- Generation Time: Jun 26, 2021 at 10:11 AM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -196,6 +196,110 @@ INSERT INTO `material_budget` (`mb_id`, `trans_id`, `material_id`, `work_group_i
 (1, 'TRX-KNT-000000001', 'MT-000000009', 'KP-0001', 'Meter', 500, NULL, 1500, NULL, 750000, NULL),
 (2, 'TRX-KNT-000000002', 'MT-000000009', 'KP-0001', 'Meter', 900, NULL, 25000, NULL, 22500000, NULL),
 (3, 'TRX-KNT-000000003', 'MT-000000009', 'KP-0001', 'Meter', 900, NULL, 25000, NULL, 22500000, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_access`
+--
+
+CREATE TABLE `menu_access` (
+  `id` bigint(20) NOT NULL,
+  `tcode` varchar(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menu_access`
+--
+
+INSERT INTO `menu_access` (`id`, `tcode`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 'LK01', 1, '2021-06-26 09:29:10', NULL),
+(2, 'LK02', 1, '2021-06-26 09:29:10', NULL),
+(3, 'LK03', 1, '2021-06-26 09:29:10', NULL),
+(4, 'LP01', 1, '2021-06-26 09:29:10', NULL),
+(5, 'LP02', 1, '2021-06-26 09:29:10', NULL),
+(6, 'MK01', 1, '2021-06-26 09:29:10', NULL),
+(7, 'MK02', 1, '2021-06-26 09:29:10', NULL),
+(8, 'MP01', 1, '2021-06-26 09:29:10', NULL),
+(9, 'MP02', 1, '2021-06-26 09:29:10', NULL),
+(10, 'MP03', 1, '2021-06-26 09:29:10', NULL),
+(11, 'MP04', 1, '2021-06-26 09:29:10', NULL),
+(12, 'MP05', 1, '2021-06-26 09:29:10', NULL),
+(13, 'TK01', 1, '2021-06-26 09:29:10', NULL),
+(14, 'TK02', 1, '2021-06-26 09:29:10', NULL),
+(15, 'TK03', 1, '2021-06-26 09:29:10', NULL),
+(16, 'TP01', 1, '2021-06-26 09:29:10', NULL),
+(17, 'TP02', 1, '2021-06-26 09:29:10', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_head`
+--
+
+CREATE TABLE `menu_head` (
+  `head_id` bigint(20) NOT NULL,
+  `head_name` varchar(100) NOT NULL,
+  `icon` longtext NOT NULL,
+  `id` varchar(255) NOT NULL,
+  `nu` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menu_head`
+--
+
+INSERT INTO `menu_head` (`head_id`, `head_name`, `icon`, `id`, `nu`, `created_at`, `updated_at`) VALUES
+(1, 'Master Proyek', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-database\">\r\n								<ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"></ellipse>\r\n								<path d=\"M21 12c0 1.66-4 3-9 3s-9-1.34-9-3\"></path>\r\n								<path d=\"M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5\"></path>\r\n							</svg>', 'master-proyek', 1, '2021-06-26 08:58:39', NULL),
+(2, 'Master Keuangan', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-hard-drive\">\r\n								<line x1=\"22\" y1=\"12\" x2=\"2\" y2=\"12\"></line>\r\n								<path d=\"M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z\"></path>\r\n								<line x1=\"6\" y1=\"16\" x2=\"6.01\" y2=\"16\"></line>\r\n								<line x1=\"10\" y1=\"16\" x2=\"10.01\" y2=\"16\"></line>\r\n							</svg>', 'master-keuangan', 2, '2021-06-26 08:58:39', NULL),
+(3, 'Proyek', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-file-plus\">\r\n								<path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path>\r\n								<polyline points=\"14 2 14 8 20 8\"></polyline>\r\n								<line x1=\"12\" y1=\"18\" x2=\"12\" y2=\"12\"></line>\r\n								<line x1=\"9\" y1=\"15\" x2=\"15\" y2=\"15\"></line>\r\n							</svg>', 'transaksi-proyek', 3, '2021-06-26 08:58:39', NULL),
+(4, 'Keuangan', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-dollar-sign\">\r\n								<line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"23\"></line>\r\n								<path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"></path>\r\n							</svg>', 'transaksi-keuangan', 4, '2021-06-26 08:58:39', NULL),
+(5, 'Laporan Proyek', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-monitor\">\r\n								<rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"></rect>\r\n								<line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"></line>\r\n								<line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"></line>\r\n							</svg>', 'laporan-proyek', 5, '2021-06-26 08:58:39', NULL),
+(6, 'Laporan Keuangan', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-book\">\r\n								<path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"></path>\r\n								<path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"></path>\r\n							</svg>', 'laporan-keuangan', 6, '2021-06-26 08:58:39', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_item`
+--
+
+CREATE TABLE `menu_item` (
+  `tcode` varchar(20) NOT NULL,
+  `nu` int(11) NOT NULL,
+  `menu_name` varchar(100) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `head_id` bigint(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menu_item`
+--
+
+INSERT INTO `menu_item` (`tcode`, `nu`, `menu_name`, `url`, `head_id`, `created_at`, `updated_at`) VALUES
+('LK01', 1, 'Jurnal Umum', 'laporan/jurnal', 6, '2021-06-26 09:15:53', NULL),
+('LK02', 2, 'Buku Besar', 'laporan/buku_besar', 6, '2021-06-26 09:15:53', NULL),
+('LK03', 3, 'Laporan Pembayaran', 'laporan/laporan_pembayaran', 6, '2021-06-26 09:15:53', NULL),
+('LP01', 1, 'Laporan Anggaran', 'laporan/anggaran', 5, '2021-06-26 09:13:28', NULL),
+('LP02', 2, 'Laporan Realisasi', 'laporan/laporan_realisasi', 5, '2021-06-26 09:13:28', NULL),
+('MK01', 1, 'Cara Pembayaran', 'Master/bayar', 2, '2021-06-26 09:07:15', NULL),
+('MK02', 2, 'Chart of Account', 'Master/coa', 2, '2021-06-26 09:07:15', NULL),
+('MP01', 1, 'Jenis Proyek', 'Master/proyek', 1, '2021-06-26 09:04:56', NULL),
+('MP02', 2, 'Kelompok Pekerjaan', 'Master/kelompok', 1, '2021-06-26 09:04:56', NULL),
+('MP03', 3, 'Jenis Pekerjaan', 'Master/pekerjaan', 1, '2021-06-26 09:04:56', NULL),
+('MP04', 4, 'Material', 'Master/material', 1, '2021-06-26 09:04:56', NULL),
+('MP05', 5, 'Pelanggan', 'Master/pelanggan', 1, '2021-06-26 09:04:56', NULL),
+('TK01', 1, 'Anggaran Proyek', 'transaksi/anggaran', 4, '2021-06-26 09:11:44', NULL),
+('TK02', 2, 'Realisasi Proyek', 'transaksi/realisasi', 4, '2021-06-26 09:11:44', NULL),
+('TK03', 3, 'Pembayaran', 'transaksi/pembayaran', 4, '2021-06-26 09:11:44', NULL),
+('TP01', 1, 'Pemetaan Proyek', 'transaksi/pemetaan', 3, '2021-06-26 09:09:20', NULL),
+('TP02', 2, 'Kontrak Proyek', 'transaksi/kontrak', 3, '2021-06-26 09:09:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -435,6 +539,30 @@ INSERT INTO `raw_materials` (`material_id`, `material_name`, `material_unit`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) NOT NULL,
+  `role_name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', '2021-06-26 08:45:39', NULL),
+(2, 'Pemasaran', '2021-06-26 08:45:39', NULL),
+(3, 'Pemilik', '2021-06-26 08:45:39', NULL),
+(4, 'Kontraktor', '2021-06-26 08:45:39', NULL),
+(5, 'Keuangan', '2021-06-26 08:45:39', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transactions`
 --
 
@@ -597,8 +725,8 @@ CREATE TABLE `users` (
   `name` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `role` int(11) NOT NULL,
-  `status` int(1) NOT NULL,
+  `role` bigint(20) NOT NULL,
+  `status` int(1) NOT NULL COMMENT '0: Blok 1: Aktif',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -607,7 +735,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `role`, `status`, `date_created`) VALUES
-(1, 'Super Admin', 'superadmin', '$2y$10$pfs8OfIQbLy3vgc2dYuzrOwZXA46cvPMfGsp/yOYPgRDgL3YYoaqu', 1, 1, '2020-11-16 18:48:32');
+(1, 'Super Admin', 'superadmin', '$2y$10$pfs8OfIQbLy3vgc2dYuzrOwZXA46cvPMfGsp/yOYPgRDgL3YYoaqu', 1, 1, '2020-11-16 18:48:32'),
+(2, 'Admin', 'admin', '$2y$10$L.XkDQF7FmqrMKKY4sWdq.355jB4ISP7UAF9u4PJEI9kr2S5kXOe2', 1, 0, '2021-06-26 10:03:31'),
+(3, 'Pemasaran', 'pemasaran', '$2y$10$fcTOtZp.iWy/KsXuTQSM.u1LeypJGK8PcZLA6gvyHOg6uT/QTuGUS', 2, 0, '2021-06-26 10:03:55');
 
 -- --------------------------------------------------------
 
@@ -697,6 +827,27 @@ ALTER TABLE `material_budget`
   ADD KEY `work_group_id` (`work_group_id`);
 
 --
+-- Indexes for table `menu_access`
+--
+ALTER TABLE `menu_access`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `tcode` (`tcode`);
+
+--
+-- Indexes for table `menu_head`
+--
+ALTER TABLE `menu_head`
+  ADD PRIMARY KEY (`head_id`);
+
+--
+-- Indexes for table `menu_item`
+--
+ALTER TABLE `menu_item`
+  ADD PRIMARY KEY (`tcode`),
+  ADD KEY `head_id` (`head_id`);
+
+--
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
@@ -762,6 +913,12 @@ ALTER TABLE `raw_materials`
   ADD PRIMARY KEY (`material_id`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -793,7 +950,8 @@ ALTER TABLE `type_of_work`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `role` (`role`);
 
 --
 -- Indexes for table `work_group`
@@ -819,6 +977,18 @@ ALTER TABLE `general_ledger`
 --
 ALTER TABLE `material_budget`
   MODIFY `mb_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `menu_access`
+--
+ALTER TABLE `menu_access`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `menu_head`
+--
+ALTER TABLE `menu_head`
+  MODIFY `head_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -863,10 +1033,16 @@ ALTER TABLE `project_timeline`
   MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -906,6 +1082,19 @@ ALTER TABLE `material_budget`
   ADD CONSTRAINT `material_budget_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `material_budget_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `raw_materials` (`material_id`),
   ADD CONSTRAINT `material_budget_ibfk_3` FOREIGN KEY (`work_group_id`) REFERENCES `work_group` (`work_group_id`);
+
+--
+-- Constraints for table `menu_access`
+--
+ALTER TABLE `menu_access`
+  ADD CONSTRAINT `menu_access_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `menu_access_ibfk_2` FOREIGN KEY (`tcode`) REFERENCES `menu_item` (`tcode`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `menu_item`
+--
+ALTER TABLE `menu_item`
+  ADD CONSTRAINT `menu_item_ibfk_1` FOREIGN KEY (`head_id`) REFERENCES `menu_head` (`head_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `payments`
@@ -977,6 +1166,12 @@ ALTER TABLE `type_of_work`
   ADD CONSTRAINT `type_of_work_ibfk_2` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `type_of_work_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `type_of_work_ibfk_4` FOREIGN KEY (`work_group_id`) REFERENCES `work_group` (`work_group_id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `work_group`
