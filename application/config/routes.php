@@ -133,3 +133,9 @@ Report Realitation
 /--------------------------------------------------*/
 $route['laporan/laporan_realisasi']                     = 'reports/project/Realitation_report';
 $route['laporan/laporan_realisasi/load']                = 'reports/project/Realitation_report/fetch';
+
+/*--------------------------------------------------
+SETTING
+/--------------------------------------------------*/
+$route['setting/pengguna']                              = 'setting/User';
+$route['setting/pengguna/simpan']                       = 'setting/User/store';
