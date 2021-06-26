@@ -10,7 +10,7 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="kode_proyek">Kode Proyek</label>
-                                    <select name="kode_proyek" id="kode_proyek" class="form-control" required>
+                                    <select name="kode_kontrak" id="kode_proyek" class="form-control" required>
                                         <option value=""></option>
                                         <?php foreach ($project as $rowData) : ?>
                                             <option value="<?= $rowData['trans_id'] ?>"><?= $rowData['trans_id'] . '-' . $rowData['project_name'] ?></option>

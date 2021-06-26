@@ -23,11 +23,11 @@
                 //     data: null,
                 //     'defaultContent': '<input class="form-control" name="realization[]" data-type="currency"/>'
                 // }
-                {
-                    'targets': [2],
-                    'className': 'text-right',
-                    'render': $.fn.dataTable.render.number('.', ',', 0, '')
-                },
+                // {
+                //     'targets': [2],
+                //     'className': 'text-right',
+                //     'render': $.fn.dataTable.render.number('.', ',', 0, '')
+                // },
             ],
             // select: {
             //     style: 'multi',

@@ -74,16 +74,86 @@ class M_payment extends CI_Model
         $angsuranKe = intval($countPayment['countPayment'] + 1);
         for ($i = 0; $i < $sisaAngsuran; $i++) {
             $data[] = [
-                'id'                => '<input type="checkbox" name="id" value="' . $i . '">',
-                'ket'               => 'Angsuran Ke-' . $angsuranKe++,
+                'id'                => '<input type="checkbox" name="id[]" value="' . $i . '">',
+                'ket'               => '<input type="text" class="form-control" name="ket[]" value="Pembayaran Angsuran Ke-' . $angsuranKe++ . '">',
                 'countBayar'        => intval($countPayment['countPayment']),
                 'piutang'           => $sisaPiutang,
                 'total_angsuran'    => $totalAngusran,
                 'sisa_angsuran'     => $sisaAngsuran,
-                'nominal'           => $totalAngusran
+                'nominal'           => '<input type="text" class="form-control" name="nominal[]" value="' . nominal1($totalAngusran) . '" readonly>'
             ];
         }
         return $data;
+    }
+
+    public function store()
+    {
+        $trans_id = $this->trans_id('payment');
+        $id = $this->input->post('id');
+        $kode_kontrak = $this->input->post('kode_kontrak');
+        $payment_date = $this->input->post('payment_date');
+        $desc = $this->input->post('description');
+        $ket = $this->input->post('ket');
+        $nominal = intval(preg_replace("/[^0-9]/", "", $this->input->post('nominal')));
+        $total = 0;
+        if (count($id) > 0) {
+
+            foreach ($id as $key => $val) {
+                $pay[] = [
+                    'trans_id'        => $trans_id,
+                    'ref_contract'    => $kode_kontrak,
+                    'nominal'         => intval(preg_replace("/[^0-9]/", "", $this->input->post('nominal')[$key])),
+                    'description'     => $ket[$key]
+                ];
+                $total = $total + intval(preg_replace("/[^0-9]/", "", $this->input->post('nominal')[$key]));
+            }
+
+
+
+            $trans = [
+                'trans_id'      => $trans_id,
+                'ref'           => $kode_kontrak,
+                'payment_date'  => $payment_date,
+                'description'   => $desc,
+                'total'         => $total,
+                'trans_type'    => 'payment'
+            ];
+            $gl = [
+                [
+
+                    'gl_date'            => date('Y-m-d'),
+                    'account_no'        => '1-10001',
+                    'gl_ref'            => $trans_id,
+                    'gl_balance'        => 'd',
+                    'gl_nominal'        => $total //cash -debt
+                ],
+                [
+                    'gl_date'            => date('Y-m-d'),
+                    'account_no'        => '1-10002',
+                    'gl_ref'            => $trans_id,
+                    'gl_balance'        => 'k',
+                    'gl_nominal'        => $total ///account receivable -cer
+                ],
+            ];
+
+            $this->db->trans_start();
+            $this->db->insert('transactions', $trans);
+            $this->db->insert_batch('payments', $pay);
+            $this->db->insert_batch('general_ledger', $gl);
+            $this->db->trans_complete();
+
+            $res = [
+                'status'        => true,
+                'data'          => $trans
+            ];
+        } else {
+            $res = [
+                'status'        => false,
+                'data'          => null
+            ];
+        }
+
+        return $res;
     }
 }
 

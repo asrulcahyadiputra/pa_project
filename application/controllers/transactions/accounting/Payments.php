@@ -39,7 +39,7 @@ class Payments extends CI_Controller
     public function store()
     {
         $req = $this->model->store();
-        if ($req['status'] == true) {
+        if ($req['status'] === true) {
             $this->session->set_flashdata('success', 'Berhasil menyimpan pembayaran !');
         } else {
             $this->session->set_flashdata('error', 'Gagal menyimpan pembayaran !');
