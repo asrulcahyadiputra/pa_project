@@ -118,6 +118,7 @@ class M_contract extends CI_Model
 			'client_id'			=> $client_id,
 			'total'				=> $nominal,
 			'trans_type'		=> $trans_type2,
+			'description'		=> 'Pembayaran Down Payment (DP)',
 			'created_by'		=> 1 //temporary
 		];
 		$project = [
@@ -192,7 +193,7 @@ class M_contract extends CI_Model
 			[
 				'gl_date'			=> date('Y-m-d'),
 				'account_no'		=> '2-10001',
-				'gl_ref'			=> $payment['trans_id'],
+				'gl_ref'			=> $id,
 				'gl_balance'		=> 'd',
 				'gl_nominal'		=> $payment['nominal'] //down payment -debt
 			],

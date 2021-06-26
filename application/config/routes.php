@@ -99,8 +99,10 @@ $route['transaksi/realisasi/prev']          = 'transactions/accounting/Realizati
 /*--------------------------------------------------
 Transaction Payments
 /--------------------------------------------------*/
-$route['transaksi/pembayaran']              = 'transactions/accounting/Payments';
-$route['transaksi/pembayaran/baru']         = 'transactions/accounting/Payments/create';
+$route['transaksi/pembayaran']                  = 'transactions/accounting/Payments';
+$route['transaksi/pembayaran/baru']             = 'transactions/accounting/Payments/create';
+$route['transaksi/pembayaran/find_angsuran']    = 'transactions/accounting/Payments/find_angsuran';
+$route['transaksi/pembayaran/simpan']           = 'transactions/accounting/Payments/store';
 
 
 
