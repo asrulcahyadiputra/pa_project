@@ -121,3 +121,9 @@ $route['laporan/buku_besar']                    = 'reports/accounting/Ledger/led
 Report Budgeting
 /--------------------------------------------------*/
 $route['laporan/anggaran']                    = 'reports/project/Budget_report';
+
+/*--------------------------------------------------
+Report Payments
+/--------------------------------------------------*/
+$route['laporan/laporan_pembayaran']                   = 'reports/accounting/Payment';
+$route['laporan/laporan_pembayaran/load']              = 'reports/accounting/Payment/fetch';

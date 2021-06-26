@@ -213,7 +213,7 @@
 							<a href="<?= site_url('laporan/buku_besar') ?>"> Buku Besar </a>
 						</li>
 						<li>
-							<a href="pages_faq.html"> Laporan Pembayaran</a>
+							<a href="<?= site_url('laporan/laporan_pembayaran') ?>"> Laporan Pembayaran</a>
 						</li>
 					</ul>
 				</li>

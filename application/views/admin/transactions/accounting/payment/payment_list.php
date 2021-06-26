@@ -44,7 +44,7 @@
                                     <th>Kode Kontrak</th>
                                     <th>Keterangan</th>
                                     <th>Nilai</th>
-                                    <!-- <th class="no-content"></th> -->
+                                    <th class="no-content"></th>
                                 </tr>
                             </thead>
                             <tbody>

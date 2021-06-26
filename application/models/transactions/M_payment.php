@@ -112,6 +112,7 @@ class M_payment extends CI_Model
 
             $trans = [
                 'trans_id'      => $trans_id,
+                'periode'       => date('Y', strtotime($payment_date)) . '' . date('m', strtotime($payment_date)),
                 'ref'           => $kode_kontrak,
                 'payment_date'  => $payment_date,
                 'description'   => $desc,
