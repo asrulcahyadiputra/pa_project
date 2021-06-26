@@ -127,3 +127,9 @@ Report Payments
 /--------------------------------------------------*/
 $route['laporan/laporan_pembayaran']                   = 'reports/accounting/Payment';
 $route['laporan/laporan_pembayaran/load']              = 'reports/accounting/Payment/fetch';
+
+/*--------------------------------------------------
+Report Realitation
+/--------------------------------------------------*/
+$route['laporan/laporan_realisasi']                     = 'reports/project/Realitation_report';
+$route['laporan/laporan_realisasi/load']                = 'reports/project/Realitation_report/fetch';

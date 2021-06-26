@@ -185,7 +185,7 @@
 							<a href="<?= site_url('laporan/anggaran') ?>">Laporan Anggaran</a>
 						</li>
 						<li>
-							<a href="user_account_setting.html">Laporan Realisasi</a>
+							<a href="<?= site_url('laporan/laporan_realisasi') ?>">Laporan Realisasi</a>
 						</li>
 					</ul>
 				</li>
