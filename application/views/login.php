@@ -125,17 +125,13 @@
                         } else {
                             console.log('Gagal Login')
                             Swal.fire({
-                                    title: 'Error',
-                                    icon: data.type,
-                                    text: data.message,
-                                    buttonsStyling: true,
-                                    confirmButtonText: 'OK',
-                                    confirmButtonColor: '#3f37c9',
-                                }
-                                // 'Error!',
-                                // data.message,
-                                // data.type
-                            )
+                                title: 'Error',
+                                icon: data.type,
+                                text: data.message,
+                                buttonsStyling: true,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#3f37c9',
+                            })
                         }
                     }
                 })
