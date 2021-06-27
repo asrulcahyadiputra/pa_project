@@ -8,8 +8,9 @@
 				<figure class="user-cover-image"></figure>
 				<div class="user-info">
 					<img src="<?= base_url() ?>assets/img/90x90.jpg" alt="avatar">
-					<h6 class="">Andi Kohar</h6>
-					<p class="">Project Leader</p>
+					<?php $profile = getProfile($this->session->userdata('user_id')) ?>
+					<h6 class=""><?= $profile['name'] ?></h6>
+					<p class=""><?= $profile['role_name'] ?></p>
 				</div>
 			</div>
 			<div class="shadow-bottom"></div>
