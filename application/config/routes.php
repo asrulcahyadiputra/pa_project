@@ -7,6 +7,15 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /*--------------------------------------------------
+AUTH
+/--------------------------------------------------*/
+$route['login']                         = 'Auth';
+$route['login/verify']                  = 'Auth/verification';
+$route['logout']                        = 'Auth/log_out';
+
+
+
+/*--------------------------------------------------
 Master Jenis Proyek
 /--------------------------------------------------*/
 $route['Master/proyek']                        = 'master/Jenis_proyek';
