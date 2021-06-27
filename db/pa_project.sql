@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 26, 2021 at 10:11 AM
+-- Generation Time: Jun 27, 2021 at 04:03 AM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -232,7 +232,8 @@ INSERT INTO `menu_access` (`id`, `tcode`, `role_id`, `created_at`, `updated_at`)
 (14, 'TK02', 1, '2021-06-26 09:29:10', NULL),
 (15, 'TK03', 1, '2021-06-26 09:29:10', NULL),
 (16, 'TP01', 1, '2021-06-26 09:29:10', NULL),
-(17, 'TP02', 1, '2021-06-26 09:29:10', NULL);
+(17, 'TP02', 1, '2021-06-26 09:29:10', NULL),
+(18, 'ST01', 1, '2021-06-27 03:48:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -260,7 +261,8 @@ INSERT INTO `menu_head` (`head_id`, `head_name`, `icon`, `id`, `nu`, `created_at
 (3, 'Proyek', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-file-plus\">\r\n								<path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path>\r\n								<polyline points=\"14 2 14 8 20 8\"></polyline>\r\n								<line x1=\"12\" y1=\"18\" x2=\"12\" y2=\"12\"></line>\r\n								<line x1=\"9\" y1=\"15\" x2=\"15\" y2=\"15\"></line>\r\n							</svg>', 'transaksi-proyek', 3, '2021-06-26 08:58:39', NULL),
 (4, 'Keuangan', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-dollar-sign\">\r\n								<line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"23\"></line>\r\n								<path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"></path>\r\n							</svg>', 'transaksi-keuangan', 4, '2021-06-26 08:58:39', NULL),
 (5, 'Laporan Proyek', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-monitor\">\r\n								<rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"></rect>\r\n								<line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"></line>\r\n								<line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"></line>\r\n							</svg>', 'laporan-proyek', 5, '2021-06-26 08:58:39', NULL),
-(6, 'Laporan Keuangan', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-book\">\r\n								<path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"></path>\r\n								<path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"></path>\r\n							</svg>', 'laporan-keuangan', 6, '2021-06-26 08:58:39', NULL);
+(6, 'Laporan Keuangan', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-book\">\r\n								<path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"></path>\r\n								<path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"></path>\r\n							</svg>', 'laporan-keuangan', 6, '2021-06-26 08:58:39', NULL),
+(7, 'Pengaturan', '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-settings\"><circle cx=\"12\" cy=\"12\" r=\"3\"></circle><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z\"></path></svg>', 'setting', 7, '2021-06-27 03:47:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -295,6 +297,7 @@ INSERT INTO `menu_item` (`tcode`, `nu`, `menu_name`, `url`, `head_id`, `created_
 ('MP03', 3, 'Jenis Pekerjaan', 'Master/pekerjaan', 1, '2021-06-26 09:04:56', NULL),
 ('MP04', 4, 'Material', 'Master/material', 1, '2021-06-26 09:04:56', NULL),
 ('MP05', 5, 'Pelanggan', 'Master/pelanggan', 1, '2021-06-26 09:04:56', NULL),
+('ST01', 1, 'Pengguna', 'setting/pengguna', 7, '2021-06-27 03:48:04', NULL),
 ('TK01', 1, 'Anggaran Proyek', 'transaksi/anggaran', 4, '2021-06-26 09:11:44', NULL),
 ('TK02', 2, 'Realisasi Proyek', 'transaksi/realisasi', 4, '2021-06-26 09:11:44', NULL),
 ('TK03', 3, 'Pembayaran', 'transaksi/pembayaran', 4, '2021-06-26 09:11:44', NULL),
@@ -726,7 +729,7 @@ CREATE TABLE `users` (
   `username` varchar(100) NOT NULL,
   `password` varchar(256) NOT NULL,
   `role` bigint(20) NOT NULL,
-  `status` int(1) NOT NULL COMMENT '0: Blok 1: Aktif',
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '0: Blok 1: Aktif',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -735,9 +738,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `role`, `status`, `date_created`) VALUES
-(1, 'Super Admin', 'superadmin', '$2y$10$pfs8OfIQbLy3vgc2dYuzrOwZXA46cvPMfGsp/yOYPgRDgL3YYoaqu', 1, 1, '2020-11-16 18:48:32'),
-(2, 'Admin', 'admin', '$2y$10$L.XkDQF7FmqrMKKY4sWdq.355jB4ISP7UAF9u4PJEI9kr2S5kXOe2', 1, 0, '2021-06-26 10:03:31'),
-(3, 'Pemasaran', 'pemasaran', '$2y$10$fcTOtZp.iWy/KsXuTQSM.u1LeypJGK8PcZLA6gvyHOg6uT/QTuGUS', 2, 0, '2021-06-26 10:03:55');
+(1, 'Admin', 'admin', '$2y$10$L.XkDQF7FmqrMKKY4sWdq.355jB4ISP7UAF9u4PJEI9kr2S5kXOe2', 1, 1, '2020-11-16 18:48:32'),
+(2, 'Pemilik', 'pemilik', '$2y$10$L.XkDQF7FmqrMKKY4sWdq.355jB4ISP7UAF9u4PJEI9kr2S5kXOe2', 3, 1, '2021-06-26 10:03:31'),
+(3, 'Pemasaran', 'pemasaran', '$2y$10$fcTOtZp.iWy/KsXuTQSM.u1LeypJGK8PcZLA6gvyHOg6uT/QTuGUS', 2, 1, '2021-06-26 10:03:55');
 
 -- --------------------------------------------------------
 
@@ -982,13 +985,13 @@ ALTER TABLE `material_budget`
 -- AUTO_INCREMENT for table `menu_access`
 --
 ALTER TABLE `menu_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `menu_head`
 --
 ALTER TABLE `menu_head`
-  MODIFY `head_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `head_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `payments`
