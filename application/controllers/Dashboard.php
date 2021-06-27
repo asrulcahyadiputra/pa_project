@@ -15,7 +15,12 @@ class Dashboard extends CI_Controller
 		$data = [
 			'title'		=> "CV Mangkubumi"
 		];
+		// $menu = get_menu($this->session->userdata('role'));
 		$this->load->view('home', $data);
+		// echo "<pre>";
+		// print_r($menu);
+		// echo "</pre>";
+		// die;
 	}
 }
 
