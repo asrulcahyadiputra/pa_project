@@ -86,6 +86,7 @@ $route['transaksi/kontrak/add_timeline/(:any)']    = 'transactions/project/Contr
 $route['transaksi/kontrak/find_project']        = 'transactions/project/Contract/find_type_project';
 $route['transaksi/kontrak/detail/(:any)']        = 'transactions/project/Contract/show/$1';
 $route['transaksi/kontrak/start/(:any)']        = 'transactions/project/Contract/start/$1';
+$route['transaksi/kontrak/done/(:any)']        = 'transactions/project/Contract/final/$1';
 
 /*--------------------------------------------------
 Transaction Project Budgeting

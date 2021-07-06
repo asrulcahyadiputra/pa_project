@@ -65,6 +65,12 @@ class Contract extends CI_Controller
 		$this->session->set_flashdata('success', 'Status Kontrak Proyek  berhasil di perbaharui !');
 		redirect('transaksi/kontrak/detail/' . $id);
 	}
+	public function final($id)
+	{
+		$this->model->final($id);
+		$this->session->set_flashdata('success', 'Status Kontrak Proyek  berhasil di perbaharui !');
+		redirect('transaksi/kontrak/detail/' . $id);
+	}
 }
 
 /* End of file Contract.php */

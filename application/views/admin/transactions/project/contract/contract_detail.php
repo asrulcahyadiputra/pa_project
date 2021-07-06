@@ -69,8 +69,12 @@
 											<?php if ($project['project_progress'] == 0) : ?>
 												<span class="text-danger">Belum Dimulai</span>
 											<?php endif ?>
-											<?php if ($project['project_progress'] == 1) : ?>
-												<span class="text-danger">Dalam Pengerjaan</span>
+
+											<?php if ($project['project_progress'] == 1 || $project['project_progress'] == 2) : ?>
+												<span class="text-warning">Dalam Pengerjaan</span>
+											<?php endif ?>
+											<?php if ($project['project_progress'] == 3) : ?>
+												<span class="text-success">Selesai</span>
 											<?php endif ?>
 										</td>
 									</tr>
@@ -79,8 +83,8 @@
 											<?php if ($project['project_progress'] == 0) : ?>
 												<a href="<?= site_url('transaksi/kontrak/start/' . $trans_id) ?>" class="btn btn-warning" onclick="return confirm('Pendapatan diterima dimuka akan diakui sebagai pendapatan setelah pengerjaan dilakukan. Apakah anda Yakin ?')">Mulai Pengerjaan</a>
 											<?php endif ?>
-											<?php if ($project['project_progress'] == 1) : ?>
-												<a href="" class="btn btn-success" onclick="return confirm('Proyek telah selesai dikerjan. Apakah anda Yakin ?')">Selesai</a>
+											<?php if ($project['project_progress'] == 1 || $project['project_progress'] == 2) : ?>
+												<a href="<?= site_url('transaksi/kontrak/done/' . $trans_id) ?>" class="btn btn-success" onclick="return confirm('Proyek telah selesai dikerjan. Apakah anda Yakin ?')">Selesai</a>
 											<?php endif ?>
 										</td>
 									</tr>
@@ -97,11 +101,12 @@
 					<div class="widget-content widget-content-area">
 						<h3 class="">Progres Pembayaran</h3>
 						<div class="progress br-30">
-							<div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+							<?php $prog = ($py['payment_progress'] / $project['p_method_step']) * 100 ?>
+							<div class="progress-bar bg-primary" role="progressbar" style="width: <?= $prog . '%' ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100%">
 								<div class="progress-title">
 									<span>Pembayaran</span>
 									<span>
-										<?php $prog = ($py['payment_progress'] / $project['p_method_step']) * 100 ?>
+
 										<?= $prog . '%' ?>
 									</span>
 								</div>

@@ -26,6 +26,7 @@
 <script src="<?= base_url() ?>assets/js/apps/todoList.js"></script>
 <script src="<?= base_url() ?>assets/js/scrollspyNav.js"></script>
 <script src="<?= base_url() ?>assets/js/elements/tooltip.js"></script>
+<script src="<?= base_url() ?>src/plugins/treeview/custom-jstree.js"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?= base_url() ?>plugins/table/datatable/datatables.js"></script>

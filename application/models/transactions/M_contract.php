@@ -48,8 +48,8 @@ class M_contract extends CI_Model
 	public function count_payment($id)
 	{
 		$this->db->select('count(payment_id) as payment_progress');
-		$this->db->group_by('trans_id');
-		return $this->db->get_where('payments', ['trans_id' => $id])->row_array();
+		$this->db->group_by('ref_contract');
+		return $this->db->get_where('payments', ['ref_contract' => $id])->row_array();
 	}
 	public function timeline($id)
 	{
@@ -217,6 +217,18 @@ class M_contract extends CI_Model
 		$this->db->trans_start();
 		$this->db->update('transactions', $trans, ['trans_id' => $id]);
 		$this->db->insert_batch('general_ledger', $gl);
+		$this->db->trans_complete();
+	}
+	public function final($id)
+	{
+
+		$trans = [
+			'project_progress'	=> 3, //finish
+			'status'	=> 3 //finish
+		];
+
+		$this->db->trans_start();
+		$this->db->update('transactions', $trans, ['trans_id' => $id]);
 		$this->db->trans_complete();
 	}
 }
